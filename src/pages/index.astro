@@ -1,7 +1,22 @@
 ---
+import LectionCard from "../components/LectionCard.astro";
 import Layout from "../layout/layout.astro";
 ---
 
 <Layout title="Squeaky JS | Inicio">
-  <h1>Pagina Principal</h1>
+  <main class="max-w-6xl mx-auto grid grid-cols-4 my-24 gap-4">
+    <LectionCard classList="row-span-2" difficult="Fácil" name="Leccion 1 | " />
+    <LectionCard classList="col-span-2" difficult="Medio" name="Leccion 2 | " />
+    <LectionCard classList="aspect-square" difficult="Fácil" name="Leccion 3 | " />
+    <LectionCard classList="aspect-square" difficult="Medio" name="Leccion 4 | " />
+    <LectionCard classList="col-span-2" difficult="Dificil" name="Leccion 5 | " />
+    <LectionCard classList="col-span-2" difficult="Medio" name="Leccion 5 | " />
+    <LectionCard classList="col-span-2" difficult="Dificil" name="Leccion 5 | " />
+  </main>
 </Layout>
+
+<style>
+  main{
+    grid-template-rows: repeat(4, 276px);
+  }
+</style>

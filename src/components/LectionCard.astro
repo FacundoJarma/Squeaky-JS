@@ -1,0 +1,30 @@
+---
+const { classList, difficult, name } = Astro.props;
+---
+
+<div
+  class={`flex flex-col bg-[#212121] border border-gray-300 rounded-2xl w-full p-4 ${classList}`}
+>
+  <main class="flex-1">
+    <h2 class="text-2xl text-gray-400">
+      {name}
+    </h2>
+  </main>
+
+  <footer class="flex items-center justify-end h-8">
+    <span
+      class:list={[
+        "text-sm px-4 py-0.5 text-white rounded-full",
+        {
+          "bg-green-700": difficult === "Fácil",
+        },
+        {
+          "bg-yellow-700": difficult === "Medio",
+        },
+        {
+          "bg-red-700": difficult === "Dificil",
+        },
+      ]}>{difficult}</span
+    >
+  </footer>
+</div>
