@@ -1,17 +1,32 @@
 ---
-const { classList, difficult, name } = Astro.props;
+import { Icon } from "astro-icon/components";
+const { classList, difficult, name, description, index, url } = Astro.props;
 ---
 
 <div
-  class={`flex flex-col bg-[#212121] border border-gray-300 rounded-2xl w-full p-4 ${classList}`}
+  class={`relative flex flex-col bg-[#212121] border border-gray-500 rounded-xl w-full p-4 ${classList}`}
 >
+  <div
+    class="absolute -top-3 -left-3 text-xs bg-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-white"
+  >
+    {index}
+  </div>
   <main class="flex-1">
-    <h2 class="text-2xl text-gray-400">
-      {name}
-    </h2>
+    <a href={"/lecciones/" + url}>
+      <h2 class="text-2xl text-white mb-2">
+        {name}
+      </h2>
+    </a>
+
+    <p class="text-gray-300 text-sm">{description}</p>
   </main>
 
-  <footer class="flex items-center justify-end h-8">
+  <footer class="flex items-center justify-between h-8">
+    <div
+      class="flex items-center justify-center hover:bg-neutral-700 p-1 rounded-full duration-100 cursor-pointer"
+    >
+      <Icon name="star" height={20} width={20} class={"text-gray-300"} />
+    </div>
     <span
       class:list={[
         "text-sm px-4 py-0.5 text-white rounded-full",

@@ -1,0 +1,31 @@
+---
+import Layout from "../../layout/layout.astro";
+import Lections from "../../sections/Lections.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Squeaky JS | Inicio">
+  <section class="h-72 bg-gray-200 py-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex justify-between mb-12">
+        <header>
+          <div class="flex gap-1 items-center">
+            <Icon name="pencil-check" height={40} width={40} class={"text-slate-700"}/>
+            <h1 class="text-6xl font-semibold mb-4">Tus lecciones</h1>
+          </div>
+
+          <p class="max-w-md text-sm text-gray-500 ml-2">
+            Aqui podras acceder a todas las lecciones de Squeaky JS. Considera
+            este espacio como tu cuaderno de apuntes, donde podras revisar
+            lecciones previas y continuar con las que te quedan por resolver.
+          </p>
+        </header>
+        <div>Progress Circle</div>
+      </div>
+      <span class="bg-yellow-700 px-4 py-0.5 text-white rounded-full text-sm"
+        >JavaScript</span
+      >
+    </div>
+  </section>
+  <Lections />
+</Layout>
