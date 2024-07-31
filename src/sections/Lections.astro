@@ -8,8 +8,10 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 ---
 
 <main class="max-w-6xl mx-auto grid grid-cols-5 my-24 gap-4">
+
   {
     lecciones.map(({ data: leccion, slug }, index) => (
+
       <LectionCard
         index={index + 1} // Esta 0-indexed 
         classList={leccion.classList}
@@ -17,8 +19,11 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
         name={leccion.title}
         url={slug}
       />
+      
     ))
   }
+
+
 </main>
 
 <style>

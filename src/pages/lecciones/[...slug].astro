@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = async () => {
+  const lections = await getCollection("lecciones");
+  lections.map((lection) => {
+    return {
+      params: { slug: lection.slug },
+      props: { data: lection.data },
+    };
+  });
+};
+
+const { slug } = Astro.params;
+const { title, difficult } = Astro.props;
+---
+

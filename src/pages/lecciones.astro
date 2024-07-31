@@ -1,6 +1,6 @@
 ---
-import Layout from "../../layout/layout.astro";
-import Lections from "../../sections/Lections.astro";
+import Layout from "../layout/layout.astro";
+import Lections from "../sections/Lections.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -10,7 +10,12 @@ import { Icon } from "astro-icon/components";
       <div class="flex justify-between mb-12">
         <header>
           <div class="flex gap-1 items-center">
-            <Icon name="pencil-check" height={40} width={40} class={"text-slate-700"}/>
+            <Icon
+              name="pencil-check"
+              height={40}
+              width={40}
+              class={"text-slate-700"}
+            />
             <h1 class="text-6xl font-semibold mb-4">Tus lecciones</h1>
           </div>
 
