@@ -1,19 +1,27 @@
 ---
-import type { GetStaticPaths } from "astro";
-
+import LectionsLayout from "../../layout/LectionsLayout.astro";
 import { getCollection } from "astro:content";
 
-export const getStaticPaths = async () => {
-  const lections = await getCollection("lecciones");
-  lections.map((lection) => {
-    return {
-      params: { slug: lection.slug },
-      props: { data: lection.data },
-    };
-  });
-};
+export async function getStaticPaths() {
+  const lecciones = await getCollection("lecciones");
+  return lecciones.map((l) => ({
+    params: { slug: l.slug },
+    props: { l },
+  }));
+}
 
-const { slug } = Astro.params;
-const { title, difficult } = Astro.props;
+const { l } = Astro.props;
+const { Content } = await l.render();
 ---
 
+<LectionsLayout title={l.data.title}>
+  <Content />
+</LectionsLayout>
+
+<style is:global>
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+  }
+</style>
