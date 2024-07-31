@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<nav class="col-span-6 flex justify-between px-8 py-4 w-full bg-gray-300">
+  <figure>
+    <!-- <Icon name="squeaky" height={40} width={40} /> -->
+  </figure>
+  <ul class="flex gap-4 items-center">
+    <li>
+      <a
+        href="/lecciones"
+        class="px-4 py-1 hover:text-gray-600 duration-200 text-black"
+      >
+        Mis Lecciones
+      </a>
+    </li>
+    <li>
+      <a
+        href="/ejercicios"
+        class="px-4 py-1 hover:text-gray-600 duration-200 text-black"
+      >
+        Ejercicios
+      </a>
+    </li>
+    <li>
+      <a
+        href="/perfil"
+        class="px-4 py-1 hover:text-gray-600 duration-200 text-black"
+      >
+        Perfil
+      </a>
+    </li>
+  </ul>
+</nav>

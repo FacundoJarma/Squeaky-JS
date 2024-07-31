@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+let lecciones = await getCollection("lecciones");
+lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
+---
+
+<aside class="h-screen bg-[#23262f] p-4">
+  <h2 class="text-lg text-white font-bold">Todas las Lecciones</h2>
+  <ul class="flex flex-col gap-2 ml-3">
+    {
+      lecciones.map(({ data: leccion, slug }, index) => (
+        <li>
+          <a href={"/lecciones/" + slug} class="text-gray-300 text-sm hover:text-white duration-300">
+            {leccion.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</aside>
