@@ -1,5 +1,6 @@
 ---
 import LectionsLayout from "../../layout/LectionsLayout.astro";
+import EndOfLection from "../../sections/EndOfLection.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -17,6 +18,7 @@ const { Content } = await l.render();
 <LectionsLayout title={l.data.title}>
   <div id="content">
     <Content />
+    <EndOfLection />
   </div>
 </LectionsLayout>
 
