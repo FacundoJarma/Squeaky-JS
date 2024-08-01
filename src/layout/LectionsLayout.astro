@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Navbar from "../components/Navbar.astro";
 import LectionAside from "../sections/LectionAside.astro";
 
@@ -17,6 +18,9 @@ const { title, description } = Astro.props;
     <Navbar />
     <LectionAside />
     <main class="mt-12 w-full px-32 mx-auto col-span-5">
+      <a href="/lecciones" class="flex gap-1 items-center hover:underline underline-offset-2"
+        ><Icon name="back" /> Volver a mis lecciones
+      </a>
       <slot />
     </main>
   </body>

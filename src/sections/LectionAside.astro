@@ -11,7 +11,10 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
     {
       lecciones.map(({ data: leccion, slug }, index) => (
         <li>
-          <a href={"/lecciones/" + slug} class="text-gray-300 text-sm hover:text-white duration-300">
+          <a
+            href={"/lecciones/" + slug}
+            class="text-gray-300 text-sm hover:text-white duration-300"
+          >
             {leccion.title}
           </a>
         </li>
