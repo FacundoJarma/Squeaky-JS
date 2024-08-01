@@ -1,8 +1,8 @@
 ---
-    classList: row-span-2 col-span-2
+    classList: row-span-1 col-span-2
     difficult: Medio
     title: Estructuras de Control Condicionales. If, Else, Else If
-    index: 4
+    index: 5
 ---
 
 # Estructuras de control condicionales: If, Else, Else If

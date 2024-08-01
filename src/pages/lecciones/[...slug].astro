@@ -15,23 +15,68 @@ const { Content } = await l.render();
 ---
 
 <LectionsLayout title={l.data.title}>
-  <Content />
+  <div id="content">
+    <Content />
+  </div>
 </LectionsLayout>
 
 <style is:global>
-  h1 {
-    color: white;
-    font-weight: bold;
-    font-size: 36px;
-  }
-  p {
-    color: #b9b9b9;
-  }
-  code {
-    padding-inline: 5px;
-    padding-block: 2px;
-    border-radius: 3px;
-    background-color: #3d3f4e;
-    color: #e5e7eb;
+  #content {
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: white;
+      font-weight: bold;
+      margin-block: 0.5em;
+    }
+    h1 {
+      font-size: 36px;
+    }
+    h2 {
+      font-size: 32px;
+    }
+    h3 {
+      font-size: 28px;
+    }
+    h4 {
+      font-size: 24px;
+    }
+    p {
+      color: #b9b9b9;
+      margin-block: 0.5em;
+    }
+    a {
+      color: #ce84ff;
+      text-decoration: underline;
+    }
+    ol {
+      list-style-type: decimal;
+      margin-left: 2em;
+    }
+    ol > li {
+      list-style: decimal;
+      font-size: 16px;
+    }
+    code {
+      font-family: monospace;
+      font-size: 14px;
+      padding-inline: 5px;
+      padding-block: 2px;
+      border-radius: 3px;
+      background-color: #3d3f4e;
+      color: #e5e7eb;
+    }
+
+    blockquote {
+      background-color: rgb(122, 0, 131);
+      padding-inline: 1em;
+      padding-block: 0.3em;
+      border-radius: 5px;
+      color: #b9b9b9;
+    }
+    blockquote > p {
+      color: white !important;
+    }
   }
 </style>
