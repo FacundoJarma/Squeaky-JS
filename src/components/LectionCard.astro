@@ -4,7 +4,8 @@ const { classList, difficult, name, description, index, url } = Astro.props;
 ---
 
 <div
-  class={`relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${classList}`}
+
+  class={`lection relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${classList}`}
 >
   <!-- <div
     class="absolute -top-3 -left-3 text-xs bg-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-white"
@@ -37,7 +38,7 @@ const { classList, difficult, name, description, index, url } = Astro.props;
           "bg-yellow-700": difficult === "Medio",
         },
         {
-          "bg-red-700": difficult === "Dificil",
+          "bg-red-700": difficult === "Difícil",
         },
       ]}>{difficult}</span
     >

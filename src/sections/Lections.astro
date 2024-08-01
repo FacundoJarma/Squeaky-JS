@@ -28,6 +28,20 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 
 <style>
   main {
-    grid-template-rows: repeat(4, 217px);
+    grid-template-rows: repeat(5, 217px);
   }
 </style>
+
+<script>
+  import ScrollReveal from "scrollreveal";
+
+  var slideUp = {
+
+    distance: '120%',
+    origin: 'bottom',
+    opacity: 0.5,
+    duration: 500,
+    scale: 0.85 
+};
+  ScrollReveal().reveal(".lection", slideUp);
+</script>
