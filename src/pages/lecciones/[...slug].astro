@@ -17,6 +17,7 @@ const { Content } = await l.render();
 
 <LectionsLayout title={l.data.title}>
   <div id="content">
+    <h1 transition:name={`lectionTitle-${l.data.index}`}>{l.data.title}</h1>
     <Content />
     <EndOfLection />
   </div>

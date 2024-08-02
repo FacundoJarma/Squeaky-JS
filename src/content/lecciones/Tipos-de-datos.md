@@ -5,4 +5,3 @@
     index: 3
 ---
 
-# Tipos de datos

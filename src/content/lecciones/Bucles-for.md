@@ -5,8 +5,6 @@
     index: 9
 ---
 
-# El bucle For ¡inicio, fin e iteracion en una sola linea!
-
 El bucle `for` se utiliza para realizar una secuencia de instrucciones para cada uno de los valores de una lista o de un rango de valores.
 
 ## Declaracion

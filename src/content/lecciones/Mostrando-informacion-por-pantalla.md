@@ -1,11 +1,9 @@
 ---
     classList: row-span-2 col-span-1
     difficult: Fácil
-    title: Mostrando Informacion por la pantalla.
+    title: Como podemos mostrar información por la pantalla.
     index: 4
 ---
-
-# Como podemos mostrar informacion por la pantalla.
 
 Una de las funciones principales que tienen las web es mostrar informacion. Una de las maneras más sencillas de hacerlo es mediante la función `alert()`, de la cual hablaremos en esta lección.
 

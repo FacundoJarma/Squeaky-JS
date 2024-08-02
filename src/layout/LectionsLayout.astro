@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { ViewTransitions } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
 import LectionAside from "../sections/LectionAside.astro";
 
@@ -14,20 +15,24 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
+
   <body class="bg-[#17181c] grid grid-cols-6">
+    <ViewTransitions />
     <Navbar />
     <LectionAside />
     <main class="mt-12 w-full px-32 mx-auto col-span-5 h-fit">
-      <a href="/lecciones" class="flex gap-1 items-center hover:underline underline-offset-2"
+      <a
+        href="/lecciones"
+        class="flex gap-1 items-center hover:underline underline-offset-2"
         ><Icon name="back" /> Volver a mis lecciones
       </a>
       <slot />
     </main>
   </body>
-</html>
 
-<style is:global>
-  html {
-    color-scheme: dark;
-  }
-</style>
+  <style is:global>
+    html {
+      color-scheme: dark;
+    }
+  </style>
+</html>
