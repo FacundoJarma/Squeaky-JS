@@ -1,0 +1,42 @@
+---
+import ButtonOneOption from "../components/ButtonOneOption.astro";
+const { body } = Astro.props;
+---
+
+<main>
+  <header>
+    <h1 class="text-5xl font-bold text-center">{body.question}</h1>
+  </header>
+  <div class="mt-12 w-full px-12">
+    <ul class="grid grid-cols-3 gap-6 ">
+      {
+        body.options.map((opt) => (
+          <ButtonOneOption isCorrect={opt.correct} text={opt.text} />
+        ))
+      }
+    </ul>
+  </div>
+</main>
+
+<style>
+  .correct {
+    background-color: #4dff4d !important;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll(
+    ".buttonOption"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const btn = event.target as HTMLButtonElement;
+      const correct = btn.dataset.iscorrect === "true";
+      if(correct) {
+        btn.classList.add("correct");
+      }
+    });
+  });
+</script>
+

@@ -1,0 +1,23 @@
+---
+import ExercicesLayout from "../../layout/ExercicesLayout.astro";
+import ExerciseTypeOne from "../../sections/ExerciseTypeOne.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const exercices = await getCollection("ejercicios");
+  return exercices.map((l) => ({
+    params: { id: l.id },
+    props: { l },
+  }));
+}
+
+const { l } = Astro.props;
+
+const { head, body } = l.data;
+---
+
+<ExercicesLayout title={head.title}>
+  <div id="content" class="flex-1 w-full grid place-items-center">
+    <ExerciseTypeOne body={body} />
+  </div>
+</ExercicesLayout>
