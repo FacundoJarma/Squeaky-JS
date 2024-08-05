@@ -5,7 +5,16 @@ console.log(isCorrect);
 
 <button
   class="buttonOption max-w-72 px-6 py-2 font-semibold text-gray-300 rounded-lg bg-gray-600 border-2 border-gray-800 duration-300 hover:scale-105"
-  data-isCorrect={`${isCorrect}`}
+  data-iscorrect={`${isCorrect}`}
 >
   {text}
 </button>
+
+<style>
+  .correct {
+    background-color: #4dff4d !important;
+  }
+  .incorrect{
+    background-color: #ff4d4d !important;
+  }
+</style>
