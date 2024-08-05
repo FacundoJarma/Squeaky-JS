@@ -4,17 +4,31 @@ console.log(isCorrect);
 ---
 
 <button
-  class="buttonOption max-w-72 px-6 py-2 font-semibold text-gray-300 rounded-lg bg-gray-600 border-2 border-gray-800 duration-300 hover:scale-105"
+  class="buttonOption max-w-72 px-6 py-2 font-semibold text-gray-300 rounded-2xl bg-gray-600 border-4 border-gray-800 duration-300 hover:scale-105"
   data-iscorrect={`${isCorrect}`}
 >
   {text}
 </button>
 
 <style>
-  .correct {
-    background-color: #4dff4d !important;
+  @keyframes showCorrect {
+    50% {
+      background-color: #4b5563;
+    }
+    100% {
+      background-color: #007900;
+    }
   }
-  .incorrect{
+
+  .correct {
+    background-color: #007900 !important;
+  }
+  .incorrect {
     background-color: #ff4d4d !important;
+  }
+
+  .parcialCorrect {
+    animation: showCorrect 1s;
+    animation-fill-mode: forwards;
   }
 </style>
