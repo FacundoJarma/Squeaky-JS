@@ -11,6 +11,27 @@ const lectionsCollection = defineCollection({
   }),
 });
 
+const exercicesCollection = defineCollection({
+  type: "data",
+  schema: z.object({
+    head: z.object({
+      title: z.string(),
+      lectionSlug: z.string(),
+    }),
+    body: z.object({
+      question: z.string(),
+      options: z.array(
+        z.object({
+          text: z.string(),
+          correct: z.boolean(),
+        })
+      )
+    })
+  }),
+});
+
+
 export const collections = {
   lecciones: lectionsCollection,
+  ejercicios: exercicesCollection
 };

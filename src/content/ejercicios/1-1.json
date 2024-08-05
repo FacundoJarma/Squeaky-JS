@@ -1,0 +1,29 @@
+{
+    "head": {
+        "title": "Ejercicio Fundamentos de JS.",
+        "lectionSlug": "Fundamentos-de-js"
+    },
+    "body": {
+        "question": "¿Que es JavaScript?",
+        "options": [
+            {
+                "text": "Un lenguaje de programación interpretado.",
+                "correct": true
+            },
+            {
+                "text": "Un lenguaje de programación de alto nivel.",
+                "correct": false
+            },
+            {
+                "text": "Un lenguaje de programación orientado a objetos.",
+                "correct": false
+            },
+            {
+                "text": "Un lenguaje de programación de bajo nivel.",
+                "correct": false
+            }
+            
+        ]
+    }
+
+}
