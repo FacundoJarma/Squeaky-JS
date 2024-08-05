@@ -2,7 +2,31 @@
 
 ---
 
-{
-  // TODO: Crear la version del Navbar para los usuarios que estan sin loguearse (o sin cuenta).
-  // El componente debera estar en el menu de navegacion de, como ejemplo, esta pagina: http://localhost:4321/
-}
+<nav class="col-span-6 flex justify-between px-8 py-5 w-full bg-gray-300">
+    <ul>
+      <li>
+        <a href="/login">
+         Inicio secion
+        </a>
+      </li>
+      <li>
+        <a href="/register"
+        class=""
+         >
+         Crear Cuenta
+        </a>
+      </li>
+    </ul>
+</nav>
+<style>
+    a {
+        color: black;
+    }
+    ul{
+        width: 100%;
+        display: flex;
+        gap: 1em;
+        align-items: center;
+        justify-content: end;
+    }
+</style>

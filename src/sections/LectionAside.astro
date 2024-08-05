@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import LectionsAsideButtons from "../components/LectionsAsideButtons.astro";
 
 let lecciones = await getCollection("lecciones");
 lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
@@ -21,4 +22,7 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
       ))
     }
   </ul>
+  
+  <LectionsAsideButtons />
+
 </aside>
