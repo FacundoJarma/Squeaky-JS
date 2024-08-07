@@ -1,0 +1,71 @@
+---
+import Layout from "../layout/layout.astro"
+---
+
+<Layout title="Squeaky JS | Perfil">
+     <div id="todo">
+        <h1>
+            personalizar Perfil
+        </h1>
+       <div class="input">
+        <input type="text" class="Nombre" placeholder="Nombre completo ">
+        <input type="text" class="Apellido" placeholder="Apellido">
+        <input type="text" class="Descripcion" placeholder="Descripcion">
+        <input type="number" class="edad" placeholder="Intoduce tu Edad" min="0" max="120">
+       </div>
+     </div>
+     <style>
+        #todo {
+           display: flex;
+           flex-direction: column;
+
+        }
+        h1 {
+            background-color: rgb(209 213 219);
+            width: 40em;
+            height: 4em;    
+            color: black;
+            padding-left: 1em;
+            margin-top: 2em;
+            margin: 1em;
+            font-size: bold;
+            padding: 1em;
+            
+        }
+        .Nombre {
+            background-color: rgb(209 213 219);
+            width: 20em;
+            height: 4em;
+            color: black;
+            padding-left: 1em;
+        }
+        .Apellido {
+            background-color: rgb(209 213 219);
+            width: 20em;
+            height: 4em;
+            color: black;
+            padding-left: 1em;
+        }
+        .Descripcion {
+            background-color: rgb(209 213 219);
+            width: 20em;
+            height: 10em;
+            color: black;
+            padding-left: 7em;
+        }
+        .edad {
+            background-color: rgb(209 213 219);
+            width: 20em;
+            height: 4em;
+            color: black;
+            padding-left: 1em;
+        }
+        .input {
+            display:flex;
+            flex-direction: column ;
+            margin: 1em;
+            gap: 2em;
+        }
+        
+     </style>
+</Layout>
