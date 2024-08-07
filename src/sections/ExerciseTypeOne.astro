@@ -1,6 +1,7 @@
 ---
 import ButtonOneOption from "../components/ButtonOneOption.astro";
 const { body, head } = Astro.props;
+
 ---
 
 <main class="px-12">
@@ -18,7 +19,7 @@ const { body, head } = Astro.props;
     </figure>
     <div class="flex flex-col gap-2">
       <a
-        href={`/lecciones/${head.lectionSlug.toLowerCase()}`}
+        href={`/lecciones/${head.lection.slug}`}
         class="hover:underline underline-offset-2">Volver a ver la leccion</a
       >
       <h1 class="text-5xl font-bold">{body.question}</h1>

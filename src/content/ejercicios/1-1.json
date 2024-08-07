@@ -1,7 +1,7 @@
 {
     "head": {
         "title": "Ejercicio Fundamentos de JS.",
-        "lectionSlug": "Fundamentos-de-js"
+        "lection": "fundamentos-de-js"
     },
     "body": {
         "question": "¿Que es JavaScript?",

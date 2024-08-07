@@ -1,15 +1,17 @@
 ---
-
+const { exercises } = Astro.props;
 ---
-
-{
-  // TODO: Darle funcionalidad a estos botones.
-}
 
 <section class="border-t-2 border-[#353841] mt-6 py-4">
   <div class="flex justify-between px-6">
-    <button class="w-56 h-16 bg-violet-800 rounded-xl text-xl">Volver</button>
-    <button class="w-56 h-16 bg-violet-800 rounded-xl text-xl">Siguiente</button
+    <a
+      class="w-56 h-16 bg-violet-800 rounded-xl text-xl grid place-content-center"
+      >Volver</a
+    >
+    <a
+      href={`/ejercicios/${exercises[0].id}`}
+      class="w-56 h-16 bg-violet-800 rounded-xl text-xl grid place-content-center"
+      >Ir a ejercicios</a
     >
   </div>
 </section>

@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { z, defineCollection, reference } from "astro:content";
 
 const lectionsCollection = defineCollection({
   type: "content",
@@ -8,6 +8,7 @@ const lectionsCollection = defineCollection({
     description: z.string().optional(),
     classList: z.string(),
     index: z.number(),
+    exercises: z.array(reference("ejercicios")).optional(),
   }),
 });
 
@@ -16,7 +17,7 @@ const exercicesCollection = defineCollection({
   schema: z.object({
     head: z.object({
       title: z.string(),
-      lectionSlug: z.string(),
+      lection: reference("lecciones"),
     }),
     body: z.object({
       question: z.string(),
@@ -28,6 +29,7 @@ const exercicesCollection = defineCollection({
       )
     })
   }),
+
 });
 
 
