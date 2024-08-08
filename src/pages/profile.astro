@@ -3,24 +3,56 @@ import Layout from "../layout/layout.astro"
 ---
 
 <Layout title="Squeaky JS | Perfil">
+    <div class="bloque">
+        <div class="circulo">
+
+        </div>
      <div id="todo">
-        <h1>
+        <h1 class="h1">
             personalizar Perfil
         </h1>
        <div class="input">
-        <input type="text" class="Nombre" placeholder="Nombre completo ">
-        <input type="text" class="Apellido" placeholder="Apellido">
-        <input type="text" class="Descripcion" placeholder="Descripcion">
-        <input type="number" class="edad" placeholder="Intoduce tu Edad" min="0" max="120">
+        <div>
+            <input type="text" class="Nombre" placeholder="Nombre completo ">
+            <input type="text" class="Apellido" placeholder="Apellido">
+            <input type="text" class="Descripcion" placeholder="Descripcion">
+            <input type="number" class="edad" placeholder="Intoduce tu Edad" min="0" max="120">
+        </div>
+        <div>
+            <h1>
+                Pantalla que muestra mejor puntaje
+            </h1>
+        </div>
        </div>
      </div>
+    </div>
      <style>
-        #todo {
-           display: flex;
-           flex-direction: column;
-
+        .circulo {
+            background-color: rgb(209 213 219);
+            border-radius: 50em;
+            width: 4em;
+            height: 4em;
+            margin-top: -35em;
+            margin-left: 43em;
         }
+        .bloque {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
         h1 {
+            background-color:  rgb(209 213 219);
+            width: 30em;
+            height: 20em;
+            color: black;
+            text-align: center;
+            padding: 7em;
+            margin-left: 27em;
+            
+            
+        }
+        
+        .h1 {
             background-color: rgb(209 213 219);
             width: 40em;
             height: 4em;    
@@ -30,7 +62,8 @@ import Layout from "../layout/layout.astro"
             margin: 1em;
             font-size: bold;
             padding: 1em;
-            
+            margin-bottom: 2em;
+                        
         }
         .Nombre {
             background-color: rgb(209 213 219);
@@ -62,10 +95,15 @@ import Layout from "../layout/layout.astro"
         }
         .input {
             display:flex;
-            flex-direction: column ;
             margin: 1em;
             gap: 2em;
         }
         
+        .input > div:nth-child(1){
+            display: flex;
+            flex-direction: column;
+            gap:2em;
+        }
+
      </style>
 </Layout>
