@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import FutureLectionsFooter from "../../components/FutureLectionsFooter.astro";
+import FutureExercicesAside from "../../components/FutureExercicesAside.astro";
 import ExercicesLayout from "../../layout/ExercicesLayout.astro";
 import ExerciseTypeOne from "../../sections/ExerciseTypeOne.astro";
 import { getCollection } from "astro:content";
@@ -15,14 +15,22 @@ export async function getStaticPaths() {
 
 const { l } = Astro.props;
 const { head, body } = l.data;
+const id = l.id;
 
 const lectionOfThisEx = await getEntry("lecciones", head.lection.slug);
+if (!lectionOfThisEx) return;
 
+const exercicesInThisLesson = lectionOfThisEx.data.exercises;
 ---
 
 <ExercicesLayout title={head.title}>
   <div id="content" class="flex-1 w-full grid place-items-center">
-    <ExerciseTypeOne body={body} head={head} />
+    <ExerciseTypeOne
+      body={body}
+      head={head}
+      id={id}
+      exercicesInThisLesson={exercicesInThisLesson}
+    />
   </div>
-  <FutureLectionsFooter lectionName={lectionOfThisEx.data.title} />
+  <FutureExercicesAside lectionName={lectionOfThisEx.data.title} exercicesInThisLesson={exercicesInThisLesson} />
 </ExercicesLayout>

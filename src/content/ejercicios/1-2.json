@@ -3,9 +3,10 @@
         "title": "Ejercicio Fundamentos de JS.",
         "lection": "fundamentos-de-js",
         "type": "Unica Opcion"
+
     },
     "body": {
-        "question": "¿Que es JavaScript?",
+        "question": "¿Para que sirve JavaScript?",
         "options": [
             {
                 "text": "Un lenguaje de programación interpretado.",

@@ -1,0 +1,77 @@
+---
+import { Icon } from "astro-icon/components";
+import { getEntry } from "astro:content";
+const { lectionName, exercicesInThisLesson } = Astro.props;
+
+let exercicesInfo = [] as any[];
+
+for (const ex of exercicesInThisLesson) {
+  const { id } = ex;
+  const exerciseOfThisLesson = (await getEntry("ejercicios", id)) as any;
+  if (exerciseOfThisLesson) {
+    exercicesInfo.push(exerciseOfThisLesson);
+  }
+}
+
+console.log(exercicesInfo);
+---
+
+<button
+  id="open-menu"
+  data-open="false"
+  class="absolute z-20 top-20 left-2 block w-fit aspect-square p-2 bg-gray-700 rounded-lg"
+>
+  <Icon name="menu" height={30} width={30} class="text-gray-300" />
+</button>
+
+<aside
+  data-open="false"
+  class="fixed top-16 h-full w-fit py-16 flex flex-col items-center gap-12 bg-[#23262f] z-10"
+>
+  <h3 class="text-3xl font-bold">
+    {lectionName}
+  </h3>
+  <ul class="w-full flex flex-col gap-6 items-center">
+    {
+      exercicesInfo.map((ex) => (
+        <li class="w-full aspect-[8/3] p-4 bg-[#23262f] border-2 border-gray-700 rounded-2xl flex flex-col justify-between">
+          <h4 class="text-2xl">{ex.data.body.question}</h4>
+          <div class="flex justify-between items-center">
+            <span class="text-xs w-fit px-2 py-1 bg-yellow-700 rounded-full">
+              {ex.data.head.type}
+            </span>
+            <a href={`/ejercicios/${ex.id}`} class="w-fit aspect-square p-2 hover:bg-gray-700 rounded-full duration-300">
+              <Icon name="openNewTab" height={30} width={30} />
+            </a>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</aside>
+
+<style>
+  aside {
+    overflow-x: hidden;
+    transition: all 0.1s;
+  }
+  aside[data-open="false"] {
+    max-width: 0;
+  }
+
+  aside[data-open="true"] {
+    max-width: 100%;
+    padding-inline: 2rem;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("open-menu");
+  btn?.addEventListener("click", () => {
+    const aside = document.querySelector("aside");
+    if (!aside) return;
+    aside.dataset.open === "true"
+      ? (aside.dataset.open = "false")
+      : (aside.dataset.open = "true");
+  });
+</script>

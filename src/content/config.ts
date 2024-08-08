@@ -18,6 +18,7 @@ const exercicesCollection = defineCollection({
     head: z.object({
       title: z.string(),
       lection: reference("lecciones"),
+      type: z.enum(["Unica Opcion", "Multiple Opciones"]),
     }),
     body: z.object({
       question: z.string(),

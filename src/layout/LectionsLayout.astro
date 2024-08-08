@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import { ViewTransitions } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
 import LectionAside from "../sections/LectionAside.astro";
+import KeyboardManager from "../components/KeyboardManager.astro";
 
 const { title, description } = Astro.props;
 ---
@@ -16,18 +17,21 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
 
-  <body class="bg-[#17181c] grid grid-cols-6">
+  <body class="bg-[#17181c] ">
+    <KeyboardManager title="Comandos de Teclado" />
     <ViewTransitions />
-    <Navbar />
-    <LectionAside />
-    <main class="mt-12 w-full px-32 mx-auto col-span-5 h-fit">
-      <a
-        href="/lecciones"
-        class="flex gap-1 items-center hover:underline underline-offset-2"
-        ><Icon name="back" /> Volver a mis lecciones
-      </a>
-      <slot />
-    </main>
+    <div class="pb-12 grid grid-cols-6">
+      <Navbar />
+      <LectionAside />
+      <main class="mt-12 w-full px-32 mx-auto col-span-5 h-fit">
+        <a
+          href="/lecciones"
+          class="flex gap-1 items-center hover:underline underline-offset-2"
+          ><Icon name="back" /> Volver a mis lecciones
+        </a>
+        <slot />
+      </main>
+    </div>
   </body>
 
   <style is:global>

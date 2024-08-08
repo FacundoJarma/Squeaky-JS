@@ -1,0 +1,193 @@
+---
+const { title } = Astro.props;
+import { comandos } from "../lib/comandos";
+
+const categorias = Array.from(
+  new Set(comandos.map((comando) => comando.category))
+);
+---
+
+<section
+  class="z-50 idden md:flex fixed bottom-0 left-0 w-full h-12 items-center justify-center gap-1 bg-[#0D0F18] border-t border-[#494949] text-center"
+>
+  Presiona <kbd>cmd</kbd> + <kbd>k</kbd> para abrir los comandos.
+</section>
+
+<div
+  id="keyboard-manager-modal"
+  data-open="false"
+  class="z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35em] h-[20em] bg-[#15181F] border border-[#494949] rounded-lg"
+>
+  <header
+    class="flex justify-between items-center border-b border-[#494949] px-4 py-2"
+  >
+    <h2 class="text-2xl">{title}</h2>
+    <input
+      id="buscarComando"
+      type="text"
+      placeholder="Buscar"
+      class="border border-[#494949] rounded-lg px-2 bg-[#0D0F18] w-56 h-8 focus:outline-none"
+    />
+  </header>
+  <ul class="px-4 py-2 flex flex-col gap-2 overflow-y-auto max-h-[16em]">
+    {
+      categorias.map((category) => (
+        <div class="flex flex-col gap-1">
+          <h4 class="text-lg text-gray-300">{category}</h4>
+          {comandos
+            .filter((comando) => comando.category === category)
+            .map((comando) => (
+              <li
+                class="comando px-2 py-1 rounded-md"
+                data-selected="false"
+                data-option={comando.name}
+              >
+                <h3 class="text-xl">{comando.name}</h3>
+                <p class="text-sm text-[#9B959E]">{comando.description}</p>
+              </li>
+            ))}
+        </div>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  import { comandos } from "../lib/comandos";
+
+  let selectedIndex = 0;
+  let open = false;
+
+  const getComandosElements = () => {
+    const comandosElements = document.querySelectorAll(
+      ".comando"
+    ) as NodeListOf<HTMLLIElement>;
+
+    let active: HTMLLIElement[] = [];
+
+    comandosElements.forEach((comandoElement) => {
+      if (comandoElement.style.display !== "none") {
+        active.push(comandoElement);
+      }
+    });
+
+    return active;
+  };
+
+  const initComandosElements = () => {
+    const comandosElements = getComandosElements();
+    if (!comandosElements) return;
+
+    comandosElements[selectedIndex].setAttribute("data-selected", "true");
+
+    comandosElements.forEach((comandoElement, index) => {
+      comandoElement.addEventListener("click", () => {
+        const comando = comandos[index];
+        if (comando && typeof comando.action === "function") {
+          comando.action();
+        }
+      });
+    });
+  };
+
+  initComandosElements();
+  const input = document.getElementById("buscarComando");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("keydown", (event) => {
+      const comandosElements = getComandosElements();
+
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        const keyboardManagerModal = document.getElementById(
+          "keyboard-manager-modal"
+        );
+        event.preventDefault();
+
+        if (!keyboardManagerModal) return;
+
+        keyboardManagerModal.dataset.open =
+          keyboardManagerModal.dataset.open === "true" ? "false" : "true";
+
+        open = keyboardManagerModal.dataset.open === "true";
+
+        //focus input
+        input?.focus();
+      } else if (event.key === "ArrowDown" && open) {
+        event.preventDefault();
+        comandosElements[selectedIndex].setAttribute("data-selected", "false");
+        selectedIndex = (selectedIndex + 1) % comandosElements.length;
+        comandosElements[selectedIndex].setAttribute("data-selected", "true");
+
+        //scroll to element
+        comandosElements[selectedIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      } else if (event.key === "ArrowUp" && open) {
+        event.preventDefault();
+        comandosElements[selectedIndex].setAttribute("data-selected", "false");
+        selectedIndex =
+          (selectedIndex - 1 + comandosElements.length) %
+          comandosElements.length;
+        comandosElements[selectedIndex].setAttribute("data-selected", "true");
+
+        //scroll to element
+        comandosElements[selectedIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      } else if (event.key === "Enter" && open) {
+        const comando = comandos.find(
+          (comando) =>
+            comando.name === comandosElements[selectedIndex].dataset.option
+        );
+        if (comando && typeof comando.action === "function") {
+          comando.action();
+        }
+      }
+    });
+  });
+
+  //Search comands:
+  input?.addEventListener("input", (event) => {
+    const comandosElements = document.querySelectorAll(
+      ".comando"
+    ) as NodeListOf<HTMLLIElement>;
+
+    const value = (event.target as HTMLInputElement).value;
+    comandosElements.forEach((comandoElement, index) => {
+      const comando = comandos[index];
+      if (
+        comando &&
+        (comando.name.toLowerCase().includes(value.toLowerCase()) ||
+          comando.description.toLowerCase().includes(value.toLowerCase()))
+      ) {
+        comandoElement.style.display = "block";
+      } else {
+        comandoElement.style.display = "none";
+        comandoElement.setAttribute("data-selected", "false");
+      }
+    });
+  });
+</script>
+
+<style>
+  #keyboard-manager-modal[data-open="true"] {
+    display: block;
+  }
+
+  #keyboard-manager-modal[data-open="false"] {
+    display: none;
+  }
+
+  kbd {
+    padding: 0.1em 0.5em;
+    border: 1px solid #494949;
+    background-color: #15181f;
+    border-radius: 5px;
+  }
+
+  .comando[data-selected="true"] {
+    background-color: #2c3242;
+  }
+</style>
