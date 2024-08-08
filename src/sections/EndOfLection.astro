@@ -7,6 +7,7 @@ const { exercises } = Astro.props;
     {
       exercises ? (
         <a
+          id="goToExercises"
           href={`/ejercicios/${exercises[0].id}`}
           class="w-56 h-16 bg-violet-800 rounded-xl text-xl grid place-content-center"
         >
