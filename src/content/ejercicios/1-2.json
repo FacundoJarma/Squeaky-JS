@@ -7,24 +7,19 @@
     },
     "body": {
         "question": "¿Para que sirve JavaScript?",
-        "options": [
+        "options": [   
             {
-                "text": "Un lenguaje de programación interpretado.",
+                "text": "Javascript sirve unicamente para programar sitios web.",
+                "correct": false
+            },
+            {
+                "text": "Javascript sirve para programar un gran numero de apps, desde webs hasta aplicaciones de escritorio.",
                 "correct": true
             },
             {
-                "text": "Un lenguaje de programación de alto nivel.",
-                "correct": false
-            },
-            {
-                "text": "Un lenguaje de programación orientado a objetos.",
-                "correct": false
-            },
-            {
-                "text": "Un lenguaje de programación de bajo nivel.",
+                "text": "Javascript sirve para programar aplicaciones de escritorio.",
                 "correct": false
             }
-            
         ]
     }
 
