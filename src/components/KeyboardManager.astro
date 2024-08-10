@@ -12,11 +12,10 @@ const categorias = Array.from(
 >
   Presiona <kbd>cmd</kbd> + <kbd>k</kbd> para abrir los comandos.
 </section> -->
-
 <div
   id="keyboard-manager-modal"
   data-open="false"
-  class="z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35em] h-[20em] bg-[#15181F] border border-[#494949] rounded-lg"
+  class="z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35em] h-[20em] bg-[#15181F] border-2 p-2 border-slate-600 rounded-lg"
 >
   <header
     class="flex justify-between items-center border-b border-[#494949] px-4 py-2"
@@ -56,7 +55,6 @@ const categorias = Array.from(
     }
   </ul>
 </div>
-
 <script>
   import { comandos } from "../lib/comandos";
 
@@ -64,19 +62,9 @@ const categorias = Array.from(
   let open = false;
 
   const getComandosElements = () => {
-    const comandosElements = document.querySelectorAll(
-      ".comando"
-    ) as NodeListOf<HTMLLIElement>;
-
-    let active: HTMLLIElement[] = [];
-
-    comandosElements.forEach((comandoElement) => {
-      if (comandoElement.style.display !== "none") {
-        active.push(comandoElement);
-      }
-    });
-
-    return active;
+    return Array.from(document.querySelectorAll(".comando")).filter(
+      (comandoElement) => comandoElement.style.display !== "none"
+    );
   };
 
   const initComandosElements = () => {
@@ -85,9 +73,10 @@ const categorias = Array.from(
 
     comandosElements[selectedIndex].setAttribute("data-selected", "true");
 
-    comandosElements.forEach((comandoElement, index) => {
+    comandosElements.forEach((comandoElement) => {
       comandoElement.addEventListener("click", () => {
-        const comando = comandos[index];
+        const comandoName = comandoElement.dataset.option;
+        const comando = comandos.find((c) => c.name === comandoName);
         if (comando && typeof comando.action === "function") {
           comando.action();
         }
@@ -115,15 +104,15 @@ const categorias = Array.from(
 
         open = keyboardManagerModal.dataset.open === "true";
 
-        //focus input
-        input?.focus();
+        if (open) {
+          input?.focus();
+        }
       } else if (event.key === "ArrowDown" && open) {
         event.preventDefault();
         comandosElements[selectedIndex].setAttribute("data-selected", "false");
         selectedIndex = (selectedIndex + 1) % comandosElements.length;
         comandosElements[selectedIndex].setAttribute("data-selected", "true");
 
-        //scroll to element
         comandosElements[selectedIndex].scrollIntoView({
           behavior: "smooth",
           block: "center",
@@ -136,16 +125,14 @@ const categorias = Array.from(
           comandosElements.length;
         comandosElements[selectedIndex].setAttribute("data-selected", "true");
 
-        //scroll to element
         comandosElements[selectedIndex].scrollIntoView({
           behavior: "smooth",
           block: "center",
         });
       } else if (event.key === "Enter" && open) {
-        const comando = comandos.find(
-          (comando) =>
-            comando.name === comandosElements[selectedIndex].dataset.option
-        );
+        const comandoElement = comandosElements[selectedIndex];
+        const comandoName = comandoElement.dataset.option;
+        const comando = comandos.find((c) => c.name === comandoName);
         if (comando && typeof comando.action === "function") {
           comando.action();
         }
@@ -153,26 +140,29 @@ const categorias = Array.from(
     });
   });
 
-  //Search comands:
+  // Búsqueda de comandos:
   input?.addEventListener("input", (event) => {
-    const comandosElements = document.querySelectorAll(
-      ".comando"
-    ) as NodeListOf<HTMLLIElement>;
+    const value = (event.target as HTMLInputElement).value.toLowerCase();
 
-    const value = (event.target as HTMLInputElement).value;
-    comandosElements.forEach((comandoElement, index) => {
-      const comando = comandos[index];
-      if (
-        comando &&
-        (comando.name.toLowerCase().includes(value.toLowerCase()) ||
-          comando.description.toLowerCase().includes(value.toLowerCase()))
-      ) {
+    document.querySelectorAll(".comando").forEach((comandoElement) => {
+      const comandoName = comandoElement
+        .querySelector("h3")
+        .innerText.toLowerCase();
+      const comandoDescription = comandoElement
+        .querySelector("p")
+        .innerText.toLowerCase();
+
+      if (comandoName.includes(value) || comandoDescription.includes(value)) {
         comandoElement.style.display = "block";
       } else {
         comandoElement.style.display = "none";
         comandoElement.setAttribute("data-selected", "false");
       }
     });
+
+    // Reiniciar el índice seleccionado cuando se realiza una nueva búsqueda
+    selectedIndex = 0;
+    initComandosElements();
   });
 </script>
 
