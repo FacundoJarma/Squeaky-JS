@@ -4,9 +4,91 @@ import LoginForm from "../sections/LoginForm.astro";
 ---
 
 <Layout title="Squeaky JS | Inicio">
-  {
-    // TODO: Esta Pagina.
-  }
+  
+  <div id="container">
+    <h1>Iniciar Secion</h1>
+    <form class="input">
+      <div class="register">
+        <input type="text" class="text" placeholder="Mail/Numero de Telefono" />
+        <input
+          type="password"
+          class="contra"
+          placeholder="Ingresa tu Contraseña"
+        />
+      </div>
+      
+      <input type="submit" class="enviar">
+  
+    </form>
+    <div class="contru">
+      <h2>¿Olvidaste tu Contraseña?</h2>
+      <h2>¿Eres Nuevo en Squeaky? 
+        
+        <a
+          href="/register"
+          >
+          Crear cuenta
+        </a>
+      </h2>
+    </div>
+  </div>
+  
+  <style>
+    #container {
+      width: 30em;
+      height: 30em;
+      background-color: #23262f;
+      border-radius: 3em;
+      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      }
+    h1 {
+      font-size: 36px;
+      margin-top: 1em;
+      margin-bottom: 2em;
+      font-weight: bold;
+      }
+     .register {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+      margin-bottom: 2em;
+      }
+    .contra {
+      padding: 0.5em 1em;
+      width: 16em;
+      height: 2em;
+      border-radius: 3em;
+      background-color: rgb(75 85 99);
+      color: rgb(250, 247, 247);
+      }
+    .text {
+      padding: 0.5em 1em;
+      width: 16em;
+      height: 2em;
+      border-radius: 3em;
+      background-color: rgb(75 85 99);
+      color: rgb(250, 247, 247);
+      }
+     .enviar {
+        background-color: rgb(30 58 138);  
+        width: 6em;
+        height: 3em;
+        border-radius: 1em;
+        gap: 3em;
+      } 
+      .contru {
 
-  <LoginForm />
-</Layout>
+      } 
+      
+  </style>
+  </Layout>
+
+
+
+
+
+ 
