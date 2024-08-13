@@ -1,0 +1,92 @@
+---
+import ButtonTwoOptions from "../components/ButtonTwoOptions.astro";
+const { body, head, exercicesInThisLesson, id } = Astro.props;
+
+const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
+---
+
+<main class="px-12">
+  <a
+    href={exercicesInThisLesson[actualIndexOfEx + 1] &&
+      `/ejercicios/${exercicesInThisLesson[actualIndexOfEx + 1].id}`}
+    id="goNextExercice"
+    class="hidden w-56 h-16 bg-violet-800 rounded-xl text-xl absolute bottom-12 right-12 place-content-center"
+  >
+    {
+      actualIndexOfEx < exercicesInThisLesson.length - 1
+        ? "Siguiente Ejercicio"
+        : "Finalizar Lección"
+    }
+  </a>
+  <header class="flex gap-4 items-center">
+    <figure
+      class="w-32 aspect-square bg-gray-600 rounded-full grid place-items-center"
+    >
+      Logo
+    </figure>
+    <div class="flex flex-col gap-2">
+      <a
+        id="volverALeccion"
+        href={`/lecciones/${head.lection.slug}`}
+        class="hover:underline underline-offset-2">Volver a ver la leccion</a
+      >
+      <h1 class="text-5xl font-bold">{body.question}</h1>
+    </div>
+  </header>
+  <div class="mt-12 w-full px-12">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        body.options.map((opt) => (
+          <ButtonTwoOptions isCorrect={opt.correct} text={opt.text} />
+        ))
+      }
+    </ul>
+  </div>
+</main>
+
+<style>
+  .active {
+    display: grid !important;
+  }
+</style>
+
+<script>
+  const activeGoNext = () => {
+    document.getElementById("goNextExercice")?.classList.add("active");
+  };
+
+  const disabledButtons = () =>
+    buttons.forEach((button) => (button.disabled = true));
+
+  const buttons = document.querySelectorAll(
+    ".buttonOptionMultiple"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  let cantidadDeCorrectas = document.querySelectorAll(
+    `.buttonOptionMultiple[data-iscorrect="true"]`
+  ).length;
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const btn = event.target as HTMLButtonElement;
+
+      const correct = btn.dataset.iscorrect == "true";
+      if (correct) {
+        cantidadDeCorrectas--;
+        btn.classList.add("correct");
+
+        if (cantidadDeCorrectas == 0) {
+          confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: 0.6 },
+          });
+          activeGoNext();
+          disabledButtons();
+        }
+      } else {
+        btn.classList.add("incorrect");
+      }
+    });
+  });
+</script>
