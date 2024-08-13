@@ -2,23 +2,23 @@
     "head": {
         "title": "Ejercicio Fundamentos de JS.",
         "lection": "fundamentos-de-js",
-        "type": "Unica Opcion"
+        "type": "Multiple Opcion"
 
     },
     "body": {
         "question": "¿Para que sirve JavaScript?",
         "options": [   
             {
-                "text": "Javascript sirve unicamente para programar sitios web.",
-                "correct": false
-            },
-            {
-                "text": "Javascript sirve para programar un gran numero de apps, desde webs hasta aplicaciones de escritorio.",
+                "text": "Javascript sirve para programar sitios web.",
                 "correct": true
             },
             {
-                "text": "Javascript sirve para programar aplicaciones de escritorio.",
+                "text": "Javascript solo sirve para hacer aplicaciones mobile.",
                 "correct": false
+            },
+            {
+                "text": "Javascript sirve para programar aplicaciones de escritorio.",
+                "correct": true
             }
         ]
     }
