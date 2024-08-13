@@ -58,36 +58,34 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   const disabledButtons = () =>
     buttons.forEach((button) => (button.disabled = true));
 
-  const showCorrectAnswer = () => {
-    const btnCorrect = document.querySelector(`button[data-iscorrect="true"]`);
-
-    btnCorrect?.classList.add("parcialCorrect");
-    disabledButtons();
-    activeGoNext();
-  };
-
   const buttons = document.querySelectorAll(
-    ".buttonOption"
+    ".buttonOptionMultiple"
   ) as NodeListOf<HTMLButtonElement>;
+
+  let cantidadDeCorrectas = document.querySelectorAll(
+    `.buttonOptionMultiple[data-iscorrect="true"]`
+  ).length;
 
   buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const btn = event.target as HTMLButtonElement;
-      console.log(btn.dataset.iscorrect);
+
       const correct = btn.dataset.iscorrect == "true";
       if (correct) {
+        cantidadDeCorrectas--;
         btn.classList.add("correct");
 
-        confetti({
-          particleCount: 200,
-          spread: 100,
-          origin: { y: 0.6 },
-        });
-        activeGoNext();
-        disabledButtons();
+        if (cantidadDeCorrectas == 0) {
+          confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: 0.6 },
+          });
+          activeGoNext();
+          disabledButtons();
+        }
       } else {
         btn.classList.add("incorrect");
-        showCorrectAnswer();
       }
     });
   });
