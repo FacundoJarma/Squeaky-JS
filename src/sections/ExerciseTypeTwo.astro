@@ -1,23 +1,18 @@
 ---
 import ButtonTwoOptions from "../components/ButtonTwoOptions.astro";
-const { body, head, exercicesInThisLesson, id } = Astro.props;
+import NextExercise from "../components/NextExercise.astro";
 
+const { body, head, exercicesInThisLesson, id, indexOfLesson } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
 <main class="px-12">
-  <a
-    href={exercicesInThisLesson[actualIndexOfEx + 1] &&
-      `/ejercicios/${exercicesInThisLesson[actualIndexOfEx + 1].id}`}
-    id="goNextExercice"
-    class="hidden w-56 h-16 bg-violet-800 rounded-xl text-xl absolute bottom-12 right-12 place-content-center"
-  >
-    {
-      actualIndexOfEx < exercicesInThisLesson.length - 1
-        ? "Siguiente Ejercicio"
-        : "Finalizar Lección"
-    }
-  </a>
+  <NextExercise
+    indexOfLesson={indexOfLesson}
+    actualIndexOfEx={actualIndexOfEx}
+    exercicesInThisLesson={exercicesInThisLesson}
+  />
+
   <header class="flex gap-4 items-center">
     <figure
       class="w-32 aspect-square bg-gray-600 rounded-full grid place-items-center"
@@ -43,12 +38,6 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     </ul>
   </div>
 </main>
-
-<style>
-  .active {
-    display: grid !important;
-  }
-</style>
 
 <script>
   const activeGoNext = () => {

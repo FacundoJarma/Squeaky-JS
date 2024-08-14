@@ -1,0 +1,23 @@
+{
+  "head": {
+    "title": "Ejercicio Fundamentos de JS.",
+    "lection": "fundamentos-de-js",
+    "type": "Arrastra"
+  },
+  "body": {
+    "bloques": [
+      {
+        "code": "if(x >= 18){",
+        "order": 2
+      },
+      {
+        "code": "if(x >= 18){",
+        "order": 2
+      },
+      {
+        "code": "const x = 5",
+        "order": 1
+      }
+    ]
+  }
+}

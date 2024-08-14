@@ -1,0 +1,32 @@
+---
+const { actualIndexOfEx, exercicesInThisLesson, indexOfLesson } = Astro.props;
+
+const existsNextLesson = actualIndexOfEx < exercicesInThisLesson.length - 1;
+const href = existsNextLesson
+  ? `/ejercicios/${exercicesInThisLesson[actualIndexOfEx + 1].id}`
+  : "/lecciones";
+---
+
+<button
+  id="goNextExercice"
+  class="hidden w-56 h-16 bg-violet-800 rounded-xl text-xl absolute bottom-12 right-12 place-content-center hover:scale-105 duration-200"
+>
+  {existsNextLesson ? "Siguiente Ejercicio" : "Finalizar Lección"}
+</button>
+
+<style>
+  .active {
+    display: grid !important;
+  }
+</style>
+
+<script data-href={href} id="buttonScript">
+  var href = document.getElementById("buttonScript").dataset.href;
+
+  const btn = document.getElementById("goNextExercice");
+  btn?.addEventListener("click", () => {
+    //TODO Backend: Guardar que esta leccion se termino.
+    console.log(href);
+    window.location.href = href;
+  });
+</script>

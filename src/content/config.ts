@@ -18,16 +18,26 @@ const exercicesCollection = defineCollection({
     head: z.object({
       title: z.string(),
       lection: reference("lecciones"),
-      type: z.enum(["Unica Opcion", "Multiple Opcion"]),
+      type: z.enum(["Unica Opcion", "Multiple Opcion", "Arrastra"]),
     }),
     body: z.object({
-      question: z.string(),
+      //Unica Opcion y Multiple Opcion
+      question: z.string().optional(),
       options: z.array(
         z.object({
           text: z.string(),
           correct: z.boolean(),
         })
-      )
+      ).optional(),
+
+      //Arrastra
+      bloques: z.array(
+        z.object({
+          code: z.string(),
+          order: z.number(),
+        })
+      ).optional()
+
     })
   }),
 

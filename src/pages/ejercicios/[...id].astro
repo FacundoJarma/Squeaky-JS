@@ -19,6 +19,8 @@ const { head, body } = l.data;
 const id = l.id;
 
 const lectionOfThisEx = await getEntry("lecciones", head.lection.slug);
+const indexOfLesson = lectionOfThisEx.data.index;
+
 if (!lectionOfThisEx) return;
 
 const exercicesInThisLesson = lectionOfThisEx.data.exercises;
