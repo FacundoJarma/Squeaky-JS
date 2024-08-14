@@ -3,28 +3,51 @@ import Layout from "../layout/layout.astro";
 ---
 
 <Layout title="Squeaky JS | Inicio">
-  <div id="container">
-    <h1>Crear cuenta</h1>
-    <form class="input">
-      <div class="register">
-        <input type="text" class="text" placeholder="Mail/Numero de Telefono" />
-        <input
-          type="password"
-          class="contra"
-          placeholder="Ingresa tu Contraseña"
-        />
-      </div>
-      <div class="todo">
-        <input type="number" class="dia" placeholder="dia" min="0" max="31" />
-        <input type="number" class="mes" placeholder="mes" min="o" max="12" />
-        <input type="number" class="año" placeholder="año" min="0" />
-      </div>
-      <input type="submit" class="enviar">
-
-    </form>
+  <div id="pantalla">
+    <div id="container">
+      <h1>Crear cuenta</h1>
+      <form class="input">
+        <div class="register">
+          <input
+            type="text"
+            class="text"
+            placeholder="Mail/Numero de Telefono"
+          />
+          <input
+            type="password"
+            class="contra"
+            placeholder="Ingresa tu Contraseña"
+          />
+        </div>
+        <div class="todo">
+          <input type="number" class="dia" placeholder="dia" min="0" max="31" />
+          <input type="number" class="mes" placeholder="mes" min="o" max="12" />
+          <input type="number" class="año" placeholder="año" min="0" />
+        </div>
+        <button class="enviar" id="showInputsBtn">Enviar</button>
+      </form>
+    </div>
+    <div class="input-container" id="inputContainer">
+      <p>Te enviaremos un codigo de Verificacion</p>
+      <input type="text" placeholder="Input 1" />
+      <input type="text" placeholder="Input 2" />
+      <input type="text" placeholder="Input 3" />
+      <input type="text" placeholder="Input 4" />
+      <input type="text" placeholder="Input 5" />
+      <input type="text" placeholder="Input 6" />
+    </div>
   </div>
 
   <style>
+    #pantalla {
+      position: absolute;
+      z-index: 100;
+      width: 100%;
+      height: 100vh;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
     #container {
       width: 30em;
       height: 30em;
@@ -32,33 +55,33 @@ import Layout from "../layout/layout.astro";
       border-radius: 3em;
       text-align: center;
       margin: 0 auto;
-      }
+      gap: 1em;
+    }
     h1 {
       font-size: 36px;
-      margin-top: 0em;
-      margin-bottom: 4em;
+      padding-top: 2em;
       font-weight: bold;
-    
-      }
+      gap: 1em;
+    }
     .todo {
       width: 100%;
       height: 3em;
       gap: 2em;
       display: flex;
       justify-content: center;
-      }
+    }
     .todo > input {
       width: 5em;
       padding: 1em;
       margin-bottom: 4em;
-      }
+    }
     .register {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2em;
       margin-bottom: 2em;
-      }
+    }
     .contra {
       padding: 0.5em 1em;
       width: 16em;
@@ -66,7 +89,7 @@ import Layout from "../layout/layout.astro";
       border-radius: 3em;
       background-color: rgb(75 85 99);
       color: rgb(250, 247, 247);
-      }
+    }
     .text {
       padding: 0.5em 1em;
       width: 16em;
@@ -74,26 +97,48 @@ import Layout from "../layout/layout.astro";
       border-radius: 3em;
       background-color: rgb(75 85 99);
       color: rgb(250, 247, 247);
-      }
+    }
     .dia {
       background-color: rgb(75 85 99);
       border-radius: 1em;
-      }
+    }
     .mes {
       background-color: rgb(75 85 99);
       border-radius: 1em;
-      }
+    }
     .año {
       background-color: rgb(75 85 99);
       border-radius: 1em;
-      }
+    }
     .enviar {
-        background-color: rgb(30 58 138);  
-        width: 6em;
-        height: 3em;
-        border-radius: 1em;
-        gap: 3em;
-      } 
-      
+      background-color: rgb(30 58 138);
+      width: 6em;
+      height: 3em;
+      border-radius: 1em;
+      gap: 3em;
+    }
+    .input-container {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .input-container input {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .input-container p {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
   </style>
+
+  <script>
+    document?.getElementById("showInputsBtn")?.addEventListener("click", function () {
+        const inputContainer = document.getElementById("inputContainer");
+        if(!inputContainer) return;
+
+        inputContainer.style.display = "block"; 
+      });
+  </script>
 </Layout>
