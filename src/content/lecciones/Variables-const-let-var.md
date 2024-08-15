@@ -3,6 +3,7 @@
     difficult: Fácil
     title: Variables Const, Let y Var
     index: 2
+    exercises: ["2-1"]
 ---
 
 Durante la ejecucion de un programa hay demasiados datos que necesitamos guardar, desde la informacion del usuario, hasta un simple contador. Para guardar estos datos, utilizamos algo llamado variables.
