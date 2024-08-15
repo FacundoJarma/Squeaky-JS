@@ -1,0 +1,14 @@
+---
+import ExerciseCard from "./ExerciseCard.astro";
+
+const { lesson, exercices, classList } = Astro.props;
+---
+
+<div class={classList}>
+  <div class="relative w-full h-2 border-t border-l border-r border-white mb-6">
+    <h3 class="absolute text-2xl bg-[#17181c] -top-4 px-2 left-4">{lesson}</h3>
+  </div>
+  <ul class="flex gap-4 h-full">
+    {exercices.map((ex) => <ExerciseCard head={ex.data.head} />)}
+  </ul>
+</div>

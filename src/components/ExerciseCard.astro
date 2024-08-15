@@ -1,0 +1,37 @@
+---
+const { head } = Astro.props;
+---
+
+<article
+  class={`lection relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${head.classList}`}
+>
+  <!-- <div
+    class="absolute -top-3 -left-3 text-xs bg-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-white"
+  >
+    {index}
+  </div> -->
+  <main class="flex-1">
+    <a href={"/ejercicios/" + head.id}>
+      <h2 class="text-2xl text-white mb-2">
+        {head.title}
+      </h2>
+    </a>
+  </main>
+
+  <footer class="flex items-center justify-between h-8">
+    <span
+      class:list={[
+        "text-sm px-4 py-0.5 text-white rounded-full",
+        {
+          "bg-green-700": head.type === "Unica Opcion",
+        },
+        {
+          "bg-yellow-700": head.type === "Multiple Opcion",
+        },
+        {
+          "bg-red-700": head.type === "Arrastra",
+        },
+      ]}>{head.type}</span
+    >
+  </footer>
+</article>

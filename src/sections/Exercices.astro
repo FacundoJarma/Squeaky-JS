@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import ExercicesOfSameLessonContainer from "../components/ExercicesOfSameLessonContainer.astro";
+let exercises = await getCollection("ejercicios");
+
+//Agrupar los ejercicios segun la leccion a al que pertenecen
+const exercisesByLesson = {};
+for (const exercise of exercises) {
+  const lessonSlug = exercise.data.head.lection.slug;
+  if (!exercisesByLesson[lessonSlug]) {
+    exercisesByLesson[lessonSlug] = [];
+  }
+  exercisesByLesson[lessonSlug].push(exercise);
+}
+---
+
+<main class="max-w-6xl mx-auto grid grid-cols-5 my-24 gap-4">
+  {
+    Object.entries(exercisesByLesson).map(([lessonSlug, exercises]) => (
+      <ExercicesOfSameLessonContainer
+        lesson={lessonSlug}
+        exercices={exercises}
+        classList={`col-span-${exercises.length}`}
+      />
+    ))
+  }
+</main>
+
+<style>
+  main {
+    grid-template-rows: repeat(5, 217px);
+  }
+</style>
+
+<script>
+  import ScrollReveal from "scrollreveal";
+
+  var slideUp = {
+    distance: "120%",
+    origin: "bottom",
+    opacity: 0.5,
+    duration: 500,
+    scale: 0.85,
+  };
+  ScrollReveal().reveal(".lection", slideUp);
+</script>
