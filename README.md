@@ -1,2 +1,0 @@
-# Squeaky-JS
-
