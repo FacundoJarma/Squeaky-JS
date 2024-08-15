@@ -12,13 +12,15 @@ for (const exercise of exercises) {
   }
   exercisesByLesson[lessonSlug].push(exercise);
 }
+const lessons = await getCollection("lecciones");
 ---
 
-<main class="max-w-6xl mx-auto grid grid-cols-5 my-24 gap-4">
+<main class="max-w-6xl mx-auto grid grid-cols-5 my-24 gap-5">
   {
     Object.entries(exercisesByLesson).map(([lessonSlug, exercises]) => (
       <ExercicesOfSameLessonContainer
-        lesson={lessonSlug}
+        lesson={lessons.find((l) => l.slug === lessonSlug).data.title}
+        lessonUrl={lessonSlug}
         exercices={exercises}
         classList={`col-span-${exercises.length}`}
       />

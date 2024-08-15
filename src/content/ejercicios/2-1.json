@@ -1,0 +1,25 @@
+{
+    "head": {
+      "title": "Ejercicio variable Const",
+      "lection": "variables-const-let-var",
+      "type": "Unica Opcion"
+    },
+    "body": {
+      "question": "¿Qué es programar en el mundo del software?",
+      "options": [
+        {
+          "text": "Crear páginas web y que un usuario pueda usarlas.",
+          "correct": false
+        },
+        {
+          "text": "Es el acto de construir un programa o conjunto de instrucciones para decirle a una computadora qué y cómo queremos que haga algo.",
+          "correct": true
+        },
+        {
+          "text": "Cualquier cosa que hagamos en un ordenador",
+          "correct": false
+        }
+      ]
+    }
+  }
+  
