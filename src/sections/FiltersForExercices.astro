@@ -1,0 +1,29 @@
+---
+const { filters } = Astro.props;
+
+filters.forEach((filter) => {
+  console.log(`bg-${filter.color}`);
+});
+---
+
+<section class="w-full h-12 text-center px-12 mt-12">
+  <ul class="flex items-center gap-4">
+    {
+      filters.map((filter) => (
+        <li
+          class={`filter text-sm px-2 py-0.5 rounded-full bg-${filter.color} flex items-center gap-1`}
+          data-option={filter.value}
+        >
+          <input
+            class="hidden"
+            type="checkbox"
+            name={`filter-${filter.value}`}
+            id={`filter-${filter.value}`}
+          />
+          <div class="h-3 aspect-square rounded-full border bg-black/30 "></div>
+          <label for={`filter-${filter.value}`}>{filter.value}</label>
+        </li>
+      ))
+    }
+  </ul>
+</section>
