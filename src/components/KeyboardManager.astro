@@ -59,100 +59,127 @@ const categorias = Array.from(
   import { comandos } from "../lib/comandos";
 
   let selectedIndex = 0;
-  let open = false;
+  let isModalOpen = false;
 
-  const getComandosElements = () => {
-    return Array.from(document.querySelectorAll(".comando")).filter(
+  const getActiveCommandsElement = () => {
+    const allCommands = document.querySelectorAll(
+      ".comando"
+    ) as NodeListOf<HTMLLIElement>;
+
+    if (!allCommands) return;
+
+    return Array.from(allCommands).filter(
       (comandoElement) => comandoElement.style.display !== "none"
     );
   };
 
+  const executeCommand = ({ commandName }: { commandName: string }) => {
+    const actualCommand = comandos.find((c) => c.name === commandName);
+
+    if (actualCommand && typeof actualCommand.action === "function") {
+      actualCommand.action();
+    }
+  };
+
   const initComandosElements = () => {
-    const comandosElements = getComandosElements();
+    const comandosElements = getActiveCommandsElement();
     if (!comandosElements) return;
 
     comandosElements[selectedIndex].setAttribute("data-selected", "true");
 
     comandosElements.forEach((comandoElement) => {
       comandoElement.addEventListener("click", () => {
-        const comandoName = comandoElement.dataset.option;
-        const comando = comandos.find((c) => c.name === comandoName);
-        if (comando && typeof comando.action === "function") {
-          comando.action();
-        }
+        const comandoElementName = comandoElement.dataset.option;
+        if (!comandoElementName) return;
+        executeCommand({ commandName: comandoElementName });
       });
     });
   };
 
-  initComandosElements();
-  const input = document.getElementById("buscarComando");
+  const handleMoveOnPressKey = ({
+    direction,
+    comandosElements,
+  }: {
+    direction: number;
+    comandosElements;
+  }) => {
+    comandosElements[selectedIndex].setAttribute("data-selected", "false");
+    selectedIndex = (selectedIndex + direction) % comandosElements.length;
+    comandosElements[selectedIndex].setAttribute("data-selected", "true");
 
+    comandosElements[selectedIndex].scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
+
+  initComandosElements(); // Inicializar la funcionalidad de los comandos.
+
+  const searchInput = document.getElementById("buscarComando");
+  const OPEN_MODAL_COMMAND_KEY = "k";
   document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", (event) => {
-      const comandosElements = getComandosElements();
+      const comandosElements = getActiveCommandsElement() as HTMLLIElement[];
+      const isCtrlPressed = event.metaKey || event.ctrlKey;
 
-      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+      if (isCtrlPressed && event.key === OPEN_MODAL_COMMAND_KEY) {
+        event.preventDefault();
+
         const keyboardManagerModal = document.getElementById(
           "keyboard-manager-modal"
         );
-        event.preventDefault();
-
         if (!keyboardManagerModal) return;
 
         keyboardManagerModal.dataset.open =
           keyboardManagerModal.dataset.open === "true" ? "false" : "true";
 
-        open = keyboardManagerModal.dataset.open === "true";
+        isModalOpen = keyboardManagerModal.dataset.open == "true";
 
-        if (open) {
-          input?.focus();
+        if (isModalOpen && searchInput) {
+          searchInput.focus();
         }
-      } else if (event.key === "ArrowDown" && open) {
+      } else if (event.key === "ArrowDown" && isModalOpen) {
         event.preventDefault();
-        comandosElements[selectedIndex].setAttribute("data-selected", "false");
-        selectedIndex = (selectedIndex + 1) % comandosElements.length;
-        comandosElements[selectedIndex].setAttribute("data-selected", "true");
-
-        comandosElements[selectedIndex].scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      } else if (event.key === "ArrowUp" && open) {
+        handleMoveOnPressKey({ direction: 1, comandosElements });
+      } else if (event.key === "ArrowUp" && isModalOpen) {
         event.preventDefault();
-        comandosElements[selectedIndex].setAttribute("data-selected", "false");
-        selectedIndex =
-          (selectedIndex - 1 + comandosElements.length) %
-          comandosElements.length;
-        comandosElements[selectedIndex].setAttribute("data-selected", "true");
-
-        comandosElements[selectedIndex].scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      } else if (event.key === "Enter" && open) {
+        handleMoveOnPressKey({ direction: -1, comandosElements });
+      } else if (event.key === "Enter" && isModalOpen) {
         const comandoElement = comandosElements[selectedIndex];
         const comandoName = comandoElement.dataset.option;
-        const comando = comandos.find((c) => c.name === comandoName);
-        if (comando && typeof comando.action === "function") {
-          comando.action();
-        }
+
+        if (!comandoName) return;
+
+        executeCommand({ commandName: comandoName });
       }
     });
   });
 
   // Búsqueda de comandos:
-  input?.addEventListener("input", (event) => {
-    const value = (event.target as HTMLInputElement).value.toLowerCase();
+  searchInput?.addEventListener("input", (event) => {
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
 
-    document.querySelectorAll(".comando").forEach((comandoElement) => {
+    const comandosElements = document.querySelectorAll(
+      ".comando"
+    ) as NodeListOf<HTMLLIElement>;
+
+    comandosElements.forEach((comandoElement) => {
+      if (!comandoElement) return;
+
       const comandoName = comandoElement
         .querySelector("h3")
-        .innerText.toLowerCase();
+        ?.innerText.toLowerCase();
+
       const comandoDescription = comandoElement
         .querySelector("p")
-        .innerText.toLowerCase();
+        ?.innerText.toLowerCase();
 
-      if (comandoName.includes(value) || comandoDescription.includes(value)) {
+      if (!comandoName || !comandoDescription) return;
+
+      if (
+        comandoName.includes(searchTerm) ||
+        comandoDescription.includes(searchTerm)
+      ) {
         comandoElement.style.display = "block";
       } else {
         comandoElement.style.display = "none";

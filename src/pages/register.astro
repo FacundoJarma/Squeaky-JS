@@ -6,7 +6,7 @@ import Layout from "../layout/layout.astro";
   <div id="pantalla">
     <div id="container">
       <h1>Crear cuenta</h1>
-      <form class="input">
+      <form class="input" id="registerForm">
         <div class="register">
           <input
             type="text"
@@ -28,22 +28,21 @@ import Layout from "../layout/layout.astro";
       </form>
     </div>
     <form class="send">
-    <div id="bloque">
-      <div class="input-container" id="inputContainer">
-        <p>Te enviaremos un codigo de Verificacion</p>
-        <input type="text" class="digit-input uno" maxlength="1" />
-        <input type="text" class="digit-input dos" maxlength="1" />
-        <input type="text" class="digit-input tres" maxlength="1" />
-        <input type="text" class="digit-input cuatro" maxlength="1" />
-        <input type="text" class="digit-input cinco" maxlength="1" />
-        <input type="text" class="digit-input seis" maxlength="1" />
-        <a 
-        href="http://localhost:4321">
-          <button class="segundo">Enviar</button>
-        </a>
+      <div id="bloque">
+        <div class="input-container" id="inputContainer">
+          <p>Te enviaremos un codigo de Verificacion</p>
+          <input type="text" class="digit-input uno" maxlength="1" />
+          <input type="text" class="digit-input dos" maxlength="1" />
+          <input type="text" class="digit-input tres" maxlength="1" />
+          <input type="text" class="digit-input cuatro" maxlength="1" />
+          <input type="text" class="digit-input cinco" maxlength="1" />
+          <input type="text" class="digit-input seis" maxlength="1" />
+          <a href="http://localhost:4321">
+            <button class="segundo">Enviar</button>
+          </a>
+        </div>
       </div>
-      </form>
-    </div>
+    </form>
 
     <style>
       #pantalla {
@@ -162,31 +161,36 @@ import Layout from "../layout/layout.astro";
     </style>
 
     <script>
-      document
-        ?.getElementById("showInputsBtn")
-        ?.addEventListener("click", function (e) {
-          e.preventDefault();
-          const inputContainer = document.getElementById("inputContainer");
-          const cuadro = document.getElementById("container");
-          if (!inputContainer) return;
+      const registerFormElement = document.getElementById(
+        "registerForm"
+      ) as HTMLButtonElement;
 
-          inputContainer.style.display = "block";
-          cuadro.classList.add("borroso");
-        });
+      registerFormElement.addEventListener("submit", function (event) {
+        event.preventDefault();
 
+        const inputContainer = document.getElementById(
+          "inputContainer"
+        ) as HTMLDivElement;
+        const background = document.getElementById(
+          "container"
+        ) as HTMLDivElement;
 
-      const inputs = document.querySelectorAll(".digit-input");
+        inputContainer.style.display = "block";
+        background.classList.add("borroso");
+      });
+
+      const inputs = document.querySelectorAll(
+        ".digit-input"
+      ) as NodeListOf<HTMLInputElement>;
 
       inputs.forEach((input, index) => {
         input.addEventListener("input", () => {
-          // If the user has entered a character, move to the next input field
           if (input.value.length === 1 && index < inputs.length - 1) {
             inputs[index + 1].focus();
           }
         });
 
         input.addEventListener("keydown", (e) => {
-          // Allow backspace to move focus back to the previous input
           if (e.key === "Backspace" && index > 0 && input.value === "") {
             inputs[index - 1].focus();
           }
