@@ -31,99 +31,111 @@ const categorias = Array.from(
   </header>
   <ul class="px-4 py-2 flex flex-col gap-2 overflow-y-auto max-h-[16em]">
     {
-      categorias.map((category) => (
+      (
         <div class="flex flex-col gap-1">
-          <h4 class="text-lg text-gray-300">{category}</h4>
-          {comandos
-            .filter(
-              (comando) =>
-                comando.category === category &&
-                (comando.site === site || comando.site == "todos")
-            )
-            .map((comando) => (
-              <li
-                class="comando px-2 py-1 rounded-md"
-                data-selected="false"
-                data-option={comando.name}
-              >
-                <h3 class="text-xl">{comando.name}</h3>
-                <p class="text-sm text-[#9B959E]">{comando.description}</p>
-              </li>
-            ))}
+          {comandos.map((comando) => (
+            <li
+              class="comando px-2 py-1 rounded-md"
+              data-selected="false"
+              data-option={comando.name}
+              data-site={site}
+            >
+              <h3 class="text-xl">{comando.name}</h3>
+              <p class="text-sm text-[#9B959E]">{comando.description}</p>
+            </li>
+          ))}
         </div>
-      ))
+      )
     }
   </ul>
 </div>
 <script>
-  import { comandos } from "../lib/comandos";
+  import { commands, Command } from "../lib/comandos";
 
   let selectedIndex = 0;
   let isModalOpen = false;
 
-  const getActiveCommandsElement = () => {
-    const allCommands = document.querySelectorAll(
+  const setElementsToCommands = () => {
+    const commandsElements = document.querySelectorAll(
       ".comando"
     ) as NodeListOf<HTMLLIElement>;
+    commandsElements.forEach((comandoElement) => {
+      const { option: name } = comandoElement.dataset;
+      const command = commands.find((comando) => comando.name === name);
 
-    if (!allCommands) return;
+      command?.setElement(comandoElement);
+    });
+  };
 
-    return Array.from(allCommands).filter(
-      (comandoElement) => comandoElement.style.display !== "none"
-    );
+  setElementsToCommands();
+  const getSiteCommands = () => {
+    const siteCommands = [] as Command[];
+    for (const command of commands) {
+      if (
+        command.site == "todos" ||
+        command.getElement()?.dataset.site == command.site
+      ) {
+        siteCommands.push(command);
+      } else {
+        command.changeVisibility(false);
+      }
+    }
+
+    return siteCommands;
+  };
+  const getActiveCommands = () => {
+    const siteCommands = getSiteCommands();
+    if (!siteCommands) return;
+
+    return Array.from(siteCommands.filter((comando) => comando.visibility));
   };
 
   const executeCommand = ({ commandName }: { commandName: string }) => {
-    const actualCommand = comandos.find((c) => c.name === commandName);
+    const actualCommand = commands.find(
+      (comando) => comando.name === commandName
+    );
 
-    if (actualCommand && typeof actualCommand.action === "function") {
-      actualCommand.action();
-    }
+    actualCommand?.run();
   };
 
   const initComandosElements = () => {
-    const comandosElements = getActiveCommandsElement();
-    if (!comandosElements) return;
+    const activeCommands = getActiveCommands();
+    if (!activeCommands) return;
+    console.log(activeCommands);
 
-    comandosElements[selectedIndex].setAttribute("data-selected", "true");
+    activeCommands[selectedIndex].setSelected(true);
 
-    comandosElements.forEach((comandoElement) => {
-      comandoElement.addEventListener("click", () => {
-        const comandoElementName = comandoElement.dataset.option;
-        if (!comandoElementName) return;
-        executeCommand({ commandName: comandoElementName });
+    activeCommands.forEach((command) => {
+      command.getElement()?.addEventListener("click", () => {
+        executeCommand({ commandName: command.name });
       });
     });
   };
 
-  const handleMoveOnPressKey = ({
-    direction,
-    comandosElements,
-  }: {
-    direction: number;
-    comandosElements;
-  }) => {
-    comandosElements[selectedIndex].setAttribute("data-selected", "false");
-    selectedIndex = (selectedIndex + direction) % comandosElements.length;
-    comandosElements[selectedIndex].setAttribute("data-selected", "true");
+  const handleMoveOnPressKey = ({ direction }: { direction: number }) => {
+    const activeCommands = getActiveCommands();
+    if (!activeCommands) return;
 
-    comandosElements[selectedIndex].scrollIntoView({
+    activeCommands[selectedIndex].setSelected(false);
+    selectedIndex = (selectedIndex + direction) % activeCommands.length;
+    activeCommands[selectedIndex].setSelected(true);
+
+    activeCommands[selectedIndex].getElement()?.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
   };
 
-  initComandosElements(); // Inicializar la funcionalidad de los comandos.
-
   const searchInput = document.getElementById("buscarComando");
   const OPEN_MODAL_COMMAND_KEY = "k";
+
   document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", (event) => {
-      const comandosElements = getActiveCommandsElement() as HTMLLIElement[];
       const isCtrlPressed = event.metaKey || event.ctrlKey;
 
       if (isCtrlPressed && event.key === OPEN_MODAL_COMMAND_KEY) {
         event.preventDefault();
+        initComandosElements();
 
         const keyboardManagerModal = document.getElementById(
           "keyboard-manager-modal"
@@ -140,17 +152,16 @@ const categorias = Array.from(
         }
       } else if (event.key === "ArrowDown" && isModalOpen) {
         event.preventDefault();
-        handleMoveOnPressKey({ direction: 1, comandosElements });
+        handleMoveOnPressKey({ direction: 1 });
       } else if (event.key === "ArrowUp" && isModalOpen) {
         event.preventDefault();
-        handleMoveOnPressKey({ direction: -1, comandosElements });
+        handleMoveOnPressKey({ direction: -1 });
       } else if (event.key === "Enter" && isModalOpen) {
-        const comandoElement = comandosElements[selectedIndex];
-        const comandoName = comandoElement.dataset.option;
+        const activeCommands = getActiveCommands();
+        if (!activeCommands) return;
+        const command = activeCommands[selectedIndex];
 
-        if (!comandoName) return;
-
-        executeCommand({ commandName: comandoName });
+        executeCommand({ commandName: command.name });
       }
     });
   });
@@ -159,31 +170,22 @@ const categorias = Array.from(
   searchInput?.addEventListener("input", (event) => {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
 
-    const comandosElements = document.querySelectorAll(
-      ".comando"
-    ) as NodeListOf<HTMLLIElement>;
+    const activeCommands = getSiteCommands();
+    if (!activeCommands) return;
 
-    comandosElements.forEach((comandoElement) => {
-      if (!comandoElement) return;
+    activeCommands.forEach((command) => {
+      const comandoName = command.name.toLowerCase();
 
-      const comandoName = comandoElement
-        .querySelector("h3")
-        ?.innerText.toLowerCase();
-
-      const comandoDescription = comandoElement
-        .querySelector("p")
-        ?.innerText.toLowerCase();
-
-      if (!comandoName || !comandoDescription) return;
+      const comandoDescription = command.description.toLowerCase();
 
       if (
         comandoName.includes(searchTerm) ||
         comandoDescription.includes(searchTerm)
       ) {
-        comandoElement.style.display = "block";
+        command.changeVisibility();
       } else {
-        comandoElement.style.display = "none";
-        comandoElement.setAttribute("data-selected", "false");
+        command.changeVisibility(false);
+        command.setSelected(false);
       }
     });
 

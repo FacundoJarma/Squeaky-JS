@@ -1,5 +1,3 @@
-import { voidElementNames } from "astro/runtime/server/index.js";
-
 export const comandos = [
   {
     name: "Abrir lecciones",
@@ -55,7 +53,7 @@ export const comandos = [
     category: "Acciones",
     site: "exercices",
     action: () => {
-      document.getElementById("volverALeccion").click();
+      document.getElementById("volverALeccion")?.click();
     },
   },
   {
@@ -64,7 +62,7 @@ export const comandos = [
     category: "Acciones",
     site: "leccion",
     action: () => {
-      document.getElementById("goToExercises").click();
+      document.getElementById("goToExercises")?.click();
     },
   },
   {
@@ -86,3 +84,64 @@ export const comandos = [
     },
   },
 ];
+
+export class Command {
+  constructor(
+    public name: string,
+    public description: string,
+    public site: string,
+    public visibility: boolean = true,
+
+    private action: () => void,
+    private element?: HTMLLIElement
+  ) {
+    this.name = name;
+    this.description = description;
+    this.action = action;
+    this.site = site;
+    this.element = element;
+  }
+
+  run() {
+    if (typeof this.action === "function") {
+      this.action();
+    }
+
+    return Error("El comando no tiene una accion definida");
+  }
+
+  getElement() {
+    return this.element;
+  }
+
+  setElement(element: HTMLLIElement) {
+    this.element = element;
+  }
+
+  changeVisibility(value = true) {
+    if (this.element) {
+      this.element.style.display = value ? "block" : "none";
+    }
+    this.visibility = value;
+  }
+
+  setSelected(value: boolean) {
+    if (this.element) {
+      this.element.dataset.selected = value ? "true" : "false";
+    }
+  }
+}
+
+export let commands: Command[] = [];
+
+for (const comando of comandos) {
+  commands.push(
+    new Command(
+      comando.name,
+      comando.description,
+      comando.site,
+      true,
+      comando.action
+    )
+  );
+}
