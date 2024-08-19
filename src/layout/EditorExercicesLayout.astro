@@ -15,7 +15,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="flex flex-col min-h-screen bg-[#17181c]">
-    <KeyboardManager title="Comandos de Teclado" />
+    <KeyboardManager title="Comandos de Teclado" site="editor"/>
     <div class="pb-12 flex flex-col min-h-screen">
       <Navbar />
       <slot />

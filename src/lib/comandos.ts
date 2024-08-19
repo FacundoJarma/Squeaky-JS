@@ -83,6 +83,15 @@ export const comandos = [
       //TODO: Abrir ultima leccion
     },
   },
+  {
+    name: "Enviar codigo",
+    description: "Enviara el codigo que estas escribiendo para que se ejecute",
+    category: "Acciones",
+    site: "editor",
+    action: () => {
+      document.getElementById("submitCodeBtn")?.click()
+    }
+  }
 ];
 
 export class Command {

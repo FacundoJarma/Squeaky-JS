@@ -6,8 +6,7 @@
   <textarea
     class="w-full h-full resize-none p-4 focus:outline-none"
     id="editor"
-  >
-  </textarea>
+  ></textarea>
   <button
     id="submitCodeBtn"
     class="px-12 py-2 bg-green-800 rounded-lg absolute bottom-5 right-5 hover:scale-105 duration-300"
@@ -31,7 +30,7 @@
     return html;
   };
 
-  const handleSubmitCode = async () => {
+  async function handleSubmitCode() {
     const iframe = document.getElementById("editorPage-1") as HTMLIFrameElement;
     const code = codeEditorElement.value;
     const preRenderedHTML = await getPreRenderedHTML();
