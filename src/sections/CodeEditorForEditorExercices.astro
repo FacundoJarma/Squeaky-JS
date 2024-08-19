@@ -1,0 +1,59 @@
+---
+
+---
+
+<section class="relative h-[85vh] w-1/2 bg-gray-700">
+  <textarea
+    class="w-full h-full resize-none p-4 focus:outline-none"
+    id="editor"
+  >
+  </textarea>
+  <button
+    id="submitCodeBtn"
+    class="px-12 py-2 bg-green-800 rounded-lg absolute bottom-5 right-5 hover:scale-105 duration-300"
+  >
+    Ejecutar Codigo
+  </button>
+</section>
+
+<script>
+  const codeEditorElement = document.getElementById(
+    "editor"
+  ) as HTMLTextAreaElement;
+  const submitCodeBtn = document.getElementById(
+    "submitCodeBtn"
+  ) as HTMLButtonElement;
+
+  const getPreRenderedHTML = async () => {
+    const html = await fetch("/emulatedPages/1.html")
+      .then((res) => res.text())
+      .then((html) => html);
+    return html;
+  };
+
+  const handleSubmitCode = async () => {
+    const iframe = document.getElementById("editorPage-1") as HTMLIFrameElement;
+    const code = codeEditorElement.value;
+    const preRenderedHTML = await getPreRenderedHTML();
+
+    const finalHTML = preRenderedHTML.replace("code", code);
+    iframe.srcdoc = finalHTML;
+  };
+
+  //Send Code with keyboardCommands
+  document.addEventListener("keydown", (event) => {
+    const isCtrlPressed = event.metaKey || event.ctrlKey;
+    if (isCtrlPressed && event.key === "Enter") {
+      event.preventDefault();
+      handleSubmitCode();
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const iframe = document.getElementById("editorPage-1") as HTMLIFrameElement;
+
+    iframe.setAttribute("srcdoc", await getPreRenderedHTML());
+  });
+
+  submitCodeBtn?.addEventListener("click", handleSubmitCode);
+</script>

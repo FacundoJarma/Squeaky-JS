@@ -7,17 +7,12 @@ const { filters } = Astro.props;
     {
       filters.map((filter) => (
         <li
-          class={`filter text-sm px-2 py-0.5 rounded-full bg-${filter.color} flex items-center gap-1`}
-          data-option={filter.value}
+          class={`filter text-sm px-2 py-0.5 rounded-full flex items-center gap-1 bg-blue-600/50`}
+          data-option={filter}
         >
-          <input
-            class="hidden"
-            type="checkbox"
-            name={`filter-${filter.value}`}
-            id={`filter-${filter.value}`}
-          />
-          <div class="h-3 aspect-square rounded-full border bg-black/30 "></div>
-          <label for={`filter-${filter.value}`}>{filter.value}</label>
+          <input class="hidden" type="checkbox" id={`filter-${filter}`} />
+          <div class="h-3 aspect-square rounded-full border bg-black/30 " />
+          <label for={`filter-${filter}`}>{filter}</label>
         </li>
       ))
     }

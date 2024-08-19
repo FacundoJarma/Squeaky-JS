@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #puerta {
+        width: 300px;
+        height: 500px;
+        background-color: green;
+        text-align: center;
+        border-radius: 10px;
+      }
+      #puerta[data-open="true"] {
+        background-color: red;
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div id="puerta" data-open="false">Cerrada</div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        function checkExercice(answer) {
+          if (answer >= 18) {
+            const puerta = document.getElementById("puerta");
+            puerta.dataset.open = "true";
+          } else {
+            alert("Revisa tu codigo");
+          }
+        }
+
+        code;
+      });
+    </script>
+  </body>
+</html>

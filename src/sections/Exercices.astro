@@ -15,20 +15,7 @@ for (const exercise of exercises) {
 }
 const lessons = await getCollection("lecciones");
 
-const filters = [
-  {
-    value: "Unica Opcion",
-    color: "green-600",
-  },
-  {
-    value: "Multiple Opcion",
-    color: "red-600",
-  },
-  {
-    value: "Arrastra",
-    color: "blue-600",
-  },
-];
+const filters = ["Unica Opcion", "Multiple Opcion", "Arrastra"];
 ---
 <FiltersForExercices filters={filters} />
 <main class="max-w-6xl mx-auto grid grid-cols-5 mb-24 mt-6 gap-5">
