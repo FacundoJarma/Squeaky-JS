@@ -2,10 +2,10 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<nav class="col-span-6 flex justify-between px-8 py-5 w-full bg-gray-300">
+<nav class="col-span-6 flex justify-end gap-12 px-8 py-5 w-full bg-gray-300">
   <figure>
     <a href="http://localhost:4321">
-        <!-- <Icon name="squeaky" height={40} width={40} /> -->
+      <!-- <Icon name="squeaky" height={40} width={40} /> -->
     </a>
   </figure>
   <ul class="flex gap-4 items-center">
@@ -25,13 +25,40 @@ import { Icon } from "astro-icon/components";
         Ejercicios
       </a>
     </li>
-    <li>
+  </ul>
+  <div class="relative">
+    <button
+      id="dropdownMenuButton"
+      class="flex items-center justify-center w-8 h-8 bg-gray-700 rounded-full hover:bg-gray-600 focus:outline-none"
+    >
+    </button>
+    <div
+      id="dropdownMenu"
+      class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
+    >
       <a
         href="/profile"
-        class="px-4 py-1 hover:text-gray-600 duration-200 text-black"
+        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
       >
-        Perfil
+        Mi perfil
       </a>
-    </li>
-  </ul>
+      <a
+        href="/login"
+        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+      >
+        Cerrar sesion
+      </a>
+    </div>
+  </div>
+  <script>
+    const button = document.getElementById("dropdownMenuButton");
+    const menu = document.getElementById("dropdownMenu");
+    button?.addEventListener("click", () => {
+      if (menu.classList.contains("hidden")) {
+        menu.classList.remove("hidden");
+      } else {
+        menu.classList.add("hidden");
+      }
+    });
+  </script>
 </nav>

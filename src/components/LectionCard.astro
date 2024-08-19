@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 const { classList, difficult, name, description, index, url } = Astro.props;
 ---
 
-<div
+<div 
   class={`lection relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${classList}`}
 >
   <!-- <div
@@ -46,3 +46,13 @@ const { classList, difficult, name, description, index, url } = Astro.props;
     >
   </footer>
 </div>
+
+<style>
+  .lection{
+    transition: all 0.2s ease-in-out;
+  }
+  .lection:hover{
+    scale: 1.03;
+  
+  }
+</style>

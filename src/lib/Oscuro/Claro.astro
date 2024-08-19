@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Theme Switcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        /* Tema claro por defecto */
+        body.light-theme {
+            background-color: white;
+            color: black;
+        }
+
+        /* Tema oscuro */
+        body.dark-theme {
+            background-color: black;
+            color: white;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body class="light-theme">
+
+    <button class="theme-toggle-btn" onclick="toggleTheme()">Switch to Dark Theme</button>
+
+    <h1>Welcome to the Theme Switcher</h1>
+    <p>This is an example of switching between light and dark themes.</p>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeButton = document.querySelector('.theme-toggle-btn');
+
+            // Alternar entre la clase 'light-theme' y 'dark-theme'
+            body.classList.toggle('dark-theme');
+            body.classList.toggle('light-theme');
+
+            // Cambiar el texto del botón según el tema
+            if (body.classList.contains('dark-theme')) {
+                themeButton.textContent = 'Switch to Light Theme';
+            } else {
+                themeButton.textContent = 'Switch to Dark Theme';
+            }
+        }
+    </script>
+
+</body>
+</html>

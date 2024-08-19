@@ -3,7 +3,7 @@ const { head, id } = Astro.props;
 ---
 
 <article
-  class={`lection relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${head.classList}`}
+  class={`exercise relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${head.classList}`}
 >
   <!-- <div
     class="absolute -top-3 -left-3 text-xs bg-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-white"
@@ -35,3 +35,11 @@ const { head, id } = Astro.props;
     >
   </footer>
 </article>
+<style>
+  .exercise{
+    transition: all 0.2s ease-in-out;
+  }
+  .exercise:hover{
+    scale: 1.03;
+  }
+</style>
