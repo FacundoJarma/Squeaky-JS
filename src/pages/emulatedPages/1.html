@@ -18,19 +18,29 @@
     <title></title>
   </head>
   <body>
-    <div id="puerta" data-open="false">Cerrada</div>
+    <div id="puerta" data-open="false"></div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        function checkExercice(answer) {
-          if (answer >= 18) {
+        var usereCodeSays;
+        function abrirPuerta() {
+          usereCodeSays = true;
+        }
+        function cerrarPuerta() {
+          usereCodeSays = false;
+        }
+        function checkExercice() {
+          const number = parseInt(prompt(""));
+
+          code;
+
+          if (number >= 18 && usereCodeSays) {
             const puerta = document.getElementById("puerta");
             puerta.dataset.open = "true";
-          } else {
+          } else if (number < 18 && usereCodeSays) {
             alert("Revisa tu codigo");
           }
         }
-
-        code;
+        checkExercice();
       });
     </script>
   </body>
