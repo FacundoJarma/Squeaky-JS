@@ -25,9 +25,10 @@ import LoginForm from "../sections/LoginForm.astro";
       </a>
     </form>
     <div class="contru">
+     <button class="boton" onclick="openDiv()">
       <h2>¿Olvidaste tu Contraseña?</h2>
-      <h2>¿Eres Nuevo en Squeaky? 
-        
+     </button>
+     <h2>¿Eres Nuevo en Squeaky?  
         <a
           href="/register"
           >
@@ -38,8 +39,30 @@ import LoginForm from "../sections/LoginForm.astro";
       </h2>
     </div>
   </div>
+  <div id="myDiv">
+      <h1>Olvidaste tu Contraseña</h1>
+      <input type="text"placeholder="Ingresa tu Mail">
+  </div>
   
   <style>
+    #myDiv {
+       display: none; 
+       width: 30em;
+       height: 20em;
+       background-color: lightblue;
+       border: 2px solid #007BFF;
+       margin-top: 20px;
+       padding: 10px;
+       transition: opacity 0.5s ease;
+       opacity: 0;
+    }
+    #myDiv.show {
+      display: block;
+      opacity: 1;
+    }
+    .boton:hover {
+      color: blue;
+    }
     #container {
       width: 30em;
       height: 30em;
@@ -92,8 +115,17 @@ import LoginForm from "../sections/LoginForm.astro";
       .cr:hover {
         color: blue;
       }
+      .boton:hover {
+        color: blue;
+      }
       
   </style>
+  <script>
+    function openDiv() {
+            const div = document.getElementById('myDiv');
+            div.classList.add('show');  // Añadir la clase 'show' para mostrar el div
+        }
+  </script>
   </Layout>
 
 

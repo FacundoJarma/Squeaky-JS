@@ -11,36 +11,97 @@ import Layout from "../layout/layout.astro";
   <div id="perfil">
     <div class="profile">
       <h1 class="foto">foto de Perfil</h1>
-      <input type="text" placeholder="Nombre de usuario">
-      <input type="text" placeholder="Descripcion" class="desc">
+      <h1>Nombre de ususrio</h1>
+      <input type="text" placeholder="Descripcion" class="desc" />
     </div>
-    <div class="profile2">
-      <input type="text" placeholder="Nombre">
-      <input type="text" placeholder="Apellidos">
-      <input type="text" placeholder="Gmail">
-      <input type="text" placeholder="Cumpleaños">
-    </div>
-    <div class="racha">
-      <h1>pantalla que muestra la mejor racha del usuario y
-         su progreso hasta el momento</h1>
+    <div class="tu">
+      <div class="profile2">
+        <input type="text" placeholder="Nombre" class="nombre" />
+        <input type="text" placeholder="Apellidos" class="nombre" />
+        <input type="text" placeholder="Gmail" class="nombre" />
+        <input type="text" placeholder="Cumpleaños" class="nombre" />
+      </div>
+      <div class="racha">
+        <h1>
+          pantalla que muestra la mejor racha del usuario y su progreso hasta el
+          momento
+        </h1>
+      </div>
     </div>
   </div>
   <style>
+
+    input::placeholder{
+      color: #000;
+    }
+    .tu {
+      display: flex;
+      flex-direction: column;
+      gap : 1em;
+    }
+    .racha {
+      background-color: rgb(50, 51, 51);
+      color: rgb(163, 163, 163);
+      text-align: center;
+      width: 40em;
+      height: 9em;
+      align-text: center;
+      text-align: center;
+    }
+
     #perfil {
-      margin-left: 17 em;
+      display: flex;
+      gap : 1em;
+    
+    }
+    .profile2 {
+      background-color: rgb(50, 51, 51);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      width: 40em;
+      height: 20em;
+      padding: 3em;
+      color: black;
+      margin-top: 3em;
+    }
+    .profile2 > input {
+      border-radius: 1em;
+      width: 30em;
+      height: 4em;
+      color: black;
+      text-align: left;
+      background-color: rgb(163, 163, 163);
+      padding-left: 1em;
     }
     .profile {
-      background-color: rgb(34, 44, 58);
+      background-color: rgb(50, 51, 51);
       width: 25em;
-      height: 50em;
+      height: 30em;
       text-align: center;
-      
+      margin-left: 10em;
+      align-items: center;
+      padding: 3em;
+      margin-top: 3em;
+      display: flex;
+      gap: 1em;
+      flex-direction: column;
+    }
+    .nombre {
+      background-color: rgb(163, 163, 163);
+      width: 12em;
+      height: 2em;
+      text-align: center;
+      color: black;
     }
     .desc {
-      background-color: rgb(28, 33, 41);
+      background-color: rgb(163, 163, 163);
       width: 20em;
       height: 7em;
       text-align: center;
+      color: black;
+      border-radius: 1em;
     }
     .foto {
       background-color: rgb(28, 33, 41);
@@ -49,6 +110,13 @@ import Layout from "../layout/layout.astro";
       border-radius: 50em;
       text-align: center;
       align-items: center;
+      padding: 3em;
+    }
+    .nombre {
+      width: 10em;
+      height: 4em;
+      color: black;
+      background-color: rgb(163, 163, 163);
     }
   </style>
 </Layout>
