@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import NavbarMenu from "./NavbarMenu.astro";
 ---
 
 <nav class="col-span-6 flex justify-end gap-12 px-8 py-5 w-full bg-gray-300">
@@ -26,39 +26,5 @@ import { Icon } from "astro-icon/components";
       </a>
     </li>
   </ul>
-  <div class="relative">
-    <button
-      id="dropdownMenuButton"
-      class="flex items-center justify-center w-8 h-8 bg-gray-700 rounded-full hover:bg-gray-600 focus:outline-none"
-    >
-    </button>
-    <div
-      id="dropdownMenu"
-      class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
-    >
-      <a
-        href="/profile"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-      >
-        Mi perfil
-      </a>
-      <a
-        href="/login"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-      >
-        Cerrar sesion
-      </a>
-    </div>
-  </div>
-  <script>
-    const button = document.getElementById("dropdownMenuButton");
-    const menu = document.getElementById("dropdownMenu");
-    button?.addEventListener("click", () => {
-      if (menu.classList.contains("hidden")) {
-        menu.classList.remove("hidden");
-      } else {
-        menu.classList.add("hidden");
-      }
-    });
-  </script>
+  <NavbarMenu />
 </nav>

@@ -1,0 +1,44 @@
+<div class="relative">
+  <button
+    transition:persist
+    id="dropdownMenuButton"
+    class="flex items-center justify-center w-8 h-8 bg-gray-700 rounded-full hover:bg-gray-600 focus:outline-none"
+  >
+  </button>
+  <div
+    transition:persist
+    id="dropdownMenu"
+    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
+  >
+    <a
+      href="/profile"
+      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+    >
+      Mi perfil
+    </a>
+    <a
+      href="/login"
+      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+    >
+      Cerrar sesion
+    </a>
+  </div>
+</div>
+<script>
+  document.addEventListener("click", (event) => {
+    const $button = event.target.closest("#dropdownMenuButton");
+    if (!$button) return;
+
+    const $menu = document.getElementById("dropdownMenu");
+
+    const isHidden = (element) => {
+      return element.style.display === "none";
+    };
+
+    if (isHidden($menu)) {
+      $menu.style.display = "block";
+    } else {
+      $menu.style.display = "none";
+    }
+  });
+</script>
