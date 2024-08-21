@@ -7,22 +7,55 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 ---
 
 <aside class="sticky top-0 h-screen bg-[#23262f] p-4">
-  <h2 class="text-lg text-white font-bold">Todas las Lecciones</h2>
-  <ul class="flex flex-col gap-2 ml-3">
-    {
-      lecciones.map(({ data: leccion, slug }, index) => (
-        <li>
-          <a
-            href={"/lecciones/" + slug}
-            class="text-gray-300 text-sm hover:text-white duration-300"
-          >
-            {leccion.title}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-  
-  <LectionsAsideButtons />
+  <h2 class="text-lg text-white font-bold" id="openLections">
+    Todas las Lecciones
+  </h2>
+  <div class="h-[80vh]">
+    <ul class="flex flex-col gap-2 ml-3" id="lectionsAside" data-open="false">
+      {
+        lecciones.map(({ data: leccion, slug }, index) => (
+          <li>
+            <a
+              href={"/lecciones/" + slug}
+              class="text-gray-300 text-sm hover:text-white duration-300"
+            >
+              {leccion.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 
+  <LectionsAsideButtons />
 </aside>
+
+<style>
+  #lectionsAside {
+    overflow-y: hidden;
+    transition: all 0.2s;
+  }
+
+  ul[data-open="false"] {
+    max-height: 0px;
+  }
+
+  ul[data-open="true"] {
+    overflow-y: auto;
+    max-height: 100%;
+  }
+</style>
+
+<script>
+  const $openLections = document.getElementById(
+    "openLections"
+  ) as HTMLHeadingElement;
+
+  $openLections?.addEventListener("click", () => {
+    const $aside = document.getElementById("lectionsAside");
+    if (!$aside) return;
+    $aside.dataset.open === "true"
+      ? ($aside.dataset.open = "false")
+      : ($aside.dataset.open = "true");
+  });
+</script>
