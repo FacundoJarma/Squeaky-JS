@@ -33,6 +33,7 @@ const exercicesCollection = defineCollection({
       //Arrastra
       bloques: z.array(
         z.object({
+          type: z.enum(["in-line", "block", "oneWord"]),
           code: z.string(),
           order: z.number(),
         })

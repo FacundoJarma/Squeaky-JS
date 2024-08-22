@@ -7,15 +7,8 @@
   "body": {
     "bloques": [
       {
-        "code": "if(x >= 18){",
-        "order": 2
-      },
-      {
-        "code": "if(x >= 18){",
-        "order": 2
-      },
-      {
-        "code": "const x = 5",
+        "type": "in-line",
+        "code": "const x = 10",
         "order": 1
       }
     ]

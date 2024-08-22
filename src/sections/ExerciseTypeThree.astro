@@ -1,4 +1,5 @@
 ---
+import ExerciseTypeThreeCodeLine from "../components/ExerciseTypeThreeCodeLine.astro";
 import NextExercise from "../components/NextExercise.astro";
 
 const { body, head, exercicesInThisLesson, id } = Astro.props;
@@ -10,12 +11,22 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     actualIndexOfEx={actualIndexOfEx}
     exercicesInThisLesson={exercicesInThisLesson}
   />
-  <a
-    id="volverALeccion"
-    href={`/lecciones/${head.lection.slug}`}
-    class="hover:underline underline-offset-2">Volver a ver la leccion</a
-  >
-  <h1>
-    {head.title}
-  </h1>
+  <div class="flex flex-col gap-2">
+    <a
+      id="volverALeccion"
+      href={`/lecciones/${head.lection.slug}`}
+      class="hover:underline underline-offset-2">Volver a ver la leccion</a
+    >
+
+    <h1 class="text-5xl font-bold">
+      {head.title}
+    </h1>
+  </div>
+  <ul class="mt-12">
+    {
+      body.bloques.map((bloque) => {
+        return <ExerciseTypeThreeCodeLine bloque={bloque} />;
+      })
+    }
+  </ul>
 </main>
