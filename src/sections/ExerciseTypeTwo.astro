@@ -38,33 +38,41 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     </ul>
   </div>
 </main>
-
 <script>
+  import { ExerciceOption } from "../lib/clases";
+
+  const $buttons = document.querySelectorAll(
+    ".buttonOptionMultiple"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const buttons = [] as ExerciceOption[];
+
+  let cantidadDeCorrectas = 0;
+
+  $buttons.forEach(($button) => {
+    const correct = $button.dataset.iscorrect == "true";
+    const option = new ExerciceOption(correct, $button.innerText, $button);
+    buttons.push(option);
+
+    if (correct) {
+      cantidadDeCorrectas++;
+    }
+  });
+
   const activeGoNext = () => {
     document.getElementById("goNextExercice")?.classList.add("active");
   };
 
   const disabledButtons = () =>
-    buttons.forEach((button) => (button.disabled = true));
-
-  const buttons = document.querySelectorAll(
-    ".buttonOptionMultiple"
-  ) as NodeListOf<HTMLButtonElement>;
-
-  let cantidadDeCorrectas = document.querySelectorAll(
-    `.buttonOptionMultiple[data-iscorrect="true"]`
-  ).length;
+    buttons.forEach((button) => button.setDisabled());
 
   buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const btn = event.target as HTMLButtonElement;
-
-      const correct = btn.dataset.iscorrect == "true";
-      if (correct) {
+    button.getElement().addEventListener("click", () => {
+      if (button.isAValidOption()) {
         cantidadDeCorrectas--;
-        btn.classList.add("correct");
+        button.addStylesOfOptionType();
 
-        if (cantidadDeCorrectas == 0) {
+        if (cantidadDeCorrectas === 0) {
           confetti({
             particleCount: 200,
             spread: 100,
@@ -74,7 +82,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
           disabledButtons();
         }
       } else {
-        btn.classList.add("incorrect");
+        button.addStylesOfOptionType();
       }
     });
   });

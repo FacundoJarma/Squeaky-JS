@@ -7,8 +7,11 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
 <main class="px-12">
-  <NextExercise actualIndexOfEx={actualIndexOfEx} exercicesInThisLesson={exercicesInThisLesson} />
-  
+  <NextExercise
+    actualIndexOfEx={actualIndexOfEx}
+    exercicesInThisLesson={exercicesInThisLesson}
+  />
+
   <header class="flex gap-4 items-center">
     <figure
       class="w-32 aspect-square bg-gray-600 rounded-full grid place-items-center"
@@ -35,44 +38,48 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   </div>
 </main>
 
-
 <script>
+  import { ExerciceOption } from "../lib/clases";
+
+  const $buttons = document.querySelectorAll(
+    ".buttonOption"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const buttons = [] as any;
+
+  $buttons.forEach(($button) => {
+    const correct = $button.dataset.iscorrect == "true";
+    const option = new ExerciceOption(correct, $button.innerText, $button);
+    buttons.push(option);
+    console.log(option.getElement());
+  });
+
   const activeGoNext = () => {
     document.getElementById("goNextExercice")?.classList.add("active");
   };
 
   const disabledButtons = () =>
-    buttons.forEach((button) => (button.disabled = true));
+    buttons.forEach((button) => button.setDisabled());
 
   const showCorrectAnswer = () => {
-    const btnCorrect = document.querySelector(`button[data-iscorrect="true"]`);
-
-    btnCorrect?.classList.add("parcialCorrect");
-    disabledButtons();
-    activeGoNext();
+    const correctOption = buttons.find((button) => button.isAValidOption());
+    correctOption.getElement().classList.add("parcialCorrect");
   };
 
-  const buttons = document.querySelectorAll(
-    ".buttonOption"
-  ) as NodeListOf<HTMLButtonElement>;
-
   buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const btn = event.target as HTMLButtonElement;
-      console.log(btn.dataset.iscorrect);
-      const correct = btn.dataset.iscorrect == "true";
-      if (correct) {
-        btn.classList.add("correct");
+    button.getElement().addEventListener("click", () => {
+      
+      button.addStylesOfOptionType();
+      activeGoNext();
+      disabledButtons();
 
+      if (button.isAValidOption() == true) {
         confetti({
           particleCount: 200,
           spread: 100,
           origin: { y: 0.6 },
         });
-        activeGoNext();
-        disabledButtons();
       } else {
-        btn.classList.add("incorrect");
         showCorrectAnswer();
       }
     });
