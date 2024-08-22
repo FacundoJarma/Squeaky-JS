@@ -5,6 +5,7 @@ import ExercicesLayout from "../../layout/ExercicesLayout.astro";
 import ExerciseTypeOne from "../../sections/ExerciseTypeOne.astro";
 import ExerciseTypeTwo from "../../sections/ExerciseTypeTwo.astro";
 import { getCollection } from "astro:content";
+import ExerciseTypeThree from "../../sections/ExerciseTypeThree.astro";
 
 export async function getStaticPaths() {
   const exercices = await getCollection("ejercicios");
@@ -24,7 +25,6 @@ const indexOfLesson = lectionOfThisEx.data.index;
 if (!lectionOfThisEx) return;
 
 const exercicesInThisLesson = lectionOfThisEx.data.exercises;
-
 ---
 
 <ExercicesLayout title={head.title}>
@@ -37,13 +37,22 @@ const exercicesInThisLesson = lectionOfThisEx.data.exercises;
           id={id}
           exercicesInThisLesson={exercicesInThisLesson}
         />
-      ) : (
+      ) : head.type == "Multiple Opcion" ? (
         <ExerciseTypeTwo
           body={body}
           head={head}
           id={id}
           exercicesInThisLesson={exercicesInThisLesson}
         />
+      ) : (
+        head.type == "Arrastra" && (
+          <ExerciseTypeThree
+            body={body}
+            head={head}
+            id={id}
+            exercicesInThisLesson={exercicesInThisLesson}
+          />
+        )
       )
     }
   </div>

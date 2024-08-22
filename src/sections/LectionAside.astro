@@ -47,11 +47,10 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 </style>
 
 <script>
-  const $openLections = document.getElementById(
-    "openLections"
-  ) as HTMLHeadingElement;
+  document.addEventListener("click", (event) => {
+    const $openLections = event.target.closest("#openLections");
 
-  $openLections?.addEventListener("click", () => {
+    if (!$openLections) return;
     const $aside = document.getElementById("lectionsAside");
     if (!$aside) return;
     $aside.dataset.open === "true"
