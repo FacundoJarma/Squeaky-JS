@@ -79,7 +79,7 @@ for (const ex of exercicesInThisLesson) {
 <script>
   const btn = document.getElementById("open-menu");
   btn?.addEventListener("click", () => {
-    const aside = document.querySelector("aside");
+    const aside = document.querySelector("#menu-aside");
     if (!aside) return;
     aside.dataset.open === "true"
       ? (aside.dataset.open = "false")

@@ -10,6 +10,16 @@
         "type": "in-line",
         "code": "const x = 10",
         "order": 1
+      },
+      {
+        "type": "in-line",
+        "code": "if(x > 5)",
+        "order": 2
+      },
+      {
+        "type": "in-line",
+        "code": "  console.log('x es mayor que 5')",
+        "order": 3
       }
     ]
   }

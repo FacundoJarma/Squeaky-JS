@@ -6,7 +6,7 @@ const { body, head, exercicesInThisLesson, id } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
-<main class="px-12">
+<main class="px-12 ">
   <NextExercise
     actualIndexOfEx={actualIndexOfEx}
     exercicesInThisLesson={exercicesInThisLesson}
