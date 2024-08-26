@@ -8,7 +8,6 @@ import LoginForm from "../sections/LoginForm.astro";
 }
 
 <Layout title="Squeaky JS | Inicio">
-  
   <div id="container">
     <h1>Iniciar Sesion</h1>
     <form class="input">
@@ -21,48 +20,42 @@ import LoginForm from "../sections/LoginForm.astro";
         />
       </div>
       <a href="http://localhost:4321">
-        <input type="submit" class="enviar">
+        <input type="submit" class="enviar" />
       </a>
     </form>
     <div class="contru">
-     <button class="boton" onclick="openDiv()">
-      <h2>¿Olvidaste tu Contraseña?</h2>
-     </button>
-     <h2>¿Eres Nuevo en Squeaky?  
-        <a
-          href="/register"
-          >
-          <h4 class="cr">
-            Crear cuenta
-          </h4>
+      <button class="boton" onclick="openDiv()">
+        <h2>¿Olvidaste tu Contraseña?</h2>
+      </button>
+      <h2>
+        ¿Eres Nuevo en Squeaky?
+        <a href="/register">
+          <h4 class="cr">Crear cuenta</h4>
         </a>
       </h2>
     </div>
   </div>
   <div id="myDiv">
-      <h1>Olvidaste tu Contraseña</h1>
-      <input type="text"placeholder="Ingresa tu Mail">
+    <button> Olvidaste tu Contraseña </button>
   </div>
-  
+
   <style>
     #myDiv {
-       display: none; 
-       width: 30em;
-       height: 20em;
-       background-color: lightblue;
-       border: 2px solid #007BFF;
-       margin-top: 20px;
-       padding: 10px;
-       transition: opacity 0.5s ease;
-       opacity: 0;
+      display: none;
+      width: 30em;
+      height: 20em;
+      background-color: lightblue;
+      border: 2px solid #007bff;
+      margin-top: 20px;
+      padding: 10px;
+      transition: opacity 0.5s ease;
+      opacity: 0;
     }
     #myDiv.show {
       display: block;
       opacity: 1;
     }
-    .boton:hover {
-      color: blue;
-    }
+
     #container {
       width: 30em;
       height: 30em;
@@ -72,20 +65,20 @@ import LoginForm from "../sections/LoginForm.astro";
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      }
+    }
     h1 {
       font-size: 36px;
       margin-top: 1em;
       margin-bottom: 2em;
       font-weight: bold;
-      }
-     .register {
+    }
+    .register {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2em;
       margin-bottom: 2em;
-      }
+    }
     .contra {
       padding: 0.5em 1em;
       width: 16em;
@@ -93,7 +86,7 @@ import LoginForm from "../sections/LoginForm.astro";
       border-radius: 3em;
       background-color: rgb(75 85 99);
       color: rgb(250, 247, 247);
-      }
+    }
     .text {
       padding: 0.5em 1em;
       width: 16em;
@@ -101,35 +94,27 @@ import LoginForm from "../sections/LoginForm.astro";
       border-radius: 3em;
       background-color: rgb(75 85 99);
       color: rgb(250, 247, 247);
-      }
-     .enviar {
-        background-color: rgb(30 58 138);  
-        width: 6em;
-        height: 3em;
-        border-radius: 1em;
-        gap: 3em;
-      } 
-      .contru {
-
-      } 
-      .cr:hover {
-        color: blue;
-      }
-      .boton:hover {
-        color: blue;
-      }
-      
+    }
+    .enviar {
+      background-color: rgb(30 58 138);
+      width: 6em;
+      height: 3em;
+      border-radius: 1em;
+      gap: 3em;
+    }
+    .contru {
+    }
+    .cr:hover {
+      color: blue;
+    }
+    .boton:hover {
+      color: blue;
+    }
   </style>
   <script>
     function openDiv() {
-            const div = document.getElementById('myDiv');
-            div.classList.add('show');  // Añadir la clase 'show' para mostrar el div
-        }
+      const div = document.getElementById("myDiv");
+      div.classList.add("show"); // Añadir la clase 'show' para mostrar el div
+    }
   </script>
-  </Layout>
-
-
-
-
-
- 
+</Layout>

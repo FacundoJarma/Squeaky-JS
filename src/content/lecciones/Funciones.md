@@ -7,7 +7,7 @@ index: 11
 
 Las funciones son una parte **fundamental** al momento de escribir nuestra aplicacion, nos ayudan a estructurar de mejor manera el codigo y por otra parte, nos permiten reutilizar el código (algo muy importante).
 
-Una funcion es uuna porcion de codigo a la que le ponemos un nombre, para posteriromente, "invocarla" en donde deseemos usar ese codigo.
+Una funcion es una porcion de codigo a la que le ponemos un nombre, para posteriromente, "invocarla" en donde deseemos usar ese codigo.
 
 ## Sintaxis
 

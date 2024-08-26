@@ -24,178 +24,91 @@ import Layout from "../layout/layout.astro";
           <input type="number" class="mes" placeholder="mes" min="o" max="12" />
           <input type="number" class="año" placeholder="año" min="0" />
         </div>
-        <button class="enviar" id="showInputsBtn">Enviar</button>
+        <a href="http://localhost:4321">
+          <button class="enviar" id="showInputsBtn">Enviar</button>
+        </a>
       </form>
     </div>
-    <form class="send">
-      <div id="bloque">
-        <div class="input-container" id="inputContainer">
-          <p>Te enviaremos un codigo de Verificacion</p>
-          <input type="text" class="digit-input uno" maxlength="1" />
-          <input type="text" class="digit-input dos" maxlength="1" />
-          <input type="text" class="digit-input tres" maxlength="1" />
-          <input type="text" class="digit-input cuatro" maxlength="1" />
-          <input type="text" class="digit-input cinco" maxlength="1" />
-          <input type="text" class="digit-input seis" maxlength="1" />
-          <a href="http://localhost:4321">
-            <button class="segundo">Enviar</button>
-          </a>
-        </div>
-      </div>
-    </form>
-
-    <style>
-      #pantalla {
-        position: absolute;
-        z-index: 100;
-        width: 100%;
-        height: 100vh;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-      }
-      #container {
-        width: 30em;
-        height: 30em;
-        background-color: #23262f;
-        border-radius: 3em;
-        text-align: center;
-        margin: 0 auto;
-        gap: 1em;
-      }
-
-      .borroso {
-        filter: blur(6px);
-      }
-
-      h1 {
-        font-size: 36px;
-        padding-top: 2em;
-        font-weight: bold;
-        gap: 1em;
-      }
-      .todo {
-        width: 100%;
-        height: 3em;
-        gap: 2em;
-        display: flex;
-        justify-content: center;
-      }
-      .todo > input {
-        width: 5em;
-        padding: 1em;
-        margin-bottom: 4em;
-      }
-      .register {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2em;
-        margin-bottom: 2em;
-      }
-      .contra {
-        padding: 0.5em 1em;
-        width: 16em;
-        height: 2em;
-        border-radius: 3em;
-        background-color: rgb(75 85 99);
-        color: rgb(250, 247, 247);
-      }
-      .text {
-        padding: 0.5em 1em;
-        width: 16em;
-        height: 2em;
-        border-radius: 3em;
-        background-color: rgb(75 85 99);
-        color: rgb(250, 247, 247);
-      }
-      .dia {
-        background-color: rgb(75 85 99);
-        border-radius: 1em;
-      }
-      .mes {
-        background-color: rgb(75 85 99);
-        border-radius: 1em;
-      }
-      .año {
-        background-color: rgb(75 85 99);
-        border-radius: 1em;
-      }
-      .enviar {
-        background-color: rgb(30 58 138);
-        width: 6em;
-        height: 3em;
-        border-radius: 1em;
-        gap: 3em;
-      }
-      .input-container {
-        display: none;
-        margin-top: 20px;
-        text-align: center;
-        background-color: #23262f;
-        width: 20em;
-        height: 10em;
-        border-radius: 1em;
-      }
-      .input-container input {
-        margin: 5px;
-        padding: 10px;
-        font-size: 16px;
-        background-color: rgb(75 85 99);
-        width: 2em;
-        height: 4em;
-        border-radius: 1em;
-      }
-      .input-container p {
-        margin-bottom: 10px;
-        font-weight: bold;
-      }
-
-      #bloque {
-        position: absolute;
-        z-index: 50;
-
-        left: 50%;
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%);
-      }
-    </style>
-
-    <script>
-      const registerFormElement = document.getElementById(
-        "registerForm"
-      ) as HTMLButtonElement;
-
-      registerFormElement.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const inputContainer = document.getElementById(
-          "inputContainer"
-        ) as HTMLDivElement;
-        const background = document.getElementById(
-          "container"
-        ) as HTMLDivElement;
-
-        inputContainer.style.display = "block";
-        background.classList.add("borroso");
-      });
-
-      const inputs = document.querySelectorAll(
-        ".digit-input"
-      ) as NodeListOf<HTMLInputElement>;
-
-      inputs.forEach((input, index) => {
-        input.addEventListener("input", () => {
-          if (input.value.length === 1 && index < inputs.length - 1) {
-            inputs[index + 1].focus();
-          }
-        });
-
-        input.addEventListener("keydown", (e) => {
-          if (e.key === "Backspace" && index > 0 && input.value === "") {
-            inputs[index - 1].focus();
-          }
-        });
-      });
-    </script>
   </div>
 </Layout>
+
+<style>
+  #pantalla {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  #container {
+    width: 30em;
+    height: 30em;
+    background-color: #23262f;
+    border-radius: 3em;
+    text-align: center;
+    margin: 0 auto;
+    gap: 1em;
+  }
+
+  h1 {
+    font-size: 36px;
+    padding-top: 2em;
+    font-weight: bold;
+    gap: 1em;
+  }
+  .todo {
+    width: 100%;
+    height: 3em;
+    gap: 2em;
+    display: flex;
+    justify-content: center;
+  }
+  .todo > input {
+    width: 5em;
+    padding: 1em;
+    margin-bottom: 4em;
+  }
+  .register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    margin-bottom: 2em;
+  }
+  .contra {
+    padding: 0.5em 1em;
+    width: 16em;
+    height: 2em;
+    border-radius: 3em;
+    background-color: rgb(75 85 99);
+    color: rgb(250, 247, 247);
+  }
+  .text {
+    padding: 0.5em 1em;
+    width: 16em;
+    height: 2em;
+    border-radius: 3em;
+    background-color: rgb(75 85 99);
+    color: rgb(250, 247, 247);
+  }
+  .dia {
+    background-color: rgb(75 85 99);
+    border-radius: 1em;
+  }
+  .mes {
+    background-color: rgb(75 85 99);
+    border-radius: 1em;
+  }
+  .año {
+    background-color: rgb(75 85 99);
+    border-radius: 1em;
+  }
+  .enviar {
+    background-color: rgb(30 58 138);
+    width: 6em;
+    height: 3em;
+    border-radius: 1em;
+    gap: 3em;
+  }
+</style>
