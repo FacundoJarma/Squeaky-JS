@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../layout/layout.astro";
 ---
 
@@ -11,22 +12,53 @@ import Layout from "../layout/layout.astro";
           <input
             type="text"
             class="text"
+            id="emailPhone"
             placeholder="Mail/Numero de Telefono"
+            required
           />
-          <input
-            type="password"
-            class="contra"
-            placeholder="Ingresa tu Contraseña"
-          />
+          <div class="password-container">
+            <input
+              type="password"
+              class="contra"
+              id="password"
+              placeholder="Ingresa tu Contraseña"
+              required
+            />
+            <button type="button" class="toggle-password" id="togglePassword">
+              <Icon name="eye" />
+            </button>
+          </div>
         </div>
         <div class="todo">
-          <input type="number" class="dia" placeholder="dia" min="0" max="31" />
-          <input type="number" class="mes" placeholder="mes" min="o" max="12" />
-          <input type="number" class="año" placeholder="año" min="0" />
+          <input
+            type="number"
+            class="dia"
+            id="dia"
+            placeholder="día"
+            min="1"
+            max="31"
+            required
+          />
+          <input
+            type="number"
+            class="mes"
+            id="mes"
+            placeholder="mes"
+            min="1"
+            max="12"
+            required
+          />
+          <input
+            type="number"
+            class="año"
+            id="año"
+            placeholder="año"
+            min="1900"
+            max="2100"
+            required
+          />
         </div>
-        <a href="http://localhost:4321">
-          <button class="enviar" id="showInputsBtn">Enviar</button>
-        </a>
+        <button type="submit" class="enviar">Enviar</button>
       </form>
     </div>
   </div>
@@ -76,6 +108,11 @@ import Layout from "../layout/layout.astro";
     gap: 2em;
     margin-bottom: 2em;
   }
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
   .contra {
     padding: 0.5em 1em;
     width: 16em;
@@ -111,4 +148,39 @@ import Layout from "../layout/layout.astro";
     border-radius: 1em;
     gap: 3em;
   }
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+  }
 </style>
+
+<script>
+  document
+    .getElementById("registerForm")
+    .addEventListener("submit", function (event) {
+      // Evitar el envío del formulario si hay campos vacíos
+      const emailPhone = document.getElementById("emailPhone").value;
+      const password = document.getElementById("password").value;
+      const dia = document.getElementById("dia").value;
+      const mes = document.getElementById("mes").value;
+      const año = document.getElementById("año").value;
+
+      if (!emailPhone || !password || !dia || !mes || !año) {
+        event.preventDefault(); // Evita el envío del formulario
+        alert("Por favor, completa todos los campos antes de enviar.");
+      } else {
+        window.location.href = "/";
+      }
+    });
+
+  document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    this.innerHTML = type !== 'password' ? '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>' : '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>'; // Cambiar ícono
+  });
+</script>

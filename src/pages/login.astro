@@ -1,27 +1,34 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../layout/layout.astro";
 import LoginForm from "../sections/LoginForm.astro";
 ---
-
-{
-  //TODO: Redigirir automaticamente a '/' si ya esta logueado.
-}
-
 <Layout title="Squeaky JS | Inicio">
   <div id="container">
     <h1>Iniciar Sesion</h1>
-    <form class="input">
+    <form class="input" id="loginForm">
       <div class="register">
-        <input type="text" class="text" placeholder="Mail/Numero de Telefono" />
         <input
-          type="password"
-          class="contra"
-          placeholder="Ingresa tu Contraseña"
+          type="text"
+          class="text"
+          id="emailPhone"
+          placeholder="Mail/Numero de Telefono"
+          required
         />
+        <div class="password-container">
+          <input
+            type="password"
+            class="contra"
+            id="password"
+            placeholder="Ingresa tu Contraseña"
+            required
+          />
+          <button type="button" class="toggle-password" id="togglePassword">
+            <Icon name="eye" />
+          </button>
+        </div>
       </div>
-      <a href="http://localhost:4321">
-        <input type="submit" class="enviar" />
-      </a>
+      <button type="submit" class="enviar">Enviar</button>
     </form>
     <div class="contru">
       <button class="boton" onclick="openDiv()">
@@ -35,27 +42,8 @@ import LoginForm from "../sections/LoginForm.astro";
       </h2>
     </div>
   </div>
-  <div id="myDiv">
-    <button> Olvidaste tu Contraseña </button>
-  </div>
 
   <style>
-    #myDiv {
-      display: none;
-      width: 30em;
-      height: 20em;
-      background-color: lightblue;
-      border: 2px solid #007bff;
-      margin-top: 20px;
-      padding: 10px;
-      transition: opacity 0.5s ease;
-      opacity: 0;
-    }
-    #myDiv.show {
-      display: block;
-      opacity: 1;
-    }
-
     #container {
       width: 30em;
       height: 30em;
@@ -78,6 +66,11 @@ import LoginForm from "../sections/LoginForm.astro";
       align-items: center;
       gap: 2em;
       margin-bottom: 2em;
+    }
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
     }
     .contra {
       padding: 0.5em 1em;
@@ -107,11 +100,39 @@ import LoginForm from "../sections/LoginForm.astro";
     .cr:hover {
       color: blue;
     }
-    .boton:hover {
-      color: blue;
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5em;
     }
   </style>
+
   <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      // Evitar el envío del formulario si hay campos vacíos
+      const emailPhone = document.getElementById('emailPhone').value;
+      const password = document.getElementById('password').value;
+
+      if (!emailPhone || !password) {
+        event.preventDefault(); // Evita el envío del formulario
+        alert('Por favor, completa todos los campos antes de enviar.');
+      }
+      else {
+        window.location.href = '/';
+      }
+    });
+
+    document.getElementById('togglePassword').addEventListener('click', function () {
+      const passwordField = document.getElementById('password');
+      const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordField.setAttribute('type', type);
+      // Cambiar el ícono del botón basado en el tipo de campo
+      this.innerHTML = type !== 'password' ? '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>' : '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>';
+    });
+
     function openDiv() {
       const div = document.getElementById("myDiv");
       div.classList.add("show"); // Añadir la clase 'show' para mostrar el div

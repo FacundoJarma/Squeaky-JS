@@ -1,0 +1,56 @@
+---
+import Layout from "../layout/Layout.astro"
+---
+<Layout>
+    <style>
+        .progress-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #007BFF 0% 0%, 
+                #e0e0e0 0% 100%
+            );
+        }
+    
+        .progress-container .progress-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+    </style>
+    </head>
+    <body>
+    
+    <div class="progress-container">
+        <div class="progress-value" id="progress-value">0%</div>
+    </div>
+    
+    <script>
+        // JavaScript para actualizar la barra de progreso circular
+        const progressContainer = document.querySelector('.progress-container');
+        const progressValue = document.getElementById('progress-value');
+        
+        // Simulación de progreso
+        let progress = 0;
+        let interval = setInterval(() => {
+            if (progress >= 100) {
+                clearInterval(interval);
+            } else {
+                progress++;
+                updateProgress(progress);
+            }
+        }, 50);
+    
+        // Función para actualizar el progreso circular
+        function updateProgress(value) {
+            progressContainer.style.background = `conic-gradient(#007BFF 0% ${value}%, #e0e0e0 ${value}% 100%)`;
+            progressValue.textContent = `${value}%`;
+        }
+    </script>
+</Layout>

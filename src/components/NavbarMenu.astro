@@ -6,7 +6,6 @@
   >
   </button>
   <div
-    transition:persist
     id="dropdownMenu"
     class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
   >
@@ -15,6 +14,9 @@
       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
     >
       Mi perfil
+    </a>
+    <a href="/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+      Inicio
     </a>
     <a
       href="/login"
@@ -48,4 +50,11 @@
       $menu.style.display = "none";
     }
   });
+  const $links = document.querySelectorAll("#dropdownMenu a");
+  $links.forEach(($link) => {
+    if ($link.href == window.location.href) {
+      $link.style.display = "none";
+    }
+  });
+
 </script>

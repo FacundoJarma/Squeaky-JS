@@ -7,14 +7,14 @@ import Layout from "../layout/layout.astro";
     <div class="profile">
       <h1 class="foto">foto de Perfil</h1>
       <h1>Nombre de ususrio</h1>
-      <input type="text" placeholder="Descripcion" class="desc" />
+      <textarea rows="4" cols="50" wrap="soft" placeholder="Descripcion" class="desc"></textarea>
     </div>
     <div class="tu">
       <div class="profile2">
         <input type="text" placeholder="Nombre" class="nombre" />
         <input type="text" placeholder="Apellidos" class="nombre" />
         <input type="text" placeholder="Gmail" class="nombre" />
-        <input type="text" placeholder="Cumpleaños" class="nombre" />
+        <input type="text" id="dateInput" placeholder="Fecha de Nacimiento" maxlength="10">
       </div>
       <div class="racha">
         <h1>
@@ -96,6 +96,12 @@ import Layout from "../layout/layout.astro";
       color: black;
       border-radius: 1em;
     }
+    .desc::placeholder {
+      color: #000;
+      text-align: center;
+      padding-top: 40px;
+      resize: none;
+    }
     .foto {
       background-color: rgb(28, 33, 41);
       width: 10em;
@@ -112,4 +118,21 @@ import Layout from "../layout/layout.astro";
       background-color: rgb(163, 163, 163);
     }
   </style>
+  <script>
+    const dateInput = document.getElementById('dateInput');
+
+    dateInput.addEventListener('input', function(e) {
+        let value = e.target.value;
+        
+        value = value.replace(/\D/g, '');  // Eliminar todo lo que no sea número
+        if (value.length >= 2) {
+            value = value.slice(0, 2) + '/' + value.slice(2);  // Insertar la primera barra
+        }
+        if (value.length >= 5) {
+            value = value.slice(0, 5) + '/' + value.slice(5);  // Insertar la segunda barra
+        }
+        e.target.value = value;
+    });
+</script>
+
 </Layout>
