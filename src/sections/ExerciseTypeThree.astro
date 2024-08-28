@@ -1,32 +1,84 @@
 ---
 import ExerciseTypeThreeCodeLine from "../components/ExerciseTypeThreeCodeLine.astro";
+import ExerciceTypeThreeHole from "../components/ExerciceTypeThreeHole.astro";
 import NextExercise from "../components/NextExercise.astro";
 
 const { body, head, exercicesInThisLesson, id } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
-<main class="px-12">
+<div class="flex gap-1 w-full h-full">
   <NextExercise
     actualIndexOfEx={actualIndexOfEx}
     exercicesInThisLesson={exercicesInThisLesson}
   />
-  <div class="flex flex-col gap-2">
-    <a
-      id="volverALeccion"
-      href={`/lecciones/${head.lection.slug}`}
-      class="hover:underline underline-offset-2">Volver a ver la leccion</a
-    >
 
-    <h1 class="text-5xl font-bold">
-      {head.title}
-    </h1>
-  </div>
-  <ul class="mt-12">
-    {
-      body.bloques.map((bloque) => {
-        return <ExerciseTypeThreeCodeLine bloque={bloque} />;
-      })
+  <main class="flex flex-col w-full h-full justify-center px-12">
+    <div class="w-full flex flex-col gap-">
+      <a
+        id="volverALeccion"
+        href={`/lecciones/${head.lection.slug}`}
+        class="hover:underline underline-offset-2">Volver a ver la leccion</a
+      >
+
+      <h1 class="text-5xl font-bold">
+        {head.title}
+      </h1>
+    </div>
+    <ul id="dragable" class="mt-12 flex gap-2">
+      {
+        body.bloques.map((bloque) => {
+          return <ExerciseTypeThreeCodeLine bloque={bloque} />;
+        })
+      }
+    </ul>
+  </main>
+  <aside class="h-full w-2/5 bg-gray-800">
+    <ul id="dropZones" class="w-full p-4 flex flex-col">
+      {
+        body.bloques.map(() => {
+          return <ExerciceTypeThreeHole />;
+        })
+      }
+    </ul>
+  </aside>
+</div>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"
+  defer></script>
+<script defer>
+  const isAValidTarget = (target, source) => {
+    if (target && target.classList.contains("drop-zone")) {
+      if (source && source !== target) {
+        return true;
+      }
+      return false;
     }
-  </ul>
-</main>
+
+    return false;
+  };
+
+  const swapChildrens = (targetChildren, target, source) => {
+    if (targetChildren.length > 1) {
+      const targetChild = targetChildren[0];
+      target.removeChild(targetChild);
+      source.appendChild(targetChild);
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const dragable = document.querySelector("#dragable");
+    const dropZones = Array.from(document.querySelectorAll(".drop-zone"));
+
+    const drake = dragula([dragable, ...dropZones], {
+      revertOnSpill: true,
+    });
+    drake.on("drop", (el, target, source, sibling) => {
+      if (isAValidTarget(target, source)) {
+        const targetChildren = Array.from(target.children);
+        swapChildrens(targetChildren, target, source);
+      }
+    });
+  });
+</script>

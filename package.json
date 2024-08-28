@@ -13,6 +13,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.12.3",
     "astro-icon": "^1.1.0",
+    "dragula": "^3.7.3",
     "motion": "^10.18.0",
     "scrollreveal": "^4.0.9",
     "tailwindcss": "^3.4.7"

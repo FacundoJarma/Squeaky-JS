@@ -6,10 +6,18 @@ const { bloque } = Astro.props;
 
 <li
   data-order={bloque.order}
-  class="flex items-center gap-1 w-fit px-4 py-1 border-2 border-gray-600 rounded-lg text-lg font-semibold"
+  class="dragable-item bg-[#17181c] flex items-center gap-1 w-fit px-4 py-1 border-2 border-gray-600 rounded-lg text-lg font-semibold"
 >
   <Icon name="drag" height={24} width={24} className="-ml-2" />
-  <span>
-    {bloque.code}
-  </span>
+  <span class="bloque" data-text={bloque.code}></span>
 </li>
+
+<script>
+  const $bloques = document.querySelectorAll(
+    ".bloque"
+  ) as NodeListOf<HTMLSpanElement>;
+
+  $bloques.forEach((bloque) => {
+    bloque.innerHTML = bloque.dataset.text;
+  });
+</script>
