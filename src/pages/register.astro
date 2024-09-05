@@ -1,76 +1,12 @@
 ---
+import BackgroundImage from "../components/BackgroundImage.astro";
+import RegisterForm from "../sections/RegisterForm.astro";
 import Layout from "../layout/layout.astro";
 ---
 
 <Layout title="Squeaky JS | Inicio">
   <main class="relative h-full w-screen flex justify-center items-end">
-    <div class="-z-10 fondo absolute w-screen h-full left-0">
-      <img src="/imageFondo.png" class="-z-10 h-full w-full object-cover" />
-    </div>
-    <form
-      action=""
-      class="z-10 w-[30em] bg-black/70 h-[75vh] rounded-t-2xl px-11 py-12"
-    >
-      <h1 class="text-4xl text-white font-bold p-1">Crear cuenta</h1>
-      <div class="flex flex-col gap-4 mt-12">
-        <input
-          type="text"
-          placeholder="Nombre de usuario"
-          class="text-lg w-full h-14 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
-        />
-        <input
-          type="text"
-          placeholder="Email o numero de usuario"
-          class="text-lg w-full h-14 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
-        />
-        <input
-          type="submit"
-          value="Continuar"
-          class="text-lg h-12 mt-4 w-full bg-[#FFB800] text-black font-bold rounded-lg hover:cursor-pointer hover:scale-[102%] duration-100"
-        />
-      </div>
-      <span class="block text-center text-gray-300 mt-6 text-xl"
-        >¿Ya tienes cuenta de Squeaky? <a href="/login" class="hover:text-blue-600 duration-300">Inicia sesion</a></span
-      >
-    </form>
+    <BackgroundImage />
+    <RegisterForm />
   </main>
 </Layout>
-
-<style>
-  .fondo {
-    background: radial-gradient(closest-side at 50% 50%, #4b4b4b, #1c1c1c);
-  }
-</style>
-
-<script>
-  document
-    .getElementById("registerForm")
-    .addEventListener("submit", function (event) {
-      // Evitar el envío del formulario si hay campos vacíos
-      const emailPhone = document.getElementById("emailPhone").value;
-      const password = document.getElementById("password").value;
-      const dia = document.getElementById("dia").value;
-      const mes = document.getElementById("mes").value;
-      const año = document.getElementById("año").value;
-
-      if (!emailPhone || !password || !dia || !mes || !año) {
-        event.preventDefault(); // Evita el envío del formulario
-        alert("Por favor, completa todos los campos antes de enviar.");
-      } else {
-        window.location.href = "/";
-      }
-    });
-
-  document
-    .getElementById("togglePassword")
-    .addEventListener("click", function () {
-      const passwordField = document.getElementById("password");
-      const type =
-        passwordField.getAttribute("type") === "password" ? "text" : "password";
-      passwordField.setAttribute("type", type);
-      this.innerHTML =
-        type !== "password"
-          ? '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>'
-          : '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>'; // Cambiar ícono
-    });
-</script>

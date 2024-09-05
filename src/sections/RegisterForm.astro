@@ -3,12 +3,18 @@
   id="registerForm"
   class="z-10 w-[30em] bg-black/70 h-[75vh] rounded-t-2xl px-11 py-12"
 >
-  <h1 class="text-4xl text-white font-bold p-1">Iniciar sesion</h1>
+  <h1 class="text-4xl text-white font-bold p-1">Crear cuenta</h1>
   <div class="flex flex-col gap-4 mt-12">
     <input
       type="text"
       id="username"
       placeholder="Nombre de usuario"
+      class="text-lg w-full h-14 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
+    />
+    <input
+      type="text"
+      id="email"
+      placeholder="Email o numero de usuario"
       class="text-lg w-full h-14 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
     />
     <input
@@ -24,23 +30,26 @@
     />
   </div>
   <span class="block text-center text-gray-300 mt-6 text-xl"
-    >No tienes cuenta de Squeaky? <a
-      href="/register"
-      class="hover:text-blue-600 duration-300">Crear cuenta</a
+    >¿Ya tienes cuenta de Squeaky? <a
+      href="/login"
+      class="hover:text-blue-600 duration-300">Inicia sesion</a
     ></span
   >
 </form>
-<script>
-  import { loginUser } from "../lib/login.js";
 
-  const $loginForm = document.getElementById("loginForm") as HTMLFormElement;
-  $loginForm.addEventListener("submit", (event) => {
+<script>
+  import { registerUser } from "../lib/login.js";
+  const $registerForm = document.getElementById(
+    "registerForm"
+  ) as HTMLFormElement;
+
+  $registerForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const emailPhone = document.getElementById(
-      "emailPhone"
-    ) as HTMLInputElement;
-    const password = document.getElementById("password") as HTMLInputElement;
-    loginUser(emailPhone.value, password.value);
+    const $username = document.getElementById("username") as HTMLInputElement;
+    const $email = document.getElementById("email") as HTMLInputElement;
+    const $password = document.getElementById("password") as HTMLInputElement;
+
+    registerUser($username.value, $email.value, $password.value);
   });
 </script>
