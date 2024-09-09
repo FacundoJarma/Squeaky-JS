@@ -11,9 +11,9 @@ import Layout from "../layout/layout.astro";
     </div>
     <div class="tu">
       <div class="profile2">
-        <input type="text" placeholder="Nombre" class="nombre" />
-        <input type="text" placeholder="Apellidos" class="nombre" />
-        <input type="text" placeholder="Gmail" class="nombre" />
+        <input type="text" id="name" placeholder="Nombre" class="nombre" />
+        <input type="text" id="apellido" placeholder="Apellidos" class="nombre" />
+        <input type="text" id="gmail" placeholder="Gmail" class="nombre" />
         <input type="text" id="dateInput" placeholder="Fecha de Nacimiento" maxlength="10">
       </div>
       <div class="racha">
@@ -120,7 +120,23 @@ import Layout from "../layout/layout.astro";
   </style>
   <script>
     const dateInput = document.getElementById('dateInput');
+    const nombre = document.getElementById("name");
+    const usuario = localStorage.getItem("users");
+    const apellido = document.getElementById("apellido");
+    const gmail = document.getElementById("gmail");
 
+    const name = localStorage.getItem("name")
+    const email = localStorage.getItem("email");
+
+  nombre.value = name;
+/** 
+    if(!nombre.value == undefined) {
+        nombre.value = usuario.name;
+    } else {
+      nombre.placeholder = "Nombre";
+    };  
+*/
+    gmail.value = email;
     dateInput.addEventListener('input', function(e) {
         let value = e.target.value;
         
