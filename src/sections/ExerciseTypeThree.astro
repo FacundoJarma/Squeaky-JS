@@ -8,11 +8,6 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
 <div class="flex gap-1 w-full h-full">
-  <NextExercise
-    actualIndexOfEx={actualIndexOfEx}
-    exercicesInThisLesson={exercicesInThisLesson}
-  />
-
   <main class="flex flex-col w-full h-full justify-center px-12">
     <div class="w-full flex flex-col gap-">
       <a
@@ -41,13 +36,36 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
         })
       }
     </ul>
+    <button
+      id="checkExercice"
+      class="hidden w-32 h-11 bg-green-800 rounded-xl text-xl absolute bottom-12 right-12 place-content-center hover:scale-105 duration-200"
+      >Enviar</button
+    >
   </aside>
 </div>
+
+<style>
+  button.active {
+    display: grid !important;
+  }
+</style>
 
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"
   defer></script>
 <script defer>
+  const areAllHolesCompleted = () => {
+    const $dropZones = document.querySelectorAll(".drop-zone");
+    let unusedHoles = $dropZones.length;
+    $dropZones.forEach(($dropZone) => {
+      if ($dropZone.children.length > 0) {
+        unusedHoles--;
+      }
+    });
+    if (unusedHoles === 0) return true;
+
+    return false;
+  };
   const isAValidTarget = (target, source) => {
     if (target && target.classList.contains("drop-zone")) {
       if (source && source !== target) {
@@ -70,6 +88,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   document.addEventListener("DOMContentLoaded", () => {
     const dragable = document.querySelector("#dragable");
     const dropZones = Array.from(document.querySelectorAll(".drop-zone"));
+    const $checkExercice = document.getElementById("checkExercice");
 
     const drake = dragula([dragable, ...dropZones], {
       revertOnSpill: true,
@@ -77,6 +96,11 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     drake.on("drop", (el, target, source, sibling) => {
       if (isAValidTarget(target, source)) {
         const targetChildren = Array.from(target.children);
+        if (areAllHolesCompleted()) {
+          $checkExercice.classList.add("active");
+        } else {
+          $checkExercice.classList.remove("active");
+        }
         swapChildrens(targetChildren, target, source);
       }
     });
