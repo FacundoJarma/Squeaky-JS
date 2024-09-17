@@ -54,3 +54,6 @@ export function registerUser(name, email, password) {
     localStorage.setItem("users", JSON.stringify(user_records));
   }
 }
+
+
+

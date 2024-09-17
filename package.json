@@ -16,6 +16,7 @@
     "dragula": "^3.7.3",
     "motion": "^10.18.0",
     "scrollreveal": "^4.0.9",
+    "soquetic": "^1.0.4",
     "tailwindcss": "^3.4.7"
   }
 }
