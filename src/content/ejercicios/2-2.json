@@ -1,0 +1,20 @@
+{
+  "head": {
+    "title": "Ejercicio variable Let",
+    "lection": "variables-const-let-var",
+    "type": "Unica Opcion"
+  },
+  "body": {
+    "question": "Una variable Let puede ser usada de manera global",
+    "options": [
+      {
+        "text": "Verdadero",
+        "correct": false
+      },
+      {
+        "text": "Falso",
+        "correct": true
+      }
+    ]
+  }
+}

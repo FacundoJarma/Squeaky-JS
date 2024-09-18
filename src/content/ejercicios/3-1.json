@@ -1,0 +1,24 @@
+{
+  "head": {
+    "title": "¿Son malas las alerts?",
+    "lection": "mostrando-informacion-por-pantalla",
+    "type": "Unica Opcion"
+  },
+  "body": {
+    "question": "¿Siempre que usemos un 'alert' es para enviar un error?",
+    "options": [
+      {
+        "text": "Si, el alert es un aviso para el usuario de que algo va mal",
+        "correct": false
+      },
+      {
+        "text": "No, podemos enviar cualquier texto.",
+        "correct": true
+      },
+      {
+        "text": "No, el alert NO sirve pare enviar errores",
+        "correct": false
+      }
+    ]
+  }
+}
