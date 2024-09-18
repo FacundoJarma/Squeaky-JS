@@ -1,0 +1,32 @@
+{
+  "head": {
+    "title": "Que datos puedo imprimir",
+    "lection": "mostrando-informacion-por-pantalla",
+    "type": "Multiple Opcion"
+  },
+  "body": {
+    "question": "¿Cuales de estos datos puedo mostrar en un 'alert()'?",
+    "options": [
+      {
+        "text": "Numbers",
+        "correct": true
+      },
+      {
+        "text": "Objects",
+        "correct": false
+      },
+      {
+        "text": "Booleans",
+        "correct": true
+      },
+      {
+        "text": "DOM elements",
+        "correct": false
+      },
+      {
+        "text": "Strings",
+        "correct": true
+      }
+    ]
+  }
+}
