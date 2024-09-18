@@ -16,18 +16,27 @@ for (const exercise of exercises) {
 const lessons = await getCollection("lecciones");
 
 const filters = ["Unica Opcion", "Multiple Opcion", "Arrastra"];
+
+var colsUsedInThisRow = 0;
 ---
-<FiltersForExercices filters={filters} />
-<main class="max-w-6xl mx-auto grid grid-cols-5 mb-24 mt-6 gap-5">
+
+<!-- <FiltersForExercices filters={filters} /> -->
+<main class="max-w-6xl mx-auto grid grid-cols-5 mb-24 mt-6 gap-5 gap-y-14">
   {
-    Object.entries(exercisesByLesson).map(([lessonSlug, exercises]) => (
-      <ExercicesOfSameLessonContainer
-        lesson={lessons.find((l) => l.slug === lessonSlug).data.title}
-        lessonUrl={lessonSlug}
-        exercices={exercises}
-        classList={`col-span-${exercises.length}`}
-      />
-    ))
+    Object.entries(exercisesByLesson).map(([lessonSlug, exercises], index) => {
+      let cols = Math.min(5 - colsUsedInThisRow, exercises.length);
+      colsUsedInThisRow += exercises.length;
+      colsUsedInThisRow = colsUsedInThisRow % 5;
+      return (
+        <ExercicesOfSameLessonContainer
+          key={index}
+          lesson={lessons.find((l) => l.slug === lessonSlug)?.data.title}
+          lessonUrl={lessonSlug}
+          exercices={exercises}
+          classList={`col-span-${cols}`}
+        />
+      );
+    })
   }
 </main>
 

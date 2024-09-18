@@ -1,0 +1,29 @@
+{
+    "head": {
+      "title": "Ejercicio variable Var",
+      "lection": "variables-const-let-var",
+      "type": "Multiple Opcion"
+    },
+    "body": {
+      "question": "¿Cuál de las siguientes afirmaciones sobre la palabra clave 'var' es verdadera?",
+      "options": [
+        {
+          "text": "Las variables declaradas con 'var' tienen alcance de bloque.",
+          "correct": false
+        },
+        {
+          "text": "Las variables declaradas con 'var' se pueden redeclarar en el mismo ámbito.",
+          "correct": true
+        },
+        {
+          "text": "Las variables declaradas con 'var' tienen un alcance global dentro de una función.",
+          "correct": true
+        },
+        {
+          "text": "Las variables declaradas con 'var' solo pueden ser inicializadas una vez.",
+          "correct": false
+        }
+      ]
+    }
+  }
+  

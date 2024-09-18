@@ -3,7 +3,7 @@ const { head, id } = Astro.props;
 ---
 
 <article
-  class={`exercise relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${head.classList}`}
+  class={`exercise relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl min-w-[216px] w-full p-4 ${head.classList}`}
 >
   <!-- <div
     class="absolute -top-3 -left-3 text-xs bg-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-white"
@@ -11,7 +11,7 @@ const { head, id } = Astro.props;
     {index}
   </div> -->
   <main class="flex-1">
-    <a href={"/ejercicios/" + id }>
+    <a href={"/ejercicios/" + id}>
       <h2 class="text-2xl text-white mb-2">
         {head.title}
       </h2>
@@ -35,11 +35,11 @@ const { head, id } = Astro.props;
     >
   </footer>
 </article>
-<style>
-  .exercise{
+<!-- <style>
+  .exercise {
     transition: all 0.2s ease-in-out;
   }
-  .exercise:hover{
+  .exercise:hover {
     scale: 1.03;
   }
-</style>
+</style> -->

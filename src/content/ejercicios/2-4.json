@@ -1,0 +1,26 @@
+{
+  "head": {
+    "title": "¿Como usamos una variable?",
+    "lection": "variables-const-let-var",
+    "type": "Arrastra"
+  },
+  "body": {
+    "bloques": [
+      {
+        "type": "in-line",
+        "code": "name = 'Facundo Jarma';",
+        "order": 2
+      },
+      {
+        "type": "in-line",
+        "code": "//Usamos la variable 'name' como necesitemos.",
+        "order": 3
+      },
+      {
+        "type": "in-line",
+        "code": "var name;",
+        "order": 1
+      }
+    ]
+  }
+}
