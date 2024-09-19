@@ -43,7 +43,9 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   import { ExerciceOption } from "../lib/clases";
 
   const $context = document.getElementById("context") as HTMLParagraphElement;
-  $context.innerHTML = $context.dataset.text;
+  if($context){
+    $context.innerHTML = $context.dataset.text;
+  }
 
 
   const $buttons = document.querySelectorAll(
