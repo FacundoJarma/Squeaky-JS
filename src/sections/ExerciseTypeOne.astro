@@ -6,7 +6,7 @@ const { body, head, exercicesInThisLesson, id } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
-<main class="px-12 ">
+<main class="px-12">
   <NextExercise
     actualIndexOfEx={actualIndexOfEx}
     exercicesInThisLesson={exercicesInThisLesson}
@@ -25,6 +25,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
         class="hover:underline underline-offset-2">Volver a ver la leccion</a
       >
       <h1 class="text-5xl font-bold">{body.question}</h1>
+      {body.context && <p id="context" class="text-lg" data-text={body.context} />}
     </div>
   </header>
   <div class="mt-12 w-full px-12">
@@ -40,6 +41,10 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 
 <script>
   import { ExerciceOption } from "../lib/clases";
+
+  const $context = document.getElementById("context") as HTMLParagraphElement;
+  $context.innerHTML = $context.dataset.text;
+
 
   const $buttons = document.querySelectorAll(
     ".buttonOption"
@@ -68,7 +73,6 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 
   buttons.forEach((button) => {
     button.getElement().addEventListener("click", () => {
-      
       button.addStylesOfOptionType();
       activeGoNext();
       disabledButtons();

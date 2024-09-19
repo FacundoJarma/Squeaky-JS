@@ -1,0 +1,25 @@
+{
+  "head": {
+    "title": "Como son las condiciones",
+    "lection": "if-elseif-como-ternarias",
+    "type": "Unica Opcion"
+  },
+  "body": {
+    "question": "Que valor tendra la variable 'saludo'",
+    "context": "const language = 'esp' <br> const saludo = language == 'esp' ? 'Hola' : 'Hello';",
+    "options": [
+      {
+        "text": "Hola",
+        "correct": true
+      },
+      {
+        "text": "Esp",
+        "correct": false
+      },
+      {
+        "text": "Hello",
+        "correct": false
+      }
+    ]
+  }
+}
