@@ -1,0 +1,20 @@
+{
+  "head": {
+    "title": "Como son las condiciones",
+    "lection": "estructuras-de-control-condicionales",
+    "type": "Unica Opcion"
+  },
+  "body": {
+    "question": "Un bloque dentro de un if solo se ejecuta si la condicion previa es:",
+    "options": [
+      {
+        "text": "Verdadera.",
+        "correct": true
+      },
+      {
+        "text": "Falso",
+        "correct": true
+      }
+    ]
+  }
+}

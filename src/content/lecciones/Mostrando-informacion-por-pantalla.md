@@ -3,7 +3,7 @@
     difficult: Fácil
     title: Como podemos mostrar información por la pantalla.
     index: 4
-    exercises: ["3-1", "3-2"]
+    exercises: ["4-1", "4-2"]
 ---
 
 Una de las funciones principales que tienen las web es mostrar informacion. Una de las maneras más sencillas de hacerlo es mediante la función `alert()`, de la cual hablaremos en esta lección.

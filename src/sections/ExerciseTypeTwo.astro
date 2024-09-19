@@ -66,7 +66,15 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   const disabledButtons = () =>
     buttons.forEach((button) => button.setDisabled());
 
+  const añadirTextoComoHTML = ($button) => {
+    $button.innerHTML = $button.dataset.text;
+  };
+
+  $buttons.forEach(($button) => {
+    añadirTextoComoHTML($button);
+  })
   buttons.forEach((button) => {
+
     button.getElement().addEventListener("click", () => {
       if (button.isAValidOption()) {
         cantidadDeCorrectas--;

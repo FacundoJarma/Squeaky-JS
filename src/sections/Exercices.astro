@@ -26,7 +26,7 @@ var colsUsedInThisRow = 0;
     Object.entries(exercisesByLesson).map(([lessonSlug, exercises], index) => {
       let cols = Math.min(5 - colsUsedInThisRow, exercises.length);
       colsUsedInThisRow += exercises.length;
-      colsUsedInThisRow = colsUsedInThisRow % 5;
+      colsUsedInThisRow = colsUsedInThisRow % 6;
       return (
         <ExercicesOfSameLessonContainer
           key={index}

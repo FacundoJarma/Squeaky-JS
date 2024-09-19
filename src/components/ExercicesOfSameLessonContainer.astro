@@ -5,7 +5,9 @@ const { lesson, lessonUrl, exercices, classList } = Astro.props;
 ---
 
 <div class={classList}>
-  <div class="relative w-full h-2 border-t border-l border-r border-white mb-6 rounded-t-md">
+  <div
+    class="relative w-full h-2 border-t border-l border-r border-white mb-6 rounded-t-md"
+  >
     <a
       href={`/lecciones/${lessonUrl}`}
       class={`absolute bg-[#17181c] -top-4 px-2 left-4`}

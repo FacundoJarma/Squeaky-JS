@@ -1,6 +1,7 @@
 ---
 import Layout from "../layout/layout.astro";
 import Lections from "../sections/Lections.astro";
+import ProgresCircle from "../components/ProgresCircle.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -25,10 +26,7 @@ import { Icon } from "astro-icon/components";
             lecciones previas y continuar con las que te quedan por resolver.
           </p>
         </header>
-        {
-          //TODO hacer la progres circle
-        }
-        <div>Progress Circle</div>
+        <ProgresCircle color={"#fff"} />
       </div>
       <span class="bg-yellow-700 px-4 py-0.5 text-white rounded-full text-sm"
         >JavaScript</span

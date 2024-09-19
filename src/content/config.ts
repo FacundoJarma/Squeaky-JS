@@ -23,6 +23,7 @@ const exercicesCollection = defineCollection({
     body: z.object({
       //Unica Opcion y Multiple Opcion
       question: z.string().optional(),
+      description: z.string().optional(), //Para Arrastra
       options: z.array(
         z.object({
           text: z.string(),
