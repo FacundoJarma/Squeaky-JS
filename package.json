@@ -13,6 +13,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.12.3",
     "astro-icon": "^1.1.0",
+    "crypto": "^1.0.1",
     "dragula": "^3.7.3",
     "fs": "^0.0.1-security",
     "motion": "^10.18.0",

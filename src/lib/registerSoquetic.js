@@ -1,40 +1,34 @@
 import { onEvent, sendEvent, startServer } from "soquetic";
-import { writeFile, readFileSync, readFile } from "fs";
+import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync } from "fs";
 import { join } from "path";
+import { randomUUID } from "crypto"
 
-const pathJSON = join('./data/users.json')
+const pathJSON = join("./data/users.json")
 
-onEvent('enviarRegister', (data) => {
-    let username = data.username;
-    let email = data.email;
-    let password = data.password;
-    let userId = Math.floor(Math.random() * 10000000);
-    
-
-    const userData = {
-        id: userId,
-        username: username,
-        email: email,
-        password: password
-    }
-})
-
-//const usuario = Object.create(userData);
-
-const readJSON = () => {
-    const data = readFileSync(pathJSON, "utf-8");
-    return data;
+const formato = {
+  id: undefined,
+  username: undefined,
+  email: undefined,
+  password: undefined,
 }
 
-const writeJSON = async (data) => {
-    await writeFile(pathJSON, data);
-};
+function registrar() {
 
-const data = readJSON();
+  const nuevoUsuario = Object.create(formato);
 
-console.log(data);
+  nuevoUsuario.id = randomUUID();
 
-sendEvent('userInfo', usuario);
 
-TODO://https://www.youtube.com/watch?v=fxwIayn5_Dw
+  let info = JSON.stringify(nuevoUsuario)
+  console.log(info);
+  writeFileSync(pathJSON, info)
+}
+
+registrar()
+
+onEvent('registrarUsuario', (data) => {
+
+})
+
+//TODO:https://www.youtube.com/watch?v=fxwIayn5_Dw
 /**Tutorial JSON con FS y Node */
