@@ -30,7 +30,7 @@ console.log(a || b); // true (al menos una es true)
 console.log(false || false); // false (todas son false)
 ```
 
-## Funcionamiento de OR (!)
+## Funcionamiento de NOT (!)
 Este operador invierte el valor de la condición. Si la condición es verdadera, se convierte en falsa, y si es falsa, se convierte en verdadera.
 
 ## Ejemplo 
