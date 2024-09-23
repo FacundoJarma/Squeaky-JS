@@ -4,27 +4,27 @@
     classList: col-span-2 row-span-2
     index: 7
 ---
-Hola! Nos alegra mucho que hayas decicido comenzar a parender JavaScript junto a Squaeky. Para empezar vamos a explicarte la dinamica de la aplicacion y para que sirve JS (JavaScript).
-
-# sintaxis 
-
-```js
-while (condición) {
-    // Código a ejecutar mientras la condición sea verdadera
-}
-```
 
 ## ¿Qué son los bucles?
 
-Los bucles se utilizan para repetir un bloque de código varias veces. Por ejemplo, si queremos sumar los números del 1 al 10, podemos hacerlo de la siguiente manera:
+Una de las herramientas mas utilizadas en una aplicacion son los bucles. Un bucle no es mas que lo que nos imaginamos que es, una secuencia de instrucciones que se repite varias veces.
 
+Un bucle nos permite ejecutar la misma intruccionees varias veces. En JavaScript tenemos los bucles `while`, `for` y `do...while`. Pero en esta leccion solo veremos el `while`. Este bucle tiene una sintaxis sencialla y es tan facil como decir que siempre que una condicion sea verdadera vamos a continuar ejecutando estas instrucciones.
 
-# Ejemplos 
+# sintaxis
+
+```js
+while (condición) {
+  // Las instrucciones a ejecutar mientras la condición sea verdadera
+}
+```
+
+# Ejemplos
 
 ```js
 let i = 0;
 while (i < 10) {
-    console.log(i); 
-    i++;
+  console.log(i);
+  i++;
 }
 ```
