@@ -16,7 +16,10 @@ function registrar() {
 
   const nuevoUsuario = Object.create(formato);
 
+  nuevoUsuario.username = data.username;
   nuevoUsuario.id = randomUUID();
+  nuevoUsuario.password = data.password;
+  nuevoUsuario.email = data.email;
 
 
   let info = JSON.stringify(nuevoUsuario)
@@ -24,10 +27,10 @@ function registrar() {
   writeFileSync(pathJSON, info)
 }
 
-registrar()
+registrar();
 
 onEvent('registrarUsuario', (data) => {
-
+  registrar();
 })
 
 //TODO:https://www.youtube.com/watch?v=fxwIayn5_Dw
