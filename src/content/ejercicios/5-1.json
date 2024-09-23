@@ -1,25 +1,27 @@
 {
   "head": {
-    "title": "Tu primer Condicional.",
+    "title": "Analizando condiciones",
     "lection": "estructuras-de-control-condicionales",
-    "type": "Arrastra"
+    "type": "Multiple Opcion"
   },
   "body": {
-    "bloques": [
+    "question": "¿En que caso veremos un 'Correcto' en la pantalla?",
+    "options": [
       {
-        "type": "in-line",
-        "code": "const x = 10",
-        "order": 1
+        "text": "const edad = 10; <br> if(edad <= 9){<br>   alert('Correcto');<br>}",
+        "correct": false
       },
       {
-        "type": "in-line",
-        "code": "if(x > 5)",
-        "order": 2
+        "text": "const edad = 10; <br> if(edad > 10){<br>   alert('Correcto');<br>}",
+        "correct": false
       },
       {
-        "type": "in-line",
-        "code": "  console.log('x es mayor que 5')",
-        "order": 3
+        "text": "const edad = 10; <br> if(edad >= 10){<br>   alert('Correcto');<br>}",
+        "correct": true
+      },
+      {
+        "text": "const a = 1; <br> const b = 1; <br>  if(a == b){<br>   alert('Correcto');<br>}",
+        "correct": true
       }
     ]
   }

@@ -1,0 +1,27 @@
+{
+  "head": {
+    "title": "Tu primer Condicional.",
+    "lection": "estructuras-de-control-condicionales",
+    "type": "Arrastra"
+  },
+  "body": {
+    "description": "Arrastra los bloques para formar tu primer condicional. Tienes que ordenar los bloques para: 1. crear una variable 2. fijarte si es mayor de 10. 3. imprimir en pantalla",
+    "bloques": [
+      {
+        "type": "in-line",
+        "code": "const x = 10",
+        "order": 1
+      },
+      {
+        "type": "in-line",
+        "code": "if(x > 5)",
+        "order": 2
+      },
+      {
+        "type": "in-line",
+        "code": "console.log('x es mayor que 5')",
+        "order": 3
+      }
+    ]
+  }
+}

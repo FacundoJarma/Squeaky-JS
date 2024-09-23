@@ -23,29 +23,33 @@ const exercicesCollection = defineCollection({
     body: z.object({
       //Unica Opcion y Multiple Opcion
       question: z.string().optional(),
-      options: z.array(
-        z.object({
-          text: z.string(),
-          correct: z.boolean(),
-        })
-      ).optional(),
+      description: z.string().optional(), //Para Arrastra
+      context: z.string().optional(), //Para dar mas contexto
+
+      options: z
+        .array(
+          z.object({
+            text: z.string(),
+            correct: z.boolean(),
+          })
+        )
+        .optional(),
 
       //Arrastra
-      bloques: z.array(
-        z.object({
-          type: z.enum(["in-line", "block", "oneWord"]),
-          code: z.string(),
-          order: z.number(),
-        })
-      ).optional()
-
-    })
+      bloques: z
+        .array(
+          z.object({
+            type: z.enum(["in-line", "block", "oneWord"]),
+            code: z.string(),
+            order: z.number(),
+          })
+        )
+        .optional(),
+    }),
   }),
-
 });
-
 
 export const collections = {
   lecciones: lectionsCollection,
-  ejercicios: exercicesCollection
+  ejercicios: exercicesCollection,
 };

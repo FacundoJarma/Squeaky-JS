@@ -3,10 +3,11 @@ const { isCorrect, text } = Astro.props;
 ---
 
 <button
-  class="buttonOptionMultiple max-w-72 px-6 py-2 font-semibold text-gray-300 rounded-xl bg-gray-600 border-4 border-gray-800 duration-300 hover:scale-105"
+  class="buttons text-start buttonOptionMultiple max-w-72 px-6 py-2 font-semibold text-gray-300 rounded-xl bg-gray-600 border-4 border-gray-800 duration-300 hover:scale-105"
   data-iscorrect={`${isCorrect}`}
+  data-text={text}
 >
-  {text}
+  
 </button>
 
 <style>
