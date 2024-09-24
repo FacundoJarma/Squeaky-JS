@@ -10,6 +10,11 @@ const formato = {
   username: undefined,
   email: undefined,
   password: undefined,
+  favoritos: {}
+}
+
+function enUso() {
+  //TODO:función para decir que el nombre/email/contraseña está en uso
 }
 
 function registrar() {
@@ -25,6 +30,11 @@ function registrar() {
   let info = JSON.stringify(nuevoUsuario)
   console.log(info);
   writeFileSync(pathJSON, info)
+
+  if (info.username == data.username || info.password == data.password || info.email == data.email) {
+
+  }
+
 }
 
 registrar();
