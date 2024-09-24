@@ -8,6 +8,10 @@
 
 console.log es una función en JavaScript que se utiliza para imprimir información en la consola del navegador o del entorno de desarrollo.
 
+## Uso comun
+
+console.log es muy útil para verificar el flujo de un programa o para comprobar si ciertos valores están siendo calculados correctamente durante la ejecución del código. También se puede utilizar para ver la estructura de objetos o arreglos complejos.
+
 ## Sintaxis 
 ```js
 consol.log(mensaje);
@@ -41,7 +45,3 @@ consol.log("nombre");
 for ( i = 0; i < 5; i++ )
 consol.log("valor de i es:", i);
 ```
-
-## Uso comun
-
-console.log es muy útil para verificar el flujo de un programa o para comprobar si ciertos valores están siendo calculados correctamente durante la ejecución del código. También se puede utilizar para ver la estructura de objetos o arreglos complejos.
