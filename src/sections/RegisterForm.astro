@@ -72,6 +72,13 @@ import { Icon } from "astro-icon/components";
 </style>
 
 <script>
+  import { postData } from "../lib/socket.js";
+  const sendData = (user) => {
+    postData("registrarUsuario", user, () => {
+      alert("Usuario registrado!");
+    });
+  };
+
   const $registerForm = document.getElementById(
     "registerForm"
   ) as HTMLFormElement;
@@ -82,6 +89,13 @@ import { Icon } from "astro-icon/components";
     const $username = document.getElementById("username") as HTMLInputElement;
     const $email = document.getElementById("email") as HTMLInputElement;
     const $password = document.getElementById("password") as HTMLInputElement;
+    const user = {
+      username: $username.value,
+      email: $email.value,
+      password: $password.value,
+      favortios: {},
+    };
+    sendData(user);
   });
 
   const passwordInput = document.getElementById("password");
