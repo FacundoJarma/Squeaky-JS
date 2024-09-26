@@ -9,6 +9,7 @@ onEvent("registrarUsuario", (data) => {
 onEvent("iniciarSesion", (data) => {
   if (data.username == info.username || data.email == info.data) {
   }
+  login()
   if (data.password == info.password) {
     confirmLogin();
   } else {
@@ -16,3 +17,5 @@ onEvent("iniciarSesion", (data) => {
   }
 });
 startServer();
+
+
