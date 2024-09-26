@@ -1,5 +1,5 @@
 ---
-    title: consol log
+    title: Aprendiendo el console.log
     difficult: Fácil
     classList: col-span-2 row-span-1
     index: 13
@@ -14,20 +14,20 @@ console.log es muy útil para verificar el flujo de un programa o para comprobar
 
 ## Sintaxis 
 ```js
-consol.log(mensaje);
+console.log(mensaje);
 ```
 
 ## Ejemplo con variable
 
 ```js
 var nombre = juan
-consol.log("nombre");
+console.log("nombre");
 ```
 ## Ejemplo con resultado de operacion 
 
 ```js
 let resultado = 5 + 3;
-consol.log("el resultado es:", resultado);
+console.log("el resultado es:", resultado);
 ```
 ## Ejemplo con objetos
 
@@ -37,11 +37,11 @@ var perrsona = {
     edad = 30,
     prefesion = "profesor"
 };
-consol.log("nombre");
+console.log("nombre");
 ```
 ## Ejemplo con bucles
 
 ```js
 for ( i = 0; i < 5; i++ )
-consol.log("valor de i es:", i);
+console.log("valor de i es:", i);
 ```
