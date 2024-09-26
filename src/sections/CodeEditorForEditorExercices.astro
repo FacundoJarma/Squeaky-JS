@@ -1,14 +1,14 @@
 ---
-
+const { context, pageUrl } = Astro.props;
 ---
 
-<section class="relative h-[85vh] w-1/2 bg-gray-700">
+<section
+  class="relative h-[85vh] w-1/2 bg-gray-700"
+  data-url={pageUrl}
+  id="editorContext"
+>
   <p class="bg-gray-600 py-2 px-6 h-[20vh]">
-    En la pagina de tue derecha veras una puerta cerraad (representada por el
-    color 'rojo'), debes crear un codigo en el editor de la izquierda que lea
-    una variable llamada 'number' y verifique que el valor sea mayor o igual a
-    18, en caso de serlo, llama a la funcion 'abrirPuerta()', de no serlo, llama
-    a 'cerrarPuerta()'
+    {context}
   </p>
   <textarea
     class="w-full h-[65vh] resize-none p-4 focus:outline-none"
@@ -30,20 +30,22 @@
   ) as HTMLButtonElement;
 
   const getPreRenderedHTML = async () => {
-    const html = await fetch("/emulatedPages/1.html")
+    const url = document.getElementById("editorContext")?.dataset.url;
+    if (!url) return;
+    const html = await fetch(url)
       .then((res) => res.text())
       .then((html) => html);
     return html;
   };
 
   async function handleSubmitCode() {
-    const iframe = document.getElementById("editorPage-1") as HTMLIFrameElement;
+    const iframe = document.getElementById("editorPage") as HTMLIFrameElement;
     const code = codeEditorElement.value;
     const preRenderedHTML = await getPreRenderedHTML();
 
     const finalHTML = preRenderedHTML
       .replace("code", code)
-      .replace("exe", "checkExercice()");
+      .replace("exe;", "checkExercice()");
     iframe.srcdoc = finalHTML;
   }
 
@@ -57,7 +59,7 @@
   });
 
   document.addEventListener("DOMContentLoaded", async () => {
-    const iframe = document.getElementById("editorPage-1") as HTMLIFrameElement;
+    const iframe = document.getElementById("editorPage") as HTMLIFrameElement;
 
     iframe.setAttribute("srcdoc", await getPreRenderedHTML());
   });

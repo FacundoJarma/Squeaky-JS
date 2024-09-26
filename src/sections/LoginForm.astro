@@ -73,8 +73,6 @@ import { Icon } from "astro-icon/components";
   </style>
 
   <script>
-    import { loginUser } from "../lib/login.js";
-
     const $loginForm = document.getElementById("loginForm") as HTMLFormElement;
     $loginForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -82,7 +80,6 @@ import { Icon } from "astro-icon/components";
       const $email = document.getElementById("email") as HTMLInputElement;
 
       const $password = document.getElementById("password") as HTMLInputElement;
-      loginUser($email.value, $password.value);
     });
 
     const passwordInput = document.getElementById("password");
