@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        color-scheme: dark;
+        font-family: "Calibri";
+      }
+      body {
+        background-color: #212121;
+      }
+      main {
+        width: 100%;
+        padding-inline: 5em;
+        padding-block: 2em;
+      }
+      article {
+        border: 1px solid #909090;
+        border-radius: 1em;
+        padding: 1em;
+        background-color: #404040;
+      }
+    </style>
+    <title>Ejercicio 2</title>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1 id="title">Hola usuario, buen dia!</h1>
+      </article>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        var correct = true;
+        function checkExercice() {
+          const $ASSDKJNWKSJH = document.getElementById("title");
+          if ($ASSDKJNWKSJH.innerHTML != "Hola usuario, buen dia!") {
+            correct = false;
+          }
+
+          code;
+
+          if (
+            correct == true &&
+            $ASSDKJNWKSJH.innerHTML == "Hola estudiante, esto es SqueakyJS."
+          ) {
+            final = true;
+          } else {
+            final = false;
+          }
+          if (final == true) {
+            alert("Ejercicio resuelto");
+            const puerta = document.getElementById("puerta");
+            puerta.dataset.open = "true";
+          } else {
+            alert("Ejercicio no resuelto");
+          }
+        }
+        /* La funcion que llama al chequeo va aqui: */
+        exe;
+      });
+    </script>
+  </body>
+</html>
