@@ -2,9 +2,10 @@
 import NavbarMenu from "./NavbarMenu.astro";
 ---
 
-<nav class="col-span-6 flex justify-end gap-12 px-8 py-5 w-full bg-gray-300">
+<nav class="col-span-6 flex justify-between gap-12 px-8 py-3 w-full bg-white">
   <figure>
-    <a href="http://localhost:4321">
+    <a href="http://localhost:4321" class="text-black">
+      Home
       <!-- <Icon name="squeaky" height={40} width={40} /> -->
     </a>
   </figure>
@@ -12,7 +13,7 @@ import NavbarMenu from "./NavbarMenu.astro";
     <li>
       <a
         href="/lecciones"
-        class="px-4 py-1 hover:text-gray-600 duration-200 text-black"
+        class="px-4 py-1 hover:text-yellow-600 duration-200 text-black"
       >
         Lecciones
       </a>
@@ -20,11 +21,11 @@ import NavbarMenu from "./NavbarMenu.astro";
     <li>
       <a
         href="/ejercicios"
-        class="px-4 py-1 hover:text-gray-600 duration-200 text-black"
+        class="px-4 py-1 hover:text-yellow-600 duration-200 text-black"
       >
         Ejercicios
       </a>
     </li>
+    <NavbarMenu />
   </ul>
-  <NavbarMenu />
 </nav>
