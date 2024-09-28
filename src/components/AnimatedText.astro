@@ -2,7 +2,7 @@
   id="animated-text"
   class="h-[300vh] relative flex flex-col items-center"
 >
-  <div class="w-full grid place-items-center sticky top-0 h-screen">
+  <div class="w-full flex pt-52 justify-center sticky top-0 h-screen">
     <div id="step-1" class="step">
       <h3
         class="flex gap-x-1 text-6xl font-bold text-white overflow-hidden leading-loose"
@@ -13,9 +13,9 @@
 
     <div id="step-2" class="step">
       <h3 class="text-6xl font-bold">
-        <span class="text-[#ce84ff]">Aprende.</span>
-        <span class="text-[#3c8f87]">Ejercita.</span>
-        <span class="text-[#aaa33a]">Programa.</span>
+        <span class="text-violet-500">Aprende.</span>
+        <span class="text-blue-500">Ejercita.</span>
+        <span class="text-amber-500">Programa.</span>
       </h3>
     </div>
 
@@ -25,7 +25,7 @@
       >
         <span>Por</span><span>para</span>
       </h3>
-      <h3 class="text-6xl font-bold text-center text-[#ce84ff]">estudiantes</h3>
+      <h3 class="text-6xl font-bold text-center text-amber-500">estudiantes</h3>
     </div>
   </div>
 
@@ -78,9 +78,9 @@
         { transform: "translateY(0%)" },
         { duration: 0.2, at: "-0.16" },
       ],
-      ["#step-1 h3 span:nth-child(1)", { color: "#ce84ff" }, { duration: 0.1 }],
-      ["#step-1 h3 span:nth-child(2)", { color: "#3c8f87" }, { duration: 0.1 }],
-      ["#step-1 h3 span:nth-child(3)", { color: "#aaa33a" }, { duration: 0.1 }],
+      ["#step-1 h3 span:nth-child(1)", { color: "#8b5cf6" }, { duration: 0.1 }],
+      ["#step-1 h3 span:nth-child(2)", { color: "#3b82f6" }, { duration: 0.1 }],
+      ["#step-1 h3 span:nth-child(3)", { color: "#f59e0b" }, { duration: 0.1 }],
       [
         "#step-1 h3 span:nth-child(1)",
         { transform: "translateY(100%)" },
@@ -138,7 +138,7 @@
 
     scroll(onScroll, {
       target: document.querySelector("#animated-text"),
-      offset: ["-400px", "end end"],
+      offset: ["-600px", "end end"],
     });
   </script>
 </section>

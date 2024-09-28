@@ -4,7 +4,6 @@
     classList: col-span-1 row-span-2
     index: 16
 ---
-## Selectrores JS
 
 Los selectores en JavaScript te permiten seleccionar elementos del DOM (Document Object Model) para luego manipularlos. A través de los selectores, puedes acceder a un elemento HTML específico o a un conjunto de elementos y realizar acciones como cambiar su contenido, agregar o eliminar clases, modificar su estilo, entre otros.
 

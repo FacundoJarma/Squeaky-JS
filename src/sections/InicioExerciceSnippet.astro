@@ -1,0 +1,92 @@
+---
+import ButtonTwoOptions from "../components/ButtonTwoOptions.astro";
+---
+
+<header class="h-24 flex gap-4 items-center">
+  <div class="flex flex-col gap-2">
+    <h1 class="text-5xl font-bold text-center">
+      ¿En que caso veremos un 'Correcto' en la pantalla?
+    </h1>
+  </div>
+</header>
+<div class="mt-12 w-full px-12">
+  <ul class="grid grid-cols-2 gap-6">
+    <ButtonTwoOptions
+      isCorrect={false}
+      text="const edad = 10; <br> if(edad <= 9){<br>   alert('Correcto');<br>}"
+    />
+    <ButtonTwoOptions
+      isCorrect={false}
+      text="const edad = 10; <br> if(edad > 10){<br>   alert('Correcto');<br>}"
+    />
+    <ButtonTwoOptions
+      isCorrect={true}
+      text="const edad = 10; <br> if(edad >= 10){<br>   alert('Correcto');<br>}"
+    />
+    <ButtonTwoOptions
+      isCorrect={true}
+      text="const a = 1; <br> const b = 1; <br>  if(a == b){<br>   alert('Correcto');<br>}"
+    />
+  </ul>
+</div>
+
+<script
+      src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"
+    ></script>
+
+<script>
+  import { ExerciceOption } from "../lib/clases";
+
+  const $buttons = document.querySelectorAll(
+    ".buttonOptionMultiple"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const buttons = [] as ExerciceOption[];
+
+  let cantidadDeCorrectas = 0;
+
+  $buttons.forEach(($button) => {
+    const correct = $button.dataset.iscorrect == "true";
+    const option = new ExerciceOption(correct, $button.innerText, $button);
+    buttons.push(option);
+
+    if (correct) {
+      cantidadDeCorrectas++;
+    }
+  });
+
+  const activeGoNext = () => {
+    document.getElementById("goNextExercice")?.classList.add("active");
+  };
+
+  const disabledButtons = () =>
+    buttons.forEach((button) => button.setDisabled());
+
+  const añadirTextoComoHTML = ($button) => {
+    $button.innerHTML = $button.dataset.text;
+  };
+
+  $buttons.forEach(($button) => {
+    añadirTextoComoHTML($button);
+  });
+  buttons.forEach((button) => {
+    button.getElement().addEventListener("click", () => {
+      if (button.isAValidOption()) {
+        cantidadDeCorrectas--;
+        button.addStylesOfOptionType();
+
+        if (cantidadDeCorrectas === 0) {
+          confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: 0.6 },
+          });
+          activeGoNext();
+          disabledButtons();
+        }
+      } else {
+        button.addStylesOfOptionType();
+      }
+    });
+  });
+</script>

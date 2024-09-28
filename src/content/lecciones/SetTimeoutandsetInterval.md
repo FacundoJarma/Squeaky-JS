@@ -1,7 +1,7 @@
 ---
     title: setTimeout y setInterval
     difficult: Medio
-    classList: col-span-1 row-span-1
+    classList: col-span-2 row-span-1
     index: 17
 ---
 ## ¿Que es el setTimeout y setInterval?
