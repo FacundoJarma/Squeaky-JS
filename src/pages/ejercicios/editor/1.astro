@@ -1,4 +1,5 @@
 ---
+import MonacoEditor from "../../../components/MonacoEditor.astro";
 import EditorExercicesLayout from "../../../layout/EditorExercicesLayout.astro";
 import CodeEditorForEditorExercices from "../../../sections/CodeEditorForEditorExercices.astro";
 ---
@@ -11,8 +12,9 @@ import CodeEditorForEditorExercices from "../../../sections/CodeEditorForEditorE
     una variable llamada 'number' y verifique que el valor sea mayor o igual a
     18, en caso de serlo, llama a la funcion 'abrirPuerta()', de no serlo, llama
     a 'cerrarPuerta()'`
-    pageUrl="/emulatedPages/1.html"
+      pageUrl="/emulatedPages/1.html"
     />
+
     <iframe class="w-1/2 bg-white" id="editorPage"></iframe>
   </div>
 </EditorExercicesLayout>
