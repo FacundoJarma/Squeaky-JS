@@ -3,9 +3,9 @@ import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync, ftr
 import { join } from "path";
 import { randomUUID } from "crypto";
 
-const pathJSON = "C:/Users/49433616/Desktop/Squeaky-JS/src/lib/data/users.json";
+const pathJSON = join("src/lib/data/users.json");
 
-export function obtenerUsername(usernameBuscado) {
+export function login(usernameBuscado) {
     readFile(pathJSON, "utf-8", (err, info) => {
         if (err) {
             console.error("Error al leer el archivo:", err);
@@ -28,4 +28,4 @@ export function obtenerUsername(usernameBuscado) {
 }
 
 // Ejemplo de uso
-obtenerUsername("Nicolas Atalah");
+login("Nicolas Atalah");

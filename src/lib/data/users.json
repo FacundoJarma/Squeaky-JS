@@ -1,20 +1,19 @@
 [
   {
-    "username": "santi901",
-    "id": "e8cbd021-02df-4afb-a088-ed84b5b34f17",
-    "password": "santikpo",
-    "email": "santiago.rehmann2009@gmail.com"
+    "username": "rafa",
+    "id": "4a564e3d-9a34-407d-a878-1c7b0b3ff20f",
+    "password": "rafa",
+    "email": "rafa@gmail.com"
   },
   {
-    "username": "santi",
-    "id": "b9312753-f806-4840-bc42-06f5beadeb2e",
-    "password": "holaputa",
-    "email": "santiago.rehmann2009@gmail.com"
-  },
-  {
-    "username": "santi",
-    "id": "f21d733c-5f16-4e2e-b4f4-914a2ebe07b9",
-    "password": "holaputa",
-    "email": "santiago.rehmann2009@gmail.com"
+    "username": "Rafa",
+    "id": "7b1952a0-4617-411f-a8d8-5864c23c0c23",
+    "password": "rafa",
+    "email": "rafa@gmail.com",
+    "favoritos": [
+      9130,
+      8341879
+    ]
+
   }
 ]

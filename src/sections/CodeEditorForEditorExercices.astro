@@ -2,6 +2,9 @@
 const { context, pageUrl } = Astro.props;
 ---
 
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>
 <section
   class="relative h-[85vh] w-1/2 bg-gray-700"
   data-url={pageUrl}
@@ -10,9 +13,13 @@ const { context, pageUrl } = Astro.props;
   <p class="bg-gray-600 py-2 px-6 h-[20vh]">
     {context}
   </p>
-  <textarea
-    class="w-full h-[65vh] resize-none p-4 focus:outline-none"
-    id="editor"></textarea>
+  <div class="wrapper w-full h-full">
+    <div class="editor h-full">
+      <div class="editor__code h-full">
+        <div id="editorCode" class="h-[65vh] w-full"></div>
+      </div>
+    </div>
+  </div>
   <button
     id="submitCodeBtn"
     class="px-12 py-2 bg-green-800 rounded-lg absolute bottom-5 right-5 hover:scale-105 duration-300"
@@ -20,14 +27,57 @@ const { context, pageUrl } = Astro.props;
     Ejecutar Codigo
   </button>
 </section>
-
 <script>
-  const codeEditorElement = document.getElementById(
-    "editor"
-  ) as HTMLTextAreaElement;
+  // Elements
   const submitCodeBtn = document.getElementById(
     "submitCodeBtn"
   ) as HTMLButtonElement;
+  const editorCode = document.getElementById("editorCode");
+  const iframe = document.getElementById("editorPage") as HTMLIFrameElement;
+  // Monaco loader
+  require.config({
+    paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor/min/vs" },
+  });
+
+  window.MonacoEnvironment = {
+    getWorkerUrl: function (workerId, label) {
+      return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+        self.MonacoEnvironment = {
+          baseUrl: 'https://cdn.jsdelivr.net/npm/monaco-editor/min/'
+        };
+        importScripts('https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/base/worker/workerMain.js');`)}`;
+    },
+  };
+
+  // Monaco init
+  require(["vs/editor/editor.main"], function () {
+    createEditor(editorCode);
+  });
+
+  var code = "";
+
+  function createEditor(editorContainer) {
+    let editor = monaco.editor.create(editorContainer, {
+      value: "",
+      language: "javascript",
+      theme: "vs-dark",
+      minimap: { enabled: false },
+      contextmenu: false,
+      fontSize: 14,
+      automaticLayout: true,
+      scrollbar: {
+        useShadows: false,
+        vertical: "visible",
+        horizontal: "visible",
+        horizontalScrollbarSize: 12,
+        verticalScrollbarSize: 12,
+      },
+    });
+
+    editor.onDidChangeModelContent(() => {
+      code = editor.getValue();
+    });
+  }
 
   const getPreRenderedHTML = async () => {
     const url = document.getElementById("editorContext")?.dataset.url;
@@ -39,8 +89,6 @@ const { context, pageUrl } = Astro.props;
   };
 
   async function handleSubmitCode() {
-    const iframe = document.getElementById("editorPage") as HTMLIFrameElement;
-    const code = codeEditorElement.value;
     const preRenderedHTML = await getPreRenderedHTML();
 
     const finalHTML = preRenderedHTML
@@ -48,19 +96,9 @@ const { context, pageUrl } = Astro.props;
       .replace("exe;", "checkExercice()");
     iframe.srcdoc = finalHTML;
   }
-
-  //Send Code with keyboardCommands
-  document.addEventListener("keydown", (event) => {
-    const isCtrlPressed = event.metaKey || event.ctrlKey;
-    if (isCtrlPressed && event.key === "Enter") {
-      event.preventDefault();
-      handleSubmitCode();
-    }
-  });
-
+  
   document.addEventListener("DOMContentLoaded", async () => {
     const iframe = document.getElementById("editorPage") as HTMLIFrameElement;
-
     iframe.setAttribute("srcdoc", await getPreRenderedHTML());
   });
 
