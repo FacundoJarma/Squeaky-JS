@@ -1,7 +1,7 @@
 ---
 const { title, site } = Astro.props;
 import { comandos } from "../lib/comandos";
-import { Claro } from "../lib/Oscuro/Claro.astro"
+import { Claro } from "../lib/Oscuro/Claro.astro";
 
 const categorias = Array.from(
   new Set(comandos.map((comando) => comando.category))
