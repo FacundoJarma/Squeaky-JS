@@ -18,7 +18,6 @@ const formato = {
   email: undefined,
   password: undefined,
   leccionActual: undefined,
-  puntaje: undefined,
   ejerciciosHechos: {},
   leccionesHechas: {},
   favoritos: {},
@@ -36,7 +35,6 @@ export function registrar(data) {
   nuevoUsuario.password = data.password;
   nuevoUsuario.email = data.email;
   nuevoUsuario.leccionActual = data.leccionActual;
-  nuevoUsuario.puntaje = data.puntaje;
   nuevoUsuario.ejerciciosHechos = data.ejerciciosHechos;
   nuevoUsuario.leccionesHechas = data.leccionesHechas;
   nuevoUsuario.favoritos = data.favoritos;
