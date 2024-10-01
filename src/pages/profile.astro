@@ -11,10 +11,22 @@ import Layout from "../layout/layout.astro";
     </div>
     <div class="tu">
       <div class="profile2">
-        <input type="text" id="name" placeholder="Nombre" class="nombre" />
-        <input type="text" id="apellido" placeholder="Apellidos" class="nombre" />
-        <input type="text" id="gmail" placeholder="Gmail" class="nombre" />
-        <input type="text" id="dateInput" placeholder="Fecha de Nacimiento" maxlength="10">
+        <div class="nombre">
+          <h1>nombre</h1>
+          <input type="text" id="name" class="nombre" />
+        </div>
+        <div class="apellido">
+          <h1>apellido</h1>
+          <input type="text" id="apellido" class="nombre" />
+        </div>
+        <div class="gmail">
+          <h1>gmail</h1>
+          <input type="text" id="gmail" class="nombre" />
+        </div>
+        <div class="fecha">
+          <h1>Fecha de nacimiento</h1>
+          <input type="text" id="dateInput" maxlength="10">
+        </div>
       </div>
       <div class="racha">
         <h1>
@@ -25,6 +37,10 @@ import Layout from "../layout/layout.astro";
     </div>
   </div>
   <style>
+    .nombre < input {
+      width: 2em;
+      height: 2em;
+    }
     input::placeholder {
       color: #000;
     }
@@ -34,21 +50,23 @@ import Layout from "../layout/layout.astro";
       gap: 1em;
     }
     .racha {
-      background-color: rgb(50, 51, 51);
+      background-color: #23262F;
       color: rgb(163, 163, 163);
       text-align: center;
       width: 40em;
       height: 9em;
       align-text: center;
       text-align: center;
+      font-family: urbanist;
     }
 
     #perfil {
       display: flex;
       gap: 1em;
+      
     }
     .profile2 {
-      background-color: rgb(50, 51, 51);
+      background-color: #23262F;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -58,18 +76,22 @@ import Layout from "../layout/layout.astro";
       padding: 3em;
       color: black;
       margin-top: 3em;
+      font-family: urbanist;
     }
     .profile2 > input {
       border-radius: 1em;
       width: 30em;
       height: 4em;
-      color: black;
+      color: rgb(250, 246, 246);
       text-align: left;
       background-color: rgb(163, 163, 163);
       padding-left: 1em;
     }
+    .profile2 > h1 {
+      color: white;
+    }
     .profile {
-      background-color: rgb(50, 51, 51);
+      background-color: #23262F;
       width: 25em;
       height: 30em;
       text-align: center;
@@ -80,6 +102,7 @@ import Layout from "../layout/layout.astro";
       display: flex;
       gap: 1em;
       flex-direction: column;
+      font-family: urbanist;
     }
     .nombre {
       background-color: rgb(163, 163, 163);

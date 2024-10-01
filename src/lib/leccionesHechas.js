@@ -44,4 +44,4 @@ function guardarLeccion(data) {
 
 onEvent("leccionHecha", (data) => {
      guardarLeccion(data);
- })
+ }) 
