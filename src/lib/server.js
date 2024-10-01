@@ -1,5 +1,9 @@
 import { registrar } from "./registerSoquetic.js";
 import { login } from "./loginSoquetic.js";
+import { guardarLeccion } from "./leccionesHechas";
+import { añadirFavorito } from "./favoritos";
+import { nuevaRacha } from "./racha";
+
 import { onEvent, sendEvent, startServer } from "soquetic";
 
 onEvent("registrarUsuario", (data) => {
