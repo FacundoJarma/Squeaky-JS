@@ -3,7 +3,7 @@ import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync, ftr
 import { join } from "path";
 import { randomUUID } from "crypto";
 
-const pathJSON = join("src/lib/data/users.json");
+const pathJSON = join("data/users.json");
 
 export function login(usernameBuscado) {
     readFile(pathJSON, "utf-8", (err, info) => {
@@ -27,5 +27,17 @@ export function login(usernameBuscado) {
     });
 }
 
+onEvent("login", (data) => {
+    if(data.username === usuario.username && data.password === usuario.password) {
+        sendEvent('loguear', () => {
+            //TODO: LOGIN | decir en la pagina que el usuario/contraseña es incorrecto
+        })
+    } else {
+        sendEvent('loginRechazado', () => {
+        //TODO: función para decir que el register/login fue rechazado
+        })
+    }
+})
+
 // Ejemplo de uso
-login("Nicolas Atalah");
+login("rafa");
