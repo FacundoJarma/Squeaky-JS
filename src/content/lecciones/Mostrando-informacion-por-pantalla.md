@@ -3,6 +3,7 @@
     difficult: Fácil
     title: Como podemos mostrar información por la pantalla.
     index: 4
+    exerciceCols: 2
     exercises: ["4-1", "4-2"]
 ---
 

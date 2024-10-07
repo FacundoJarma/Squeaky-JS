@@ -3,6 +3,7 @@
     difficult: Medio
     title: Estructuras de Control Condicionales. If, Else, Else If
     index: 5
+    exerciceCols: 2
     exercises: ["5-1", "5-2", "5-3"]
 ---
 

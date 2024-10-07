@@ -7,6 +7,7 @@ const lectionsCollection = defineCollection({
     difficult: z.enum(["Fácil", "Medio", "Difícil"]),
     description: z.string().optional(),
     classList: z.string(),
+    exerciceCols: z.number().optional(),
     index: z.number(),
     exercises: z.array(reference("ejercicios")).optional(),
   }),

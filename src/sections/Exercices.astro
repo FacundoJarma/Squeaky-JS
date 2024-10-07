@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import ExercicesOfSameLessonContainer from "../components/ExercicesOfSameLessonContainer.astro";
 import FiltersForExercices from "./FiltersForExercices.astro";
 let exercises = await getCollection("ejercicios");
@@ -16,17 +16,13 @@ for (const exercise of exercises) {
 const lessons = await getCollection("lecciones");
 
 const filters = ["Unica Opcion", "Multiple Opcion", "Arrastra"];
-
-var colsUsedInThisRow = 0;
 ---
 
 <!-- <FiltersForExercices filters={filters} /> -->
-<main class="max-w-6xl mx-auto grid grid-cols-5 mb-24 mt-6 gap-5 gap-y-14">
+<main class="max-w-[1206px] mx-auto grid grid-cols-5 mb-24 mt-6 gap-14">
   {
-    Object.entries(exercisesByLesson).map(([lessonSlug, exercises], index) => {
-      let cols = Math.min(5 - colsUsedInThisRow, exercises.length);
-      colsUsedInThisRow += exercises.length;
-      colsUsedInThisRow = colsUsedInThisRow % 6;
+    Object.entries(exercisesByLesson).map(async ([lessonSlug, exercises], index) => {
+      let cols = await getEntry("lecciones", lessonSlug).then((l) => l.data.exerciceCols);
       return (
         <ExercicesOfSameLessonContainer
           key={index}

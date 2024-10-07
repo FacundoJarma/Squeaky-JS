@@ -3,6 +3,7 @@
     difficult: Fácil
     classList: row-span-1 col-span-2
     index: 3
+    exerciceCols: 3
 ---
 
 

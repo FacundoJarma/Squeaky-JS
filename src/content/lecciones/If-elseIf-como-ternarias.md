@@ -3,6 +3,7 @@
     difficult: Medio
     classList: col-span-2 row-span-1
     index: 6
+    exerciceCols: 3
     exercises: ["6-1"]
 ---
 
