@@ -5,7 +5,7 @@ import { Icon } from "astro-icon/components";
 
 <nav class="col-span-6 flex justify-between gap-12 px-8 py-3 w-full bg-[#33353C] border-b-[5px] border-primary">
   <figure>
-    <a href="http://localhost:4321" class="text-white">
+    <a href="http://localhost:4321" class="title ">
       <img src="SQKY.png" alt="Logo de squeaky js" width="150px">
     </a>
   </figure>
@@ -22,3 +22,10 @@ import { Icon } from "astro-icon/components";
     <NavbarMenu />
   </ul>
 </nav>
+<style>
+  .title {
+    color: white;
+    display: flex;
+    margin-left: -2em;
+  }
+</style>

@@ -6,41 +6,30 @@ import Layout from "../layout/layout.astro";
   <div id="perfil">
     <div class="profile">
       <h1 class="foto">foto de Perfil</h1>
-      <h1>Nombre de ususrio</h1>
-      <textarea rows="4" cols="50" wrap="soft" placeholder="Descripcion" class="desc"></textarea>
+      <h1 class="title" >Nombre de ususrio</h1>
+      <input type="text" placeholder="Decripcion" class="desc">
     </div>
     <div class="tu">
       <div class="profile2">
-        <div class="nombre">
-          <h1>nombre</h1>
-          <input type="text" id="name" class="nombre" />
-        </div>
-        <div class="apellido">
-          <h1>apellido</h1>
-          <input type="text" id="apellido" class="nombre" />
-        </div>
-        <div class="gmail">
-          <h1>gmail</h1>
-          <input type="text" id="gmail" class="nombre" />
-        </div>
-        <div class="fecha">
-          <h1>Fecha de nacimiento</h1>
-          <input type="text" id="dateInput" maxlength="10">
-        </div>
+        <h2 class= "font-sans font-bold text-3px text-white">Tus Datos</h2>
+        <h1>Nombre y Apellido</h1>
+        <input type="text">
+        <h1>Correo Electronico</h1>
+        <input type="text" id="gmail">
+        <h1>Contraseña</h1>
+        <input type="password">
+        <h1>Fecha de  Naciimiento</h1>
+        <input type="date" id="dateInput">
       </div>
       <div class="racha">
-        <h1>
-          pantalla que muestra la mejor racha del usuario y su progreso hasta el
-          momento
-        </h1>
+        <h1>Racha</h1>
       </div>
     </div>
   </div>
   <style>
-    .nombre < input {
-      width: 2em;
-      height: 2em;
-    }
+
+    
+    
     input::placeholder {
       color: #000;
     }
@@ -54,7 +43,7 @@ import Layout from "../layout/layout.astro";
       color: rgb(163, 163, 163);
       text-align: center;
       width: 40em;
-      height: 9em;
+      height: 8.4em;
       align-text: center;
       text-align: center;
       font-family: urbanist;
@@ -63,83 +52,85 @@ import Layout from "../layout/layout.astro";
     #perfil {
       display: flex;
       gap: 1em;
-      
+      align-items: center;
+      margin-left: -5em;
     }
     .profile2 {
       background-color: #23262F;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 1em;
+      align-items: left;
+      gap: 0.4em;
       width: 40em;
-      height: 20em;
+      /* height: 23em; */
       padding: 3em;
       color: black;
       margin-top: 3em;
-      font-family: urbanist;
+      
+      
     }
     .profile2 > input {
-      border-radius: 1em;
-      width: 30em;
-      height: 4em;
+      border-radius: 0.5em;
+      width: 25em;
+      height: 2em;
       color: rgb(250, 246, 246);
-      text-align: left;
-      background-color: rgb(163, 163, 163);
+      background-color: #4C4C4C;
       padding-left: 1em;
+      border: 1px solid #A4A4A4 ;
+      
     }
     .profile2 > h1 {
       color: white;
+      font-size: 4em large>;
+      
     }
     .profile {
       background-color: #23262F;
-      width: 25em;
-      height: 30em;
+      width: 40em;
+      height: 34em;
       text-align: center;
       margin-left: 10em;
       align-items: center;
       padding: 3em;
       margin-top: 3em;
       display: flex;
-      gap: 1em;
+      gap: 2em;
       flex-direction: column;
-      font-family: urbanist;
+      
     }
-    .nombre {
-      background-color: rgb(163, 163, 163);
-      width: 12em;
-      height: 2em;
-      text-align: center;
-      color: black;
+    .profile > h1 {
+      color: white;
+      font-size: small;
     }
+  
     .desc {
-      background-color: rgb(163, 163, 163);
+      background-color: #23262F;
       width: 20em;
       height: 7em;
       text-align: center;
-      color: black;
+      color: white;
       border-radius: 1em;
+
     }
     .desc::placeholder {
-      color: #000;
+      color: white;
       text-align: center;
       padding-top: 40px;
       resize: none;
     }
     .foto {
       background-color: rgb(28, 33, 41);
-      width: 10em;
-      height: 10em;
+      width: 15em;
+      height: 15em;
       border-radius: 50em;
       text-align: center;
       align-items: center;
       padding: 3em;
     }
     .nombre {
-      width: 10em;
-      height: 4em;
-      color: black;
-      background-color: rgb(163, 163, 163);
+      background-color: #4C4C4C;
     }
+    
   </style>
   <script>
     const dateInput = document.getElementById('dateInput');
