@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 const { head, id } = Astro.props;
 ---
 
@@ -19,20 +20,26 @@ const { head, id } = Astro.props;
   </main>
 
   <footer class="flex items-center justify-between h-8">
+    <span>
+      <Icon name="star" height={24} width={24} />
+    </span>
     <span
-      class:list={[
-        "text-sm px-4 py-0.5 text-white rounded-full",
-        {
-          "bg-green-700": head.type === "Unica Opcion",
-        },
-        {
-          "bg-yellow-700": head.type === "Multiple Opcion",
-        },
-        {
-          "bg-red-700": head.type === "Arrastra",
-        },
-      ]}>{head.type}</span
+      class:list={["rounded-full h-8 w-8 flex items-center justify-center", {
+        "bg-yellow-700": head.type === "Unica Opcion",
+        "bg-blue-700": head.type === "Multiple Opcion",
+        "bg-red-700": head.type === "Arrastra",
+      }]}
     >
+      {
+        head.type === "Unica Opcion" ? (
+          <Icon name="oneOption" height={30} width={30} />
+        ) : head.type === "Multiple Opcion" ? (
+          <Icon name="multipleOptions" height={30} width={30} />
+        ) : (
+          <Icon name="dragAndDrop" height={28} width={26} />
+        )
+      }
+    </span>
   </footer>
 </article>
 <!-- <style>
