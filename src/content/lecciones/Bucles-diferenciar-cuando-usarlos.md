@@ -1,7 +1,7 @@
 ---
     title: Como poder diferenciar que bucle usar en cada caso.
     difficult: Medio
-    classList: col-span-3 row-span-1
+    classList: col-span-1 row-span-1
     index: 10
 ---
 

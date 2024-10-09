@@ -1,7 +1,7 @@
 ---
     title: DOM
     difficult: Fácil
-    classList: col-span-2 row-span-1
+    classList: col-span-2 row-span-2
     index: 15
 ---
 
