@@ -1,37 +1,49 @@
 ---
-
+import { Icon } from "astro-icon/components";
 ---
 
-<nav class="col-span-6 flex justify-between gap 1em px-8 py-5 w-full bg-gray-300">
-   <figure>
-    <a href="http://localhost:4321">
-      <!-- <Icon name="squeaky" height={40} width={40} /> -->
+<nav
+  class="col-span-6 flex justify-between gap-12 px-8 py-3 w-full bg-[#33353C] border-b-[5px] border-primary"
+>
+  <figure>
+    <a href="http://localhost:4321" class="title">
+      <img src="SQKY.png" alt="Logo de squeaky js" width="150px" />
     </a>
   </figure>
-    <ul>
-      <li>
-        <a href="/login">
-         Inicio secion
-        </a>
-      </li>
-      <li>
-        <a href="/register"
-        class=""
-         >
-         Crear Cuenta
-        </a>
-      </li>
-    </ul>
+  <ul>
+    <li>
+      <a href="/login" class="in"> Inicio secion </a>
+    </li>
+    <li>
+      <a href="/register" class="cr"> Crear Cuenta </a>
+    </li>
+  </ul>
 </nav>
 <style>
-    a {
-        color: black;
-    }
-    ul{
-        width: 100%;
-        display: flex;
-        gap: 1em;
-        align-items: center;
-        justify-content: end;
-    }
-    </style>
+  a {
+    color: black;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    gap: 1.3em;
+    align-items: center;
+    justify-content: end;
+  }
+  .title {
+    color: white;
+    display: flex;
+    margin-left: -2em;
+  }
+  .in {
+    border: solid #ffb800 1px;
+    color: white;
+    padding: 3px;
+  }
+  .cr {
+    border: solid #D9D9D9 1px;
+    background-color:  #FFB800;;
+    color: white;
+    padding: 5px;
+  }
+</style>
