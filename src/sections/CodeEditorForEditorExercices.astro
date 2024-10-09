@@ -1,5 +1,6 @@
 ---
 const { context, pageUrl } = Astro.props;
+import PopUpOfContext from "../components/PopUpOfContext.astro";
 ---
 
 <script
@@ -10,13 +11,11 @@ const { context, pageUrl } = Astro.props;
   data-url={pageUrl}
   id="editorContext"
 >
-  <p class="bg-gray-600 py-2 px-6 h-[20vh]">
-    {context}
-  </p>
-  <div class="wrapper w-full h-full">
-    <div class="editor h-full">
-      <div class="editor__code h-full">
-        <div id="editorCode" class="h-[65vh] w-full"></div>
+<div class="wrapper w-full h-full">
+  <div class="editor h-full">
+    <div class="editor__code h-full">
+      <div id="editorCode" class="h-full w-full"></div>
+      <PopUpOfContext body={context} />
       </div>
     </div>
   </div>
