@@ -1,34 +1,53 @@
 ---
 import Layout from "../layout/layout.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout title="Squeaky JS | Perfil">
   <div id="perfil">
     <div class="profile">
-      <h1 class="foto">foto de Perfil</h1>
-      <h1 class="title" >Nombre de ususrio</h1>
-      <input type="text" placeholder="Decripcion" class="desc">
+      <div class="foto"></div>
+      <h1 class="title">Nombre de ususrio</h1>
+      <textarea placeholder="Descripcion" class="desc"></textarea>
     </div>
     <div class="tu">
       <div class="profile2">
-        <h2 class= "font-sans font-bold text-3px text-white">Tus Datos</h2>
-        <h1>Nombre y Apellido</h1>
+        <h2 class= "font-sans font-bold text-2xl text-white mb-4">Tus Datos</h2>
+        <div class="edit">
+          <Icon name="lapiz" width={20} height={20} />
+        </div>
+        
+        <h2>Nombre y Apellido</h2>
         <input type="text">
-        <h1>Correo Electronico</h1>
+        <h2>Correo Electronico</h2>
         <input type="text" id="gmail">
-        <h1>Contraseña</h1>
+        <h2>Contraseña</h2>
         <input type="password">
-        <h1>Fecha de  Naciimiento</h1>
+        <h2>Fecha de  Naciimiento</h2>
         <input type="date" id="dateInput">
       </div>
       <div class="racha">
-        <h1>Racha</h1>
+        <input type="range">
       </div>
     </div>
   </div>
   <style>
-
-    
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .edit {
+      background-color: gray;
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 31em;
+      margin-bottom: 4em;
+      position: absolute;
+    }
     
     input::placeholder {
       color: #000;
@@ -43,7 +62,7 @@ import Layout from "../layout/layout.astro";
       color: rgb(163, 163, 163);
       text-align: center;
       width: 40em;
-      height: 8.4em;
+      height: 6.9em;
       align-text: center;
       text-align: center;
       font-family: urbanist;
@@ -52,8 +71,8 @@ import Layout from "../layout/layout.astro";
     #perfil {
       display: flex;
       gap: 1em;
-      align-items: center;
-      margin-left: -5em;
+      justify-content: center;
+      margin-inline: auto;
     }
     .profile2 {
       background-color: #23262F;
@@ -79,17 +98,16 @@ import Layout from "../layout/layout.astro";
       border: 1px solid #A4A4A4 ;
       
     }
-    .profile2 > h1 {
+    .profile2 > h2 {
       color: white;
       font-size: 4em large>;
       
     }
     .profile {
       background-color: #23262F;
-      width: 40em;
+      width: 35em;
       height: 34em;
       text-align: center;
-      margin-left: 10em;
       align-items: center;
       padding: 3em;
       margin-top: 3em;
@@ -100,7 +118,6 @@ import Layout from "../layout/layout.astro";
     }
     .profile > h1 {
       color: white;
-      font-size: small;
     }
   
     .desc {
@@ -110,7 +127,7 @@ import Layout from "../layout/layout.astro";
       text-align: center;
       color: white;
       border-radius: 1em;
-
+      resize: none;
     }
     .desc::placeholder {
       color: white;
