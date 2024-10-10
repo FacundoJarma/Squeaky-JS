@@ -1,0 +1,67 @@
+---
+import { Icon } from "astro-icon/components";
+const { title, body } = Astro.props;
+---
+
+<button
+  id="openModal"
+  class="absolute right-6 top-2 p-1 rounded-full bg-gray-200"
+>
+  <Icon name="info" height={36} width={36} class="text-gray-800" />
+</button>
+
+<section
+  data-open="true"
+  class="top-1/2 -translate-y-1/2 z-50 w-screen h-screen grid place-items-center bg-black/40"
+>
+  <div class="p-8 w-[40vw] h-[75vh] bg-gray-100 rounded-lg">
+    <div class="w-full flex justify-between pb-4 border-b border-gray-600">
+      <h3 class="text-2xl text-black font-bold">
+        ¿Como resuelvo esta clase de ejercicios?
+      </h3>
+      <button id="closeButton">
+        <Icon name="cruz" height={36} width={36} class="text-black" />
+      </button>
+    </div>
+    <div class="flex gap-2 bg-gray-300 p-4 rounded-lg mt-6 mx-4">
+      <Icon name="info" height={28} width={28} class="text-black" />
+      <p class="text-gray-800 w-full">
+        En la parte de la izquierda podras ver el editor de codigo. En el mismo
+        podras escribir todo el codigo que necesites para resolver el ejercicio.
+        En la parte de la rderacha tendras un entorno simulado, con una mision
+        en espeficia que va a ejecutar y reaccionar a tus instrucciones.
+      </p>
+    </div>
+    <p class="text-gray-800 mt-2 mx-4 font-bold">{body}</p>
+  </div>
+</section>
+
+<style>
+  section[data-open="true"] {
+    position: fixed;
+  }
+
+  section[data-open="false"] {
+    display: none;
+  }
+</style>
+
+<script>
+  const $closeButton = document.getElementById("closeButton");
+
+  $closeButton?.addEventListener("click", () => {
+    const $section = document.querySelector(
+      "section[data-open='true']"
+    ) as HTMLDivElement;
+    $section.dataset.open = "false";
+  });
+
+  const $openModal = document.getElementById("openModal");
+
+  $openModal?.addEventListener("click", () => {
+    const $section = document.querySelector(
+      "section[data-open='false']"
+    ) as HTMLDivElement;
+    $section.dataset.open = "true";
+  });
+</script>
