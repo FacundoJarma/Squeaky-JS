@@ -10,7 +10,8 @@ import {
 import { join } from "path";
 import { randomUUID } from "crypto";
 
-const pathJSON = join("src/lib/data/users.json");
+const pathJSON = join("./src/lib/data/users.json");
+
 
 const formato = {
   id: undefined,
