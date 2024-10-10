@@ -4,17 +4,20 @@ import Layout from "../layout/layout.astro";
 import { getEntry } from "astro:content";
 import InicioExerciceSnippet from "../sections/InicioExerciceSnippet.astro";
 
+
 const lection = await getEntry(
   "lecciones",
   "bucles-diferenciar-cuando-usarlos"
 );
 const { Content } = await lection.render();
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout title="Squeaky JS | Inicio">
   <main>
     <header class="max-w-6xl mx-auto flex justify-center">
       <section class="flex flex-col items-center max-w-3xl mt-16 mb-36">
+        <img src="fondoinicio.png" class="fondo">
         <h1 class="text-6xl font-bold my-6 text-center">
           Te presentamos <span class="text-amber-500">SqueakyJS. </span>
           Tu nuevo profesor
@@ -22,12 +25,7 @@ const { Content } = await lection.render();
         <p class="text-xl text-white max-w-sm text-center">
           Una forma mas divertida, intercativa y emosionante de aprender JS
         </p>
-        <a
-          href="/lecciones"
-          class="h-12 w-32 bg-yellow-700 border border-amber-500 rounded-lg mt-6 flex justify-center items-center hover:scale-105 hover:rotate-3 duration-200"
-        >
-          Ir a la home
-        </a>
+       
       </section>
     </header>
     <section class="max-w-6xl mx-auto flex justify-around pb-12">
@@ -90,7 +88,12 @@ const { Content } = await lection.render();
     <AnimatedText />
   </main>
 </Layout>
-
+<style>
+.fondo {
+  position: absolute;
+  margin-top: -5em;
+}
+</style>
 <script>
   const $buttons = document.querySelectorAll(
     "#listOfButtons li"
