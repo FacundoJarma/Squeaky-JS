@@ -25,13 +25,45 @@
         padding: 1em;
         background-color: #404040;
       }
+      #hoverInfo {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #eee;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        padding: 0.3em 1em;
+        z-index: 2;
+        border-radius: 10px;
+        pointer-events: none;
+        display: none;
+        color: black;
+      }
+      .hoverable {
+        cursor: pointer;
+      }
+      .information{
+        margin-top: 4em;
+        h2{
+          z-index: 10;
+          margin-bottom: 1em;
+        }
+        p{
+          z-index: 10;
+        }
+      }
     </style>
     <title>Ejercicio 2</title>
   </head>
   <body>
+    <div id="hoverInfo"></div>
     <main>
       <article>
-        <h1 id="title">Hola usuario, buen dia!</h1>
+        <h1 id="title" class="hoverable titlePrincipal">Hola usuario, buen dia!</h1>
+      </article>
+      <article class="information">
+        <h2 class="hoverable">Informacion sobre tu cuenta:</h2>
+        <p>Este es un ejercicio simulado de SqueakyJS.</p>
       </article>
     </main>
 
@@ -62,8 +94,41 @@
             alert("Ejercicio no resuelto");
           }
         }
-        /* La funcion que llama al chequeo va aqui: */
         exe;
+      });
+    </script>
+
+    <script>
+      const showData = (elem, event) => {
+        
+        const data = {
+          id: elem.id,
+          class: elem.className,
+          data: elem.dataset,
+        };
+        const $hoverInfo = document.getElementById("hoverInfo");
+        $hoverInfo.style.display = "block";
+        console.log(elem);
+        $hoverInfo.innerHTML = ` <b>id: </b> ${data.id} <br/> <b>Clases: </b> ${data.class} <br/>  <b>Elemento: </b> ${elem.tagName}`;
+
+        // Actualiza la posición del div en función del cursor
+        $hoverInfo.style.left = event.pageX + "px";
+        $hoverInfo.style.top = event.pageY + "px";
+      };
+
+      const allHoverableElements = document.querySelectorAll(".hoverable");
+
+      allHoverableElements.forEach((element) => {
+        element.addEventListener("mousemove", (event) => {
+          showData(element, event);
+        });
+
+        element.addEventListener("mouseout", () => {
+          // Limpia el contenido cuando el cursor sale del elemento
+          const $hoverInfo = document.getElementById("hoverInfo");
+          $hoverInfo.innerHTML = "";
+          $hoverInfo.style.display = "none";
+        });
       });
     </script>
   </body>

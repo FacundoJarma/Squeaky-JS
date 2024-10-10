@@ -4,5 +4,5 @@
     classList: row-span-1 col-span-2
     index: 3
     exerciceCols: 3
-    exercices: ["3-1", "3-2"]
+    exercises: ["3-1", "3-2"]
 ---

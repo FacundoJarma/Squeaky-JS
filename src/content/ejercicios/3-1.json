@@ -5,22 +5,26 @@
       "type": "Multiple Opcion"
     },
     "body": {
-      "question": "¿Cuál de las siguientes afirmaciones sobre la palabra clave 'var' es verdadera?",
+      "question": "¿Cual de los siguientes tipos de datos existe?",
       "options": [
         {
-          "text": "Las variables declaradas con 'var' tienen alcance de bloque.",
+          "text": "Const",
           "correct": false
         },
         {
-          "text": "Las variables declaradas con 'var' se pueden redeclarar en el mismo ámbito.",
+          "text": "Integer (int)",
           "correct": true
         },
         {
-          "text": "Las variables declaradas con 'var' tienen un alcance global dentro de una función.",
+          "text": "String",
           "correct": true
         },
         {
-          "text": "Las variables declaradas con 'var' solo pueden ser inicializadas una vez.",
+          "text": "Boolean (bool)",
+          "correct": true
+        },
+        {
+          "text": "False",
           "correct": false
         }
       ]
