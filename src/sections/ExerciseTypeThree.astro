@@ -3,7 +3,8 @@ import ExerciseTypeThreeCodeLine from "../components/ExerciseTypeThreeCodeLine.a
 import ExerciceTypeThreeHole from "../components/ExerciceTypeThreeHole.astro";
 import NextExercise from "../components/NextExercise.astro";
 
-const { body, head, exercicesInThisLesson, id } = Astro.props;
+
+const { body, head, exercicesInThisLesson, id, indexOfLesson } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
@@ -41,9 +42,15 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     </ul>
     <button
       id="checkExercice"
-      class="hidden w-32 h-11 bg-green-800 rounded-xl text-xl absolute bottom-12 right-12 place-content-center hover:scale-105 duration-200"
+      class="hidden w-32 h-11 bg-green-800 rounded-xl text-xl absolute bottom-12 right-[20em] place-content-center hover:scale-105 duration-200"
       >Enviar</button
     >
+    
+    <NextExercise
+    indexOfLesson={indexOfLesson}
+    actualIndexOfEx={actualIndexOfEx}
+    exercicesInThisLesson={exercicesInThisLesson}
+  />
   </aside>
 </div>
 
@@ -57,6 +64,12 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"
   defer></script>
 <script defer>
+  const $checkExercice = document.getElementById("checkExercice");
+
+  const activeGoNext = () => {
+    document.getElementById("goNextExercice")?.classList.add("active");
+  };
+
   const areAllHolesCompleted = () => {
     const $dropZones = document.querySelectorAll(".drop-zone");
     let unusedHoles = $dropZones.length;
@@ -91,21 +104,40 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   document.addEventListener("DOMContentLoaded", () => {
     const dragable = document.querySelector("#dragable");
     const dropZones = Array.from(document.querySelectorAll(".drop-zone"));
-    const $checkExercice = document.getElementById("checkExercice");
 
     const drake = dragula([dragable, ...dropZones], {
       revertOnSpill: true,
     });
+
     drake.on("drop", (el, target, source, sibling) => {
       if (isAValidTarget(target, source)) {
         const targetChildren = Array.from(target.children);
+        swapChildrens(targetChildren, target, source);
+
         if (areAllHolesCompleted()) {
           $checkExercice.classList.add("active");
         } else {
           $checkExercice.classList.remove("active");
         }
-        swapChildrens(targetChildren, target, source);
       }
     });
   });
+
+  const checkExercice = () => {
+    passed = true;
+    const $dropZones = document.getElementById("dropZones");
+
+    for (let i = 0; i < $dropZones.children.length; i++) {
+      const $dropZone = dropZones.children[i];
+      const elemInThisDropZone = $dropZone.children[0];
+      if (elemInThisDropZone.dataset.order != i + 1) {
+        passed = false;
+      }
+    }
+
+    if (passed){
+      activeGoNext()
+    }
+  };
+  $checkExercice.addEventListener("click", checkExercice);
 </script>
