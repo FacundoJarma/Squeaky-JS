@@ -3,7 +3,8 @@ import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync, ftr
 import { join } from "path";
 import { randomUUID } from "crypto";
 
-const pathJSON = join("data/users.json");
+const pathJSON = join("./src/lib/data/users.json");
+
 
 function buscarUsuario(usernameBuscado) {
     readFile(pathJSON, "utf-8", (err, info) => {

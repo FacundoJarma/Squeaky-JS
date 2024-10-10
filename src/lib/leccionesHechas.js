@@ -2,10 +2,10 @@ import { onEvent, sendEvent, startServer } from "soquetic";
 import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync, ftruncateSync, read } from "fs";
 import { join } from "path";
 
-const pathJSON = join("./data/users.json");
+const pathJSON = join("./src/lib/data/users.json");
 
 
-function guardarLeccion(data) {
+export function guardarLeccion(data) {
     readFile(pathJSON, 'utf-8', (err, leido) => {
         if (err) {
             console.log(err);
@@ -41,7 +41,3 @@ function guardarLeccion(data) {
     }
     })
 }
-
-onEvent("leccionHecha", (data) => {
-     guardarLeccion(data);
- }) 

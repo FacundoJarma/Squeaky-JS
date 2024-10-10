@@ -2,7 +2,7 @@ import { onEvent, sendEvent, startServer } from "soquetic";
 import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync, ftruncateSync, read, write } from "fs";
 import { join } from "path";
 
-const pathJSON = join("./data/users.json");
+const pathJSON = join("./src/lib/data/users.json");
 
 let racha;
 
@@ -11,7 +11,7 @@ let data = {
     username: "rafa"
 }
 
-function nuevaRacha(data) {
+export function nuevaRacha(data) {
     readFile(pathJSON, 'utf-8', (err, leido) => {
         if (err) {
             console.log(err);
@@ -49,6 +49,3 @@ function nuevaRacha(data) {
 
 // nuevaRacha(data);
 
-onEvent("pedirRacha", (data) => {
-    nuevaRacha(data);
-})
