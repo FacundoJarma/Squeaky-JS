@@ -27,17 +27,5 @@ export function login(usernameBuscado) {
     });
 }
 
-onEvent("login", (data) => {
-    if(data.username === usuario.username && data.password === usuario.password) {
-        sendEvent('loguear', () => {
-            //TODO: LOGIN | decir en la pagina que el usuario/contraseña es incorrecto
-        })
-    } else {
-        sendEvent('loginRechazado', () => {
-        //TODO: función para decir que el register/login fue rechazado
-        })
-    }
-})
-
 // Ejemplo de uso
 login("rafa");

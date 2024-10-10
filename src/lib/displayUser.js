@@ -6,7 +6,7 @@ import { randomUUID } from "crypto";
 const pathJSON = join("./src/lib/data/users.json");
 
 
-function buscarUsuario(usernameBuscado) {
+export function buscarUsuario(usernameBuscado) {
     readFile(pathJSON, "utf-8", (err, info) => {
         if (err) {
             console.error("Error al leer el archivo:", err);
@@ -27,6 +27,3 @@ function buscarUsuario(usernameBuscado) {
     })
 }
 
-onEvent('perfil', (data) => {
-   
-})
