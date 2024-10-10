@@ -22,11 +22,10 @@ import { Icon } from "astro-icon/components";
           Te presentamos <span class="text-amber-500">SqueakyJS. </span>
           Tu nuevo profesor
         </h1>
-        <p class="text-xl text-white max-w-sm text-center">
+        <p class="text-xl text-white max-w-sm text-center z-50">
           Una forma mas divertida, intercativa y emosionante de aprender JS
         </p>
-       
-      </section>
+    </section>
     </header>
     <section class="max-w-6xl mx-auto flex justify-around pb-12">
       <ul class="flex flex-col gap-4" id="listOfButtons">
@@ -92,6 +91,7 @@ import { Icon } from "astro-icon/components";
 .fondo {
   position: absolute;
   margin-top: -5em;
+  z-index: -1;
 }
 </style>
 <script>
@@ -144,6 +144,7 @@ import { Icon } from "astro-icon/components";
   }
 
   .dot {
+    
     height: 15px;
     width: 15px;
     background: #ed594a;
