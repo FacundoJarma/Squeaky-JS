@@ -58,8 +58,11 @@ const { classList, difficult, name, description, index, url } = Astro.props;
 </style>
 
 <script>
+
   import { postData } from "../lib/socket.js";
   const añadirFav = (data) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    data.username = user.username;
     postData("favorito", data, () => {
       alert("Favorito Agregado!");
     });
