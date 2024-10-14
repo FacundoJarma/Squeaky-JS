@@ -88,21 +88,28 @@ import { Icon } from "astro-icon/components";
       };
 
       postData("login", data, (user) => {
-        if(!user) return;
+        if (!user) return;
 
         localStorage.setItem("user", JSON.stringify(user));
-        
-        window.location.href = "/";
+
         Toastify({
-          text: "Has iniciado sesion correctamente!",
-          duration: 2000,
-          stopOnFocus: true, // Prevents dismissing of toast on hover
+          text: "Has iniciado sesión correctamente!",
+          duration: 1000, // Duración de 2 segundos
+          stopOnFocus: true,
         }).showToast();
+
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1000);
       });
     });
 
-    const passwordInput = document.getElementById("password") as HTMLInputElement;
-    const togglePassword = document.getElementById("togglePassword") as HTMLDivElement; ;
+    const passwordInput = document.getElementById(
+      "password"
+    ) as HTMLInputElement;
+    const togglePassword = document.getElementById(
+      "togglePassword"
+    ) as HTMLDivElement;
 
     togglePassword.addEventListener("click", () => {
       if (passwordInput.value === "") {

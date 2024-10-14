@@ -25,4 +25,4 @@ pnpm-debug.log*
 
 # users info
 
-scr/lib/data/users.js
+src/lib/data/users.json
