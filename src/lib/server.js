@@ -25,11 +25,10 @@ onEvent("favorito", (data) => {
   añadirFavorito(data);
 });
 
-onEvent('login', (data) => {
-  login(data.username)
-  sendEvent('enviarUsuario', (data) => {
-    return data.usuario;
-  })
+onEvent('login', async (data) => {
+  const user = await login(data.username)
+  console.log(user)
+  return user
 })
 
 /*

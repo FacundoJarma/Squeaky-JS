@@ -87,7 +87,8 @@ import { Icon } from "astro-icon/components";
         password: $password.value,
       };
 
-      postData("iniciarSesion", data, () => {
+      postData("login", data, (user) => {
+        console.log(user)
         Toastify({
           text: "Has iniciado sesion correctamente!",
           duration: 2000,
