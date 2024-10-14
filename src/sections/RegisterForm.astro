@@ -73,6 +73,8 @@ import { Icon } from "astro-icon/components";
 
 <script>
   import { postData } from "../lib/socket.js";
+  import Toastify from "toastify-js";
+
   const sendData = (user) => {
     postData("registrarUsuario", user, () => {
       alert("Usuario registrado!");
@@ -89,6 +91,18 @@ import { Icon } from "astro-icon/components";
     const $username = document.getElementById("username") as HTMLInputElement;
     const $email = document.getElementById("email") as HTMLInputElement;
     const $password = document.getElementById("password") as HTMLInputElement;
+
+    if(!$username.value || !$email.value || !$password.value) {
+      Toastify({
+          text: "No puedes enviar datos vacios!",
+          duration: 1000, // Duración de 2 segundos
+          stopOnFocus: true,
+          style: {
+            background: "red",}
+        }).showToast();
+        return;
+    }
+
     const user = {
       username: $username.value,
       email: $email.value,
