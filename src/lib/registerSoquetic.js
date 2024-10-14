@@ -18,10 +18,7 @@ const formato = {
   username: undefined,
   email: undefined,
   password: undefined,
-  leccionActual: undefined,
-  ejerciciosHechos: {},
-  leccionesHechas: {},
-  favoritos: {},
+  favoritos: []
 };
 
 function enUso() {
@@ -35,9 +32,11 @@ export function registrar(data) {
   nuevoUsuario.id = randomUUID();
   nuevoUsuario.password = data.password;
   nuevoUsuario.email = data.email;
+ /*
   nuevoUsuario.leccionActual = data.leccionActual;
   nuevoUsuario.ejerciciosHechos = data.ejerciciosHechos;
   nuevoUsuario.leccionesHechas = data.leccionesHechas;
+  */
   nuevoUsuario.favoritos = data.favoritos;
 
   let usuariosActuales = [];
