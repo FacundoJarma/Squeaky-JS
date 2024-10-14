@@ -19,13 +19,29 @@ const { title } = Astro.props;
     <KeyboardManager title="Comandos de Teclado" />
     <div class="pb-[72px] h-screen">
       <!-- <ViewTransitions /> -->
-      <!-- <NavbarLoginAndRegister /> -->
-      <Navbar />
+      <div id="navNot" style="display:none;">
+        <NavbarLoginAndRegister />
+      </div>
+      <div id="navYes" style="display:none;">
+        <Navbar />
+      </div>
       <slot />
     </div>
   </body>
-  <CheckUser />
 </html>
+
+<script>
+  let user = localStorage.getItem("user");
+  user = JSON.parse(user);
+  if (!user) {
+    document.getElementById("navNot").style.display = "block";
+    document.getElementById("navYes").style.display = "none";
+  }
+  else{
+    document.getElementById("navNot").style.display = "none";
+    document.getElementById("navYes").style.display = "block";
+  }
+</script>
 
 <style is:global>
   html {
