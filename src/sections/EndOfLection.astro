@@ -3,7 +3,7 @@ const { exercises } = Astro.props;
 ---
 
 <button
-data-url = {exercises[0].id}
+  data-url={exercises ? "/ejercicios/" + exercises[0].id : "http://localhost:4321/lecciones"}
   id="goToExercise"
   class="fixed bottom-6 right-8 w-36 h-14 bg-[#33353B]/80 p-2 rounded-lg text-xl font-bold duration-200"
 >
@@ -21,7 +21,7 @@ data-url = {exercises[0].id}
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       document.getElementById("goToExercise").classList.add("active");
       document.getElementById("goToExercise")?.addEventListener("click", () => {
-        location.href = `/ejercicios/${document.getElementById("goToExercise").dataset.url}`
+        location.href = `${document.getElementById("goToExercise").dataset.url}`
       })
     }
   };
