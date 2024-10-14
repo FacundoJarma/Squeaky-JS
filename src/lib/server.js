@@ -21,15 +21,19 @@ onEvent("leccionHecha", (data) => {
   guardarLeccion(data);
 });
 
-onEvent("favorito", (data) => {
-  añadirFavorito(data);
+onEvent("favorito", async (data) => {
+    const favs = await añadirFavorito(data)
+    console.log(favs);
+    return favs;
+  
 });
 
 onEvent('login', async (data) => {
   const user = await login(data.username)
   console.log(user)
-  return user
+  return user;
 })
+
 
 /*
 onEvent("iniciarSesion", (data) => {
@@ -60,8 +64,8 @@ onEvent("login", (data) => {
       //TODO: función para decir que el register/login fue rechazado
       })
   }
-})
-*/
+  */
+
 onEvent('perfil', (data) => {
   buscarUsuario(data);
 })
