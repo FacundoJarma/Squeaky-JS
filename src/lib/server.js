@@ -11,6 +11,8 @@ onEvent("registrarUsuario", (data) => {
   registrar(data);
 });
 
+sendEvent("")
+
 onEvent("pedirRacha", (data) => {
   nuevaRacha(data);
 });
@@ -25,14 +27,18 @@ onEvent("favorito", (data) => {
 
 onEvent("iniciarSesion", (data) => {
   if (data.username == info.username || data.email == info.data) {
+    sendEvent('enviarUsuario', (data) => {
+      return data.username;
+    })
   }
-  login();
   if (data.password == info.password) {
     confirmLogin();
   } else {
     error();
   }
 });
+
+/*
 
 onEvent("login", (data) => {
   if(data.username === usuario.username && data.password === usuario.password) {
@@ -47,7 +53,7 @@ onEvent("login", (data) => {
       })
   }
 })
-
+*/
 onEvent('perfil', (data) => {
   buscarUsuario(data);
 })

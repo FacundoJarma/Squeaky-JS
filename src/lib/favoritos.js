@@ -1,5 +1,5 @@
 import { onEvent, sendEvent, startServer } from "soquetic";
-import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync, ftruncateSync, read } from "fs";
+import { writeFile, readFileSync, readFile } from "fs";
 import { join } from "path";
 
 const pathJSON = join("./src/lib/data/users.json");

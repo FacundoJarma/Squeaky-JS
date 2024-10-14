@@ -3,18 +3,21 @@
     "username": "rafa",
     "id": "4a564e3d-9a34-407d-a878-1c7b0b3ff20f",
     "password": "rafa24",
-    "email": "rafa@gmail.com"
+    "email": "rafa@gmail.com",
+    "favoritos": {}
   },
   {
     "username": "Rafa",
     "id": "7b1952a0-4617-411f-a8d8-5864c23c0c23",
     "password": "rafa",
-    "email": "rafa@gmail.com"
+    "email": "rafa@gmail.com",
+    "favoritos": {}
   },
   {
     "username": "dad",
     "id": "4fa12ee5-8a45-4ef0-8981-569d0ab545c3",
     "password": "adad",
-    "email": "adad"
+    "email": "adad",
+    "favoritos": {}
   }
 ]
