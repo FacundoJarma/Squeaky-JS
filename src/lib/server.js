@@ -11,6 +11,8 @@ onEvent("registrarUsuario", (data) => {
   registrar(data);
 });
 
+sendEvent("")
+
 onEvent("pedirRacha", (data) => {
   nuevaRacha(data);
 });
@@ -23,13 +25,25 @@ onEvent("favorito", (data) => {
   añadirFavorito(data);
 });
 
+onEvent('login', async (data) => {
+  const user = await login(data.username)
+  console.log(user)
+  return user
+})
+
+/*
 onEvent("iniciarSesion", (data) => {
+  const info = 
   if (data.username == info.username || data.email == info.data) {
+    sendEvent('enviarUsuario', (data) => {
+      return data.username;
+      console.log('Login salio bien')
+    })
   }
-  login();
   if (data.password == info.password) {
     confirmLogin();
   } else {
+    console.log('Login salió mal')
     error();
   }
 });
@@ -47,7 +61,7 @@ onEvent("login", (data) => {
       })
   }
 })
-
+*/
 onEvent('perfil', (data) => {
   buscarUsuario(data);
 })

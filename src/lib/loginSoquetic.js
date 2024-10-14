@@ -6,24 +6,27 @@ import { randomUUID } from "crypto";
 const pathJSON = join("./src/lib/data/users.json");
 
 export function login(usernameBuscado) {
-    readFile(pathJSON, "utf-8", (err, info) => {
-        if (err) {
-            console.error("Error al leer el archivo:", err);
-            return;
-        }
-        try {
-            const usuarios = JSON.parse(info);
-            const usuario = usuarios.find(user => user.username === usernameBuscado);
-            
-            if (usuario) {
-                console.log("Usuario encontrado:", usuario.username);
-                console.log("Contraseña del usuario:", usuario.password);  // Mostrar la contraseña
-            } else {
-                console.log("Usuario no encontrado.");
+    return new Promise((resolve, reject) => {
+        readFile(pathJSON, "utf-8", (err, info) => {
+            if (err) {
+                console.error("Error al leer el archivo:", err);
+                reject(err);
+                return;
             }
-        } catch (parseError) {
-            console.error("Error al parsear el archivo JSON:", parseError);
-        }
+            try {
+                const usuarios = JSON.parse(info);
+                const usuario = usuarios.find(user => user.username === usernameBuscado);
+                
+                if (usuario) {
+                    resolve(usuario);
+                } else {
+                    resolve(null);
+                }
+            } catch (parseError) {
+                console.error("Error al parsear el archivo JSON:", parseError);
+                reject(parseError);
+            }
+        });
     });
 }
 

@@ -11,7 +11,6 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 
   {
     lecciones.map(({ data: leccion, slug }, index) => (
-
       <LectionCard
         index={index + 1} // Esta 0-indexed 
         classList={leccion.classList}
