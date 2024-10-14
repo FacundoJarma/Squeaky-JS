@@ -29,11 +29,13 @@ onEvent("iniciarSesion", (data) => {
   if (data.username == info.username || data.email == info.data) {
     sendEvent('enviarUsuario', (data) => {
       return data.username;
+      console.log('Login salio bien')
     })
   }
   if (data.password == info.password) {
     confirmLogin();
   } else {
+    console.log('Login salió mal')
     error();
   }
 });
