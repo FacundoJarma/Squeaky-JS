@@ -41,7 +41,8 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 
 <script>
   import { ExerciceOption } from "../lib/clases";
-
+  import Toastify from "toastify-js";
+  
   const $context = document.getElementById("context") as HTMLParagraphElement;
   if($context){
     $context.innerHTML = $context.dataset.text;
@@ -58,7 +59,6 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     const correct = $button.dataset.iscorrect == "true";
     const option = new ExerciceOption(correct, $button.innerText, $button);
     buttons.push(option);
-    console.log(option.getElement());
   });
 
   const activeGoNext = () => {
@@ -85,6 +85,13 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
           spread: 100,
           origin: { y: 0.6 },
         });
+        
+        Toastify({
+          text: "Ejercico resultado!",
+          duration: 500, // Duración de 2 segundos
+          stopOnFocus: true,
+        }).showToast();
+
       } else {
         showCorrectAnswer();
       }
