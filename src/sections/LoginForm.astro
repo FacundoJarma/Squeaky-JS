@@ -3,7 +3,6 @@ import { Icon } from "astro-icon/components";
 ---
 
 <form
-  action=""
   id="loginForm"
   class="z-10 w-[32em] bg-black/70 h-[90vh] rounded-t-2xl px-11 py-16"
 >
@@ -14,8 +13,8 @@ import { Icon } from "astro-icon/components";
     <div class="flex flex-col gap-5">
       <input
         type="text"
-        id="email"
-        placeholder="Email"
+        id="username"
+        placeholder="Nombre de usuario"
         class="text-2xl w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
       />
       <div class="password-container">
@@ -73,17 +72,32 @@ import { Icon } from "astro-icon/components";
   </style>
 
   <script>
+    import { postData } from "../lib/socket.js";
+    import Toastify from "toastify-js";
+
     const $loginForm = document.getElementById("loginForm") as HTMLFormElement;
     $loginForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const $email = document.getElementById("email") as HTMLInputElement;
+      const $username = document.getElementById("username") as HTMLInputElement;
 
       const $password = document.getElementById("password") as HTMLInputElement;
+      const data = {
+        username: $username.value,
+        password: $password.value,
+      };
+
+      postData("iniciarSesion", data, () => {
+        Toastify({
+          text: "Has iniciado sesion correctamente!",
+          duration: 2000,
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+        }).showToast();
+      });
     });
 
-    const passwordInput = document.getElementById("password");
-    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password") as HTMLInputElement;
+    const togglePassword = document.getElementById("togglePassword") as HTMLDivElement; ;
 
     togglePassword.addEventListener("click", () => {
       if (passwordInput.value === "") {
