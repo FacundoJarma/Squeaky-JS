@@ -21,18 +21,19 @@ export function añadirFavorito(data) {
             return;
         }
 
+        const nuevosFavoritos = Array.isArray(data.favoritos) ? data.favoritos : [data.favoritos];
+
         if (Array.isArray(usuario.favoritos)) {
-            usuario.favoritos = [...new Set([...usuario.favoritos, ...data.favoritos])];
+            usuario.favoritos = [...new Set([...usuario.favoritos, ...nuevosFavoritos])];
         } else {
-            usuario.favoritos = data.favoritos;
+            usuario.favoritos = nuevosFavoritos;
         }
 
         const jsonString = JSON.stringify(jsonData, null, 2);
 
-        writeFile(pathJSON, jsonString, (err) => {
+        writeFile(pathJSON, jsonString, 'utf-8', (err) => {
             if (err) console.error('Error al escribir en el archivo:', err);
             else console.log('Favorito añadido correctamente');
         });
     });
 }
-
