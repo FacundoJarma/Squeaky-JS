@@ -1,9 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
 const { classList, difficult, name, description, index, url } = Astro.props;
+console.log(url);
 ---
 
-<div 
+<div
   class={`lection relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${classList}`}
 >
   <!-- <div
@@ -25,11 +26,12 @@ const { classList, difficult, name, description, index, url } = Astro.props;
   </main>
 
   <footer class="flex items-center justify-between h-8">
-    <div
-      class="flex items-center justify-center hover:bg-neutral-700 p-1 rounded-full duration-100 cursor-pointer"
+    <button
+      data-url={url}
+      class="addFav flex items-center justify-center hover:bg-neutral-700 p-1 rounded-full duration-100 cursor-pointer"
     >
       <Icon name="star" height={20} width={20} class={"text-gray-300"} />
-    </div>
+    </button>
     <span
       class:list={[
         "text-sm px-4 py-0.5 text-white rounded-full",
@@ -48,11 +50,31 @@ const { classList, difficult, name, description, index, url } = Astro.props;
 </div>
 
 <style>
-  .lection{
+  .lection {
     transition: all 0.2s ease-in-out;
   }
-  .lection:hover{
+  .lection:hover {
     scale: 1.03;
-  
   }
 </style>
+
+<script>
+  import { postData } from "../lib/socket.js";
+  const añadirFav = (data) => {
+    postData("favorito", data, () => {
+      alert("Favorito Agregado!");
+    });
+  };
+  const $addFavs = document.querySelectorAll(
+    ".addFav"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  $addFavs.forEach(($addFav) => {
+    $addFav.addEventListener("click", () => {
+      const url = $addFav.dataset.url;
+      añadirFav({
+        favoritos: url,
+      });
+    });
+  });
+</script>
