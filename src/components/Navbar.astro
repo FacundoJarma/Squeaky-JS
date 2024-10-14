@@ -15,17 +15,18 @@ import { Icon } from "astro-icon/components";
       />
     </a>
   </figure>
-  <ul class="flex gap-4 items-center"></ul>
-  <li>
-    <a
-      href="/profile"
-      id="profileInfo"
-      class="px-6 py-1 hover:text-yellow-600 duration-200 text-white"
-    >
-      Perfil
-    </a>
-  </li>
-  <NavbarMenu />
+  <ul class="flex gap-4 items-center">
+    <li>
+      <a
+        href="/profile"
+        id="profileInfo"
+        class="px-6 py-1 hover:text-yellow-600 duration-200 text-white"
+      >
+        Perfil
+      </a>
+    </li>
+    <NavbarMenu />
+  </ul>
 </nav>
 
 <style>
@@ -37,12 +38,22 @@ import { Icon } from "astro-icon/components";
   }
 </style>
 
-<script>
+<script is:inline>
+  function convertir(nombre) {
+    var cadena = nombre.toLowerCase().split(" ");
+    for (var i = 0; i < cadena.length; i++) {
+      cadena[i] = cadena[i].charAt(0).toUpperCase() + cadena[i].substring(1);
+    }
+    nombre = cadena.join(" ");
+    return nombre
+  }
+
   function getUser() {
     let user = localStorage.getItem("user");
     user = JSON.parse(user);
     return user;
   }
   const user = getUser();
-  document.getElementById("profileInfo").innerHTML = user.username;
+  document.getElementById("profileInfo").innerText = convertir(user.username);
+    
 </script>
