@@ -25,7 +25,16 @@ onEvent("favorito", (data) => {
   añadirFavorito(data);
 });
 
+onEvent('login', (data) => {
+  login(data.username)
+  sendEvent('enviarUsuario', (data) => {
+    return data.usuario;
+  })
+})
+
+/*
 onEvent("iniciarSesion", (data) => {
+  const info = 
   if (data.username == info.username || data.email == info.data) {
     sendEvent('enviarUsuario', (data) => {
       return data.username;
@@ -39,8 +48,6 @@ onEvent("iniciarSesion", (data) => {
     error();
   }
 });
-
-/*
 
 onEvent("login", (data) => {
   if(data.username === usuario.username && data.password === usuario.password) {
