@@ -16,10 +16,9 @@ export function login(usernameBuscado) {
             const usuario = usuarios.find(user => user.username === usernameBuscado);
             
             if (usuario) {
-                console.log("Usuario encontrado:", usuario.username);
-                console.log("Contraseña del usuario:", usuario.password);  // Mostrar la contraseña
+                return usuario
             } else {
-                console.log("Usuario no encontrado.");
+                return null
             }
         } catch (parseError) {
             console.error("Error al parsear el archivo JSON:", parseError);
