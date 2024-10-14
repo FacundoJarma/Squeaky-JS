@@ -1,6 +1,6 @@
 ---
 import AnimatedText from "../components/AnimatedText.astro";
-import Layout from "../layout/layout.astro";
+import LayoutOnlyMain from "../layout/layoutOnlyMain.astro";
 import { getEntry } from "astro:content";
 import InicioExerciceSnippet from "../sections/InicioExerciceSnippet.astro";
 
@@ -13,7 +13,7 @@ const { Content } = await lection.render();
 import { Icon } from "astro-icon/components";
 ---
 
-<Layout title="Squeaky JS | Inicio">
+<LayoutOnlyMain title="Squeaky JS | Inicio">
   <main>
     <header class="max-w-6xl mx-auto flex justify-center">
       <section class="flex flex-col items-center max-w-3xl mt-16 mb-36">
@@ -86,7 +86,9 @@ import { Icon } from "astro-icon/components";
     </section>
     <AnimatedText />
   </main>
-</Layout>
+</LayoutOnlyMain>
+
+
 <style>
 .fondo {
   position: absolute;

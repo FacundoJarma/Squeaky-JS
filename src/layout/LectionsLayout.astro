@@ -4,6 +4,7 @@ import { ViewTransitions } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
 import LectionAside from "../sections/LectionAside.astro";
 import KeyboardManager from "../components/KeyboardManager.astro";
+import CheckUser from "../components/CheckUser.astro";
 
 const { title, description } = Astro.props;
 ---
@@ -33,6 +34,9 @@ const { title, description } = Astro.props;
       </main>
     </div>
   </body>
+
+  <CheckUser />
+
 
   <style is:global>
     html {

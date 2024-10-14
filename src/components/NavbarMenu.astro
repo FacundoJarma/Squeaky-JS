@@ -26,15 +26,12 @@ import { Icon } from "astro-icon/components";
     >
       Lecciones
     </a>
-    <!-- <a href="/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-      Inicio
-    </a> -->
-    <a
-      href="/login"
+    <button
+      id="logOut"
       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
     >
       Cerrar sesion
-    </a>
+    </button>
   </div>
 </div>
 
@@ -67,5 +64,11 @@ import { Icon } from "astro-icon/components";
       $link.style.display = "none";
     }
   });
+
+  const $logOut = document.getElementById("logOut") as HTMLButtonElement;
+
+  $logOut.addEventListener("click", () => {
+    localStorage.removeItem("user");
+  })
 
 </script>

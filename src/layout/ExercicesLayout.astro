@@ -1,6 +1,8 @@
 ---
 import KeyboardManager from "../components/KeyboardManager.astro";
 import Navbar from "../components/Navbar.astro";
+import CheckUser from "../components/CheckUser.astro";
+
 const { title } = Astro.props;
 ---
 
@@ -22,6 +24,8 @@ const { title } = Astro.props;
       src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"
     ></script>
   </body>
+  <CheckUser />
+
 </html>
 
 <style is:global>

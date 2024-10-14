@@ -88,7 +88,11 @@ import { Icon } from "astro-icon/components";
       };
 
       postData("login", data, (user) => {
-        console.log(user)
+        if(!user) return;
+
+        localStorage.setItem("user", JSON.stringify(user));
+        
+        window.location.href = "/";
         Toastify({
           text: "Has iniciado sesion correctamente!",
           duration: 2000,
