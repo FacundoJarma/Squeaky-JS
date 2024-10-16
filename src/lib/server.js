@@ -1,7 +1,7 @@
 import { registrar } from "./registerSoquetic.js";
 import { login } from "./loginSoquetic.js";
 import { guardarLeccion } from "./leccionesHechas.js";
-import { añadirFavorito } from "./favoritos.js";
+import { añadirFavorito, eliminarFavorito } from "./favoritos.js";
 import { nuevaRacha } from "./racha.js";
 import { buscarUsuario } from "./displayUser.js";
 
@@ -34,6 +34,11 @@ onEvent('login', async (data) => {
   return user;
 })
 
+onEvent('eliminarFavorito', async (data) => {
+  const favs = await eliminarFavorito(data);
+  console.log(favs);
+  return favs;
+})
 
 /*
 onEvent("iniciarSesion", (data) => {

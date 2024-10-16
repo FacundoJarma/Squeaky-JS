@@ -4,7 +4,12 @@
     "id": "4a564e3d-9a34-407d-a878-1c7b0b3ff20f",
     "password": "rafa24",
     "email": "rafa@gmail.com",
-    "favoritos": []
+    "favoritos": [
+      "variables-const-let-var",
+      "tipos-de-datos",
+      "fundamentos-de-js",
+      "if-elseif-como-ternarias"
+    ]
   },
   {
     "username": "Rafa",
