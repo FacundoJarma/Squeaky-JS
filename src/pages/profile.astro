@@ -1,5 +1,6 @@
 ---
 import Layout from "../layout/layout.astro";
+import Racha from "../components/Racha.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -7,33 +8,38 @@ import { Icon } from "astro-icon/components";
   <div id="perfil">
     <div class="profile">
       <div class="foto"></div>
-      <h1 class="title">Nombre de ususrio</h1>
+      <h1 class="title" id="usernameLabel">Cargando...</h1>
       <textarea placeholder="Descripcion" class="desc"></textarea>
     </div>
     <div class="tu">
       <div class="profile2">
         <h2 class= "font-sans font-bold text-2xl text-white mb-4">Tus Datos</h2>
-        <div class="edit">
+        <button class="edit" id="edit">
           <Icon name="lapiz" width={20} height={20} />
-        </div>
+        </button>
         
         <h2>Nombre y Apellido</h2>
-        <input type="text">
+        <input type="text" id="nombreApellidoInput" disabled>
+
         <h2>Correo Electronico</h2>
-        <input type="text" id="gmail">
+        <input type="text" id="gmail" disabled>
+        
         <h2>Contraseña</h2>
-        <input type="password">
-        <h2>Fecha de  Naciimiento</h2>
-        <input type="date" id="dateInput">
+        <input type="password" disabled>
+
+        <h2>Fecha de  Nacimiento</h2>
+        <input type="date" id="dateInput" disabled>
+
       </div>
-      <div class="racha">
-        <input type="range">
+      <div class="racha -z-10">
+        <h2 class="font-sans font-bold text-2xl text-white my-4 ml-4">Racha por conectividad</h2>
+        <Racha />
       </div>
     </div>
   </div>
   <style>
     .title {
-      font-size: 20px;
+      font-size: 36px;
       font-weight: bold;
     }
     .edit {
@@ -59,13 +65,9 @@ import { Icon } from "astro-icon/components";
     }
     .racha {
       background-color: #23262F;
-      color: rgb(163, 163, 163);
-      text-align: center;
       width: 45em;
-      height: 6.9em;
-      align-text: center;
-      text-align: center;
-      font-family: urbanist;
+      height: 10.7em;
+
     }
 
     #perfil {
@@ -82,7 +84,7 @@ import { Icon } from "astro-icon/components";
       gap: 0.4em;
       width: 45em;
       /* height: 23em; */
-      padding: 3em;
+      padding: 1em;
       color: black;
       margin-top: 3em;
       
@@ -150,36 +152,24 @@ import { Icon } from "astro-icon/components";
     
   </style>
   <script>
-    const dateInput = document.getElementById('dateInput');
-    const nombre = document.getElementById("name");
-    const usuario = localStorage.getItem("users");
-    const apellido = document.getElementById("apellido");
-    const gmail = document.getElementById("gmail");
-
-    const name = localStorage.getItem("name")
-    const email = localStorage.getItem("email");
-
-  nombre.value = name;
-/** 
-    if(!nombre.value == undefined) {
-        nombre.value = usuario.name;
-    } else {
-      nombre.placeholder = "Nombre";
-    };  
-*/
-    gmail.value = email;
-    dateInput.addEventListener('input', function(e) {
-        let value = e.target.value;
-        
-        value = value.replace(/\D/g, '');  // Eliminar todo lo que no sea número
-        if (value.length >= 2) {
-            value = value.slice(0, 2) + '/' + value.slice(2);  // Insertar la primera barra
-        }
-        if (value.length >= 5) {
-            value = value.slice(0, 5) + '/' + value.slice(5);  // Insertar la segunda barra
-        }
-        e.target.value = value;
+    const $edit = document.getElementById("edit") as HTMLButtonElement;
+    $edit.addEventListener("click", () => {
+      const $inputs = document.querySelectorAll("input") as NodeListOf<HTMLInputElement>;
+      $inputs.forEach(($input) => {
+        $input.disabled = !$input.disabled;
+      });
     });
-</script>
+
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+    
+    const $usernameLabel = document.getElementById("usernameLabel") as HTMLHeadingElement;
+    $usernameLabel.innerHTML = userInfo?.username
+    
+    const $nombreApellidoInput = document.getElementById("nombreApellidoInput") as HTMLInputElement;
+    $nombreApellidoInput.value = userInfo?.name ? userInfo?.name : "";
+
+    const $gmail = document.getElementById("gmail") as HTMLInputElement;
+    $gmail.value = userInfo?.email ? userInfo?.email : "";
+  </script>
 
 </Layout>

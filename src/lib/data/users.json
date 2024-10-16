@@ -25,6 +25,10 @@
     "id": "fadd446a-12ca-4b58-8475-d2b8a09f9953",
     "password": "facu1212",
     "email": "facundojarma@gmail.com",
-    "favoritos": []
+    "favoritos": [
+      "variables-const-let-var",
+      "tipos-de-datos",
+      "mostrando-informacion-por-pantalla"
+    ]
   }
 ]
