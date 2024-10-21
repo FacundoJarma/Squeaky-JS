@@ -7,8 +7,8 @@ import { Icon } from "astro-icon/components";
   class="z-10 w-[35em] bg-black/70 h-[90vh] rounded-t-2xl px-16 py-16"
 >
   <div class="flex flex-col gap-7 mt-3">
-    <h1 class="text-4xl text-white font-bold p-1 mt-1em pl-5">
-      Iniciar sesión
+    <h1 class="text-4xl text-white font-bold p-1 mt-1em pl-5 font-[inter]">
+      Inicia sesión
     </h1>
     <div class="flex flex-col gap-5">
       <input
@@ -22,7 +22,7 @@ import { Icon } from "astro-icon/components";
           type="password"
           id="password"
           placeholder="Contraseña"
-          class="w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
+          class="w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6] font-[inter]"
         />
         <div id="togglePassword" class="eye-icon">
           <Icon name="eyeOff" height={24} width={24} />
@@ -31,19 +31,16 @@ import { Icon } from "astro-icon/components";
 
       <input
         type="submit"
-        value="Iniciar Sesion"
-        class="text-2xl h-12 w-full bg-[#FFB800] text-black font-bold rounded-lg hover:cursor-pointer hover:scale-[102%] duration-100"
+        value="Siguiente"
+        class="text-2xl h-12 w-full bg-[#FFB800] text-black font-bold rounded-lg hover:cursor-pointer hover:scale-[102%] duration-100 font-[inter]"
       />
     </div>
   </div>
   <div class="flex flex-col gap-0.5">
-    <span class="block text-center text-gray-300 mt-10 text-xl">
-      ¿Has olvidado tu contraseña?
-    </span>
-    <span class="block text-center text-gray-300 mt-6 text-xl"
-      >No tienes cuenta de Squeaky? <a
+    <span class="block text-center text-gray-300 mt-6 text-xl font-[inter]"
+      >¿No tienes cuenta de Squeaky? <a
         href="/register"
-        class="hover:text-blue-600 duration-300">Crear cuenta</a
+        class="text-[#FFDA7A] duration-300">Crear cuenta</a
       ></span
     >
   </div>
