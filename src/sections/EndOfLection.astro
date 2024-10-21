@@ -2,22 +2,27 @@
 const { exercises } = Astro.props;
 ---
 
-<section class="border-t-2 border-[#353841] mt-6 py-4">
-  <div class="flex justify-center px-6">
-    {
-      exercises ? (
-        <a
-          id="goToExercises"
-          href={`/ejercicios/${exercises[0].id}`}
-          class="w-56 h-16 bg-violet-800 rounded-xl text-xl grid place-content-center"
-        >
-          Ir a ejercicios
-        </a>
-      ) : (
-        <span class="w-56 h-16 bg-neutral-800 px-4 rounded-xl text-xl grid place-content-center text-center">
-          Esta leccion aun no tiene ejercicios
-        </span>
-      )
+<button
+  data-url={exercises ? "/ejercicios/" + exercises[0].id : "http://localhost:4321/lecciones"}
+  id="goToExercise"
+  class="fixed bottom-6 right-8 w-36 h-14 bg-[#33353B]/80 p-2 rounded-lg text-xl font-bold duration-200"
+>
+  Continuar
+</button>
+
+<style>
+  .active {
+    background: #99a125 !important;
+  }
+</style>
+
+<script>
+  window.onscroll = function () {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      document.getElementById("goToExercise").classList.add("active");
+      document.getElementById("goToExercise")?.addEventListener("click", () => {
+        location.href = `${document.getElementById("goToExercise").dataset.url}`
+      })
     }
-  </div>
-</section>
+  };
+</script>

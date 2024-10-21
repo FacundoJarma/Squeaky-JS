@@ -5,45 +5,42 @@ import { Icon } from "astro-icon/components";
 <form
   action=""
   id="registerForm"
-  class="z-10 w-[32em] bg-black/70 h-[90vh] rounded-t-2xl px-11 py-16"
+  class="z-10 w-[35em] bg-black/70 h-[90vh] rounded-t-2xl px-16 py-16"
 >
-  <div class="flex flex-col gap-3 mb-7">
-    <h1 class="text-4xl text-white font-bold p-1">Crear cuenta</h1>
-    <div class="flex flex-col mt-12">
-      <input
-        type="text"
-        id="username"
-        placeholder="Nombre de usuario"
-        class="text-lg w-full h-14 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
-      />
-    </div>
-    <input
-      type="text"
-      id="email"
-      placeholder="Email o numero de usuario"
-      class="text-lg w-full h-14 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
-    />
+  <div class="flex flex-col gap-5 mb-7">
+    <h1 class="text-4xl text-white font-bold ml-4 font-[inter] mb-6">
+      Crear cuenta
+    </h1>
     <div class="password-container">
       <input
         type="password"
         id="password"
         placeholder="Contraseña"
-        class="text-lg w-full h-14 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6]"
+        class="mb-4 text-xl w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6] font-[inter]"
       />
       <div id="togglePassword" class="eye-icon">
         <Icon name="eyeOff" height={24} width={24} />
       </div>
     </div>
+    <div class="password-container">
+      <input
+        type="password"
+        id="passwordAgain"
+        placeholder="Repita su contraseña"
+        class="text-xl w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6] font-[inter]"
+      />
+    </div>
     <input
       type="submit"
-      value="Continuar"
-      class="text-lg h-12 mt-4 w-full bg-[#FFB800] text-black font-bold rounded-lg hover:cursor-pointer hover:scale-[102%] duration-100"
+      value="Terminar"
+      class="text-2xl h-12 mt-4 w-full bg-[#FFB800] text-black font-bold rounded-lg hover:cursor-pointer hover:scale-[102%] duration-100 font-[inter]"
     />
   </div>
-  <span class="block text-center text-gray-300 mt-6 text-xl"
+
+  <span class="block text-center text-gray-300 mt-6 text-xl font-[inter]"
     >¿Ya tienes cuenta de Squeaky? <a
       href="/login"
-      class="hover:text-blue-600 duration-300">Inicia sesion</a
+      class="text-[#FFDA7A] duration-300">Inicia sesion</a
     ></span
   >
 </form>
@@ -60,15 +57,6 @@ import { Icon } from "astro-icon/components";
   .password-container {
     position: relative;
   }
-  input[type="password"],
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    padding-right: 40px; /* Espacio para el icono del ojo */
-    font-size: 1.5em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
 </style>
 
 <script>
@@ -77,35 +65,54 @@ import { Icon } from "astro-icon/components";
 
   const sendData = (user) => {
     postData("registrarUsuario", user, () => {
-      alert("Usuario registrado!");
+      Toastify({
+        text: "Usuario creado exitosamente!",
+        duration: 1000,
+        stopOnFocus: true,
+      }).showToast();
     });
   };
 
-  const $registerForm = document.getElementById(
-    "registerForm"
-  ) as HTMLFormElement;
+  const $registerForm = document.getElementById("registerForm") as HTMLFormElement;
 
   $registerForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const $username = document.getElementById("username") as HTMLInputElement;
-    const $email = document.getElementById("email") as HTMLInputElement;
     const $password = document.getElementById("password") as HTMLInputElement;
+    const $passwordAgain = document.getElementById("passwordAgain") as HTMLInputElement;
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get('username');
+    const email = params.get('email');
+    const date = params.get('date');
 
-    if(!$username.value || !$email.value || !$password.value) {
+    console.log(username, email, date);
+    if ($password.value !== $passwordAgain.value) {
       Toastify({
-          text: "No puedes enviar datos vacios!",
-          duration: 1000, // Duración de 2 segundos
-          stopOnFocus: true,
-          style: {
-            background: "red",}
-        }).showToast();
-        return;
+        text: "Las contrasenias no coinciden!",
+        duration: 1000, // Duración de 2 segundos
+        stopOnFocus: true,
+        style: {
+          background: "red",
+        },
+      }).showToast();
+      return;
+    }
+
+    if (!username || !email || !date || !$password.value) {
+      Toastify({
+        text: "No puedes enviar datos vacios!",
+        duration: 1000, // Duración de 2 segundos
+        stopOnFocus: true,
+        style: {
+          background: "red",
+        },
+      }).showToast();
+      return;
     }
 
     const user = {
-      username: $username.value,
-      email: $email.value,
+      username: username,
+      email: email,
       password: $password.value,
       favortios: {},
     };

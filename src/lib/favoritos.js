@@ -1,44 +1,69 @@
-import { onEvent, sendEvent, startServer } from "soquetic";
-import { writeFile, readFileSync, readFile } from "fs";
-import { join } from "path";
+import { promises as fs } from 'fs';
+import { join } from 'path';
 
 const pathJSON = join("./src/lib/data/users.json");
 
+export async function añadirFavorito(data) {
+    try {
+        const leido = await fs.readFile(pathJSON, 'utf-8');
+        let jsonData = JSON.parse(leido);
 
-export function añadirFavorito(data) {
-    readFile(pathJSON, 'utf-8', (err, leido) => {
-        if (err) {
-            console.log(err);
+        const usuario = jsonData.find(usuario => usuario.username === data.username);
+        if (!usuario) {
+            console.error('Usuario no encontrado');
             return;
         }
 
-        let jsonData = [];
-        try {
-            jsonData = JSON.parse(leido);
-        } catch (e) {
-            console.log('Error al parsear, ' + e);
+        const nuevosFavoritos = Array.isArray(data.favoritos) ? data.favoritos : [data.favoritos];
+
+        if (Array.isArray(usuario.favoritos)) {
+            usuario.favoritos = [...new Set([...usuario.favoritos, ...nuevosFavoritos])];
+        } else {
+            usuario.favoritos = nuevosFavoritos;
         }
 
-        let search = jsonData.filter(usuario => usuario.username.includes(data.username));
-        search[0]["favoritos"] = data.favoritos;
-        //Agregar el nuevo valor a JsonDara
-
-        if (search.length > 0) {
-            if (Array.isArray(search[0]["favoritos"])) {
-                search[0]["favoritos"] = [...new Set([...search[0]["favoritos"], ...data.favoritos])];
-            } else {
-                search[0]["favoritos"] = data.favoritos;
-            }
-
-
         const jsonString = JSON.stringify(jsonData, null, 2);
+        await fs.writeFile(pathJSON, jsonString, 'utf-8');
 
-        writeFile(pathJSON, jsonString, (err) => {
-            if (err) {
-                console.error('Error al escribir en el archivo favoritos', err);
-            } else {console.log('Favorito añadido correctamente')};
-        })
+        console.log('Favorito añadido correctamente');
+        return jsonData;
+    } catch (err) {
+        console.error('Error:', err);
     }
-    })
 }
 
+export async function eliminarFavorito(data) {
+    try {
+        const leido = await fs.readFile(pathJSON, 'utf-8');
+        let jsonData = JSON.parse(leido);
+
+        const usuario = jsonData.find(usuario => usuario.username === data.username);
+        if (!usuario) {
+            console.error('Usuario no encontrado');
+            return;
+        }
+
+        console.log('Favoritos actuales:', usuario.favoritos);
+        console.log('Favorito a eliminar:', data.favorito);
+
+        if (Array.isArray(usuario.favoritos)) {
+            const favoritoAEliminar = data.favorito.trim().toLowerCase();
+            usuario.favoritos = usuario.favoritos.filter(favorito =>
+                favorito.trim().toLowerCase() !== favoritoAEliminar
+            );
+
+            console.log('Favoritos después de eliminar:', usuario.favoritos);
+        } else {
+            console.error('No hay favoritos para eliminar');
+            return;
+        }
+
+        const jsonString = JSON.stringify(jsonData, null, 2);
+        await fs.writeFile(pathJSON, jsonString, 'utf-8');
+
+        console.log('Favorito eliminado correctamente');
+        return jsonData;
+    } catch (err) {
+        console.error('Error:', err);
+    }
+}

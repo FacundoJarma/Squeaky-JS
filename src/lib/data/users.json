@@ -4,38 +4,69 @@
     "id": "4a564e3d-9a34-407d-a878-1c7b0b3ff20f",
     "password": "rafa24",
     "email": "rafa@gmail.com",
-    "favoritos": {}
+    "favoritos": [
+      "variables-const-let-var",
+      "tipos-de-datos",
+      "fundamentos-de-js",
+      "if-elseif-como-ternarias"
+    ],
+    "racha": 0
   },
   {
     "username": "Rafa",
     "id": "7b1952a0-4617-411f-a8d8-5864c23c0c23",
     "password": "rafa",
     "email": "rafa@gmail.com",
-    "favoritos": {}
+    "favoritos": [],
+    "racha": 0
   },
   {
     "username": "dad",
     "id": "4fa12ee5-8a45-4ef0-8981-569d0ab545c3",
     "password": "adad",
     "email": "adad",
-    "favoritos": {}
+    "favoritos": [],
+    "racha": 0
   },
   {
     "username": "facundo jarma",
     "id": "fadd446a-12ca-4b58-8475-d2b8a09f9953",
     "password": "facu1212",
+    "email": "facundojarma@gmail.com",
+    "favoritos": [
+      "tipos-de-datos",
+      "variables-const-let-var"
+    ],
+    "racha": 0
+  },
+  {
+    "username": "Facundo Jarma",
+    "id": "473e06c5-949b-4f20-a070-2388f66eed96",
+    "password": "facu4200",
     "email": "facundojarma@gmail.com"
   },
   {
-    "username": "",
-    "id": "6975464e-fd4d-4472-b5a9-80075a65c87f",
-    "password": "",
-    "email": ""
+    "username": "nicoata",
+    "id": "a1ebacb4-1a15-4043-a390-33a8bf7cf501",
+    "password": "facuselacome",
+    "email": "xdxd@lolbeans.com"
   },
   {
-    "username": "Santiago Rehmann",
-    "id": "0f0c421b-2f8b-4a29-8d8f-2c0b9782939b",
-    "password": "santi123martin",
-    "email": "49379041@est.ort.edu.ar"
+    "username": "facundo jarma",
+    "id": "ef38661a-37e5-49e9-8774-e87ac3af5a9d",
+    "password": {},
+    "email": "facundojarma@gmail.co"
+  },
+  {
+    "username": "facundo jarma",
+    "id": "d0d1a679-46a8-4ac1-bd22-cd78b0f82083",
+    "password": "facu4200",
+    "email": "facundojarma@gmail.co"
+  },
+  {
+    "username": "nicolas atalah",
+    "id": "09bf24b8-a2cc-4ae1-840f-4fe9fa650b8a",
+    "password": "nicooo",
+    "email": "nicoatalah@gmail.com"
   }
 ]

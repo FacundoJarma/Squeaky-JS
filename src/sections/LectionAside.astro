@@ -11,23 +11,28 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
     Todas las Lecciones
   </h2>
   <div class="h-[80vh]">
-    <ul class="flex flex-col gap-2 ml-3" id="lectionsAside" data-open="false">
-      {
-        lecciones.map(({ data: leccion, slug }, index) => (
-          <li>
-            <a
-              href={"/lecciones/" + slug}
-              class="text-gray-300 text-sm hover:text-white duration-300"
-            >
-              {leccion.title}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="h-3/4">
+      <ul
+        class="flex flex-col gap-2 ml-3 h-[90%] overflow-auto"
+        id="lectionsAside"
+        data-open="false"
+      >
+        {
+          lecciones.map(({ data: leccion, slug }, index) => (
+            <li>
+              <a
+                href={"/lecciones/" + slug}
+                class="text-gray-300 text-sm hover:text-white duration-300"
+              >
+                {leccion.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <img src="http://localhost:4321/mascota.png" alt="La mascota de squeaky" class="h-auto w-full" style="transform: rotateY(180deg);"/>
   </div>
-
-  <LectionsAsideButtons />
 </aside>
 
 <style>

@@ -1,0 +1,95 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<form
+  action=""
+  id="registerForm"
+  class="z-10 w-[35em] bg-black/70 h-[90vh] rounded-t-2xl px-16 py-16"
+>
+  <div class="flex flex-col gap-5 mb-7">
+    <h1 class="text-4xl text-white font-bold ml-4 font-[inter]">Crear cuenta</h1>
+    <div class="flex flex-col mt-12">
+      <input
+        type="text"
+        id="username"
+        placeholder="Nombre de usuario"
+        class="text-xl w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6] font-[inter]"
+      />
+    </div>
+    <input
+      type="email"
+      id="email"
+      placeholder="Email o numero de usuario"
+      class="text-xl w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6] font-[inter]"
+    />
+    <div class="grid grid-cols-3 h-16 w-full border border-[#858585] rounded-lg bg-[#181818]/80">
+      <input type="text" id="mes"  class="h-full outline-none  border-r border-[#858585] rounded-l-lg px-4 font-[inter] text-xl bg-[#181818]/80" placeholder="Mes">
+      <input type="text" id="dia" class="h-full outline-none  border-r border-[#858585] px-4 font-[inter] text-xl bg-[#181818]/80" placeholder="Dia">
+      <input type="text" id="año" class="h-full outline-none border-none rounded-r-lg px-4 font-[inter] text-xl bg-[#181818]/80" placeholder="Año">
+    </div>
+    <input
+      type="submit"
+      value="Siguiente"
+      class="text-2xl h-12 mt-4 w-full bg-[#FFB800] text-black font-bold rounded-lg hover:cursor-pointer hover:scale-[102%] duration-100 font-[inter]"
+    />
+  </div>
+  <span class="block text-center text-gray-300 mt-6 text-xl font-[inter]"
+    >¿Ya tienes cuenta de Squeaky? <a
+      href="/login"
+      class="text-[#FFDA7A] duration-300">Inicia sesion</a
+    ></span
+  >
+</form>
+
+<style>
+  .eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .password-container {
+    position: relative;
+  }
+</style>
+
+<script>
+  import { postData } from "../lib/socket.js";
+  import Toastify from "toastify-js";
+
+  const sendData = (user) => {
+    postData("registrarUsuario", user, () => {
+      alert("Usuario registrado!");
+    });
+  };
+
+  const $registerForm = document.getElementById(
+    "registerForm"
+  ) as HTMLFormElement;
+
+  $registerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const $username = document.getElementById("username") as HTMLInputElement;
+    const $email = document.getElementById("email") as HTMLInputElement;
+    const $day = document.getElementById("dia") as HTMLInputElement;
+    const $month = document.getElementById("mes") as HTMLInputElement;
+    const $year = document.getElementById("año") as HTMLInputElement;
+    const date = $year.value + "-" + $month.value + "-" + $day.value;
+    if(!$username.value || !$email.value || !date) {
+      Toastify({
+          text: "No puedes enviar datos vacios!",
+          duration: 1000, // Duración de 2 segundos
+          stopOnFocus: true,
+          style: {
+            background: "red",}
+        }).showToast();
+        return;
+    }
+    window.location.href = "/register2?username=" + $username.value + "&email=" + $email.value + "&date=" + date;
+  });
+
+</script>
