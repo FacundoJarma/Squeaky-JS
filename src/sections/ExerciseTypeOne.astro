@@ -6,30 +6,28 @@ const { body, head, exercicesInThisLesson, id } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
-<main class="px-12">
+<main class="px-12 h-full w-full">
+  <img src="/FONDO (1).png" class="absolute -z-10 flex left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 max-h-[100vh]">
   <NextExercise
     actualIndexOfEx={actualIndexOfEx}
     exercicesInThisLesson={exercicesInThisLesson}
   />
 
-  <header class="flex gap-4 items-center">
+  <header class="flex gap-[8em] justify-center mt-14">
     <figure
-      class="w-32 aspect-square bg-gray-600 rounded-full grid place-items-center"
+      class="w-[14em] h-[14em] aspect-square bg-gray-600  grid place-items-center"
     >
       Logo
     </figure>
-    <div class="flex flex-col gap-2">
-      <a
-        id="volverALeccion"
-        href={`/lecciones/${head.lection.slug}`}
-        class="hover:underline underline-offset-2">Volver a ver la leccion</a
-      >
+
+    <div class="flex flex-col gap-2 bg-[#33353B] h-full p-6 w-[40em]">
       <h1 class="text-5xl font-bold">{body.question}</h1>
       {body.context && <p id="context" class="text-lg" data-text={body.context} />}
     </div>
+
   </header>
-  <div class="mt-12 w-full px-12">
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="w-full px-12 flex justify-center mt-[6em]">
+    <ul class="grid gap-6 items-center justify-center ">
       {
         body.options.map((opt) => (
           <ButtonOneOption isCorrect={opt.correct} text={opt.text} />
