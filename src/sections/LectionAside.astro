@@ -6,8 +6,8 @@ let lecciones = await getCollection("lecciones");
 lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 ---
 
-<aside class="sticky top-0 h-screen bg-[#23262f] p-4">
-  <h2 class="text-lg text-white font-bold" id="openLections">
+<aside class="sticky top-0 h-screen bg-[#23262f] p-4 w-72">
+  <h2 class="text-lg text-white font-bold flex justify-center" id="openLections">
     Todas las Lecciones
   </h2>
   <div class="h-[80vh]">
@@ -31,10 +31,9 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
         }
       </ul>
     </div>
-    <img src="http://localhost:4321/mascota.png" alt="La mascota de squeaky" class="h-auto w-full" style="transform: rotateY(180deg);"/>
+    <img src="http://localhost:4321/mascota.png" alt="La mascota de squeaky" class="h-auto w-full mb-10" style="transform: rotateY(180deg);"/>
   </div>
 </aside>
-
 <style>
   #lectionsAside {
     overflow-y: hidden;

@@ -14,23 +14,18 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     exercicesInThisLesson={exercicesInThisLesson}
   />
 
-  <header class="flex gap-4 items-center">
-    <figure
-      class="w-32 aspect-square bg-gray-600 rounded-full grid place-items-center"
-    >
-      Logo
-    </figure>
-    <div class="flex flex-col gap-2">
-      <a
-        id="volverALeccion"
-        href={`/lecciones/${head.lection.slug}`}
-        class="hover:underline underline-offset-2">Volver a ver la leccion</a
-      >
-      <h1 class="text-5xl font-bold">{body.question}</h1>
+  <header class="flex gap-[8em] justify-center mt-[1em] flex-row-reverse items-center mr-[11em] ">
+    <div class="flex items-center flex-row-reverse gap-[7em] ml-[10em] mt-24 ">
+      <img src="http://localhost:4321/mascota.png" class="w-[11em] h-[10em]">
+      <div class="bg-[#33353B] flex items-center p-6 w-[36em] h-[6em] rounded-l-xl border-solid border-2 border-[#B4B4B4]">
+        <h1 class="text-3xl font-normal flex text-center font-[lexend] -mt-1 ml-12">
+          {body.question}
+        </h1>
+      </div>
     </div>
   </header>
   <div class="mt-12 w-full px-12">
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <ul class="mx-auto flex gap-6 w-fit items-center">
       {
         body.options.map((opt) => (
           <ButtonTwoOptions isCorrect={opt.correct} text={opt.text} />
