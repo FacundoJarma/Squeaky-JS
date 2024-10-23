@@ -17,7 +17,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   <header class="flex gap-[8em] justify-center mt-14 flex-row-reverse items-center">
     <img src="http://localhost:4321/mascota.png" class="w-[10em] h-[10em]">
 
-    <div class="flex flex-col gap-2 bg-[#33353B] p-6 w-[36em] h-[6em] rounded-l-xl border-solid border-2 border-[#B4B4B4]">
+    <div class="flex flex-col gap-2 bg-[#33353B] p-6 max-w-full max-h-full rounded-l-xl border-solid border-2 border-[#B4B4B4]">
       <h1 class="text-3xl font-normal flex text-center font-[lexend] -mt-3">{body.question}</h1>
       {body.context && <p id="context" class="text-lg" data-text={body.context} />}
     </div>
