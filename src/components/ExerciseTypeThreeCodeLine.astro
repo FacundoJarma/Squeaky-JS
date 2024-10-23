@@ -3,8 +3,8 @@ import { Icon } from "astro-icon/components";
 
 const { bloque } = Astro.props;
 ---
-<div class="flex flex-col">
-
+<div class="fleex flex-col">
+  
   <li
     data-order={bloque.order}
     class="dragable-item bg-[#17181c] flex items-center gap-1 w-fit px-4 py-1 border-2 border-gray-600 rounded-lg text-lg font-semibold"
@@ -12,6 +12,7 @@ const { bloque } = Astro.props;
     <Icon name="drag" height={24} width={24} className="-ml-2" />
     <span class="bloque" data-text={bloque.code}></span>
   </li>
+
 </div>
 
 <script>
