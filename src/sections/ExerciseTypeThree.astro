@@ -2,6 +2,7 @@
 import ExerciseTypeThreeCodeLine from "../components/ExerciseTypeThreeCodeLine.astro";
 import ExerciceTypeThreeHole from "../components/ExerciceTypeThreeHole.astro";
 import NextExercise from "../components/NextExercise.astro";
+import { Icon } from "astro-icon/components";
 
 
 const { body, head, exercicesInThisLesson, id, indexOfLesson } = Astro.props;
@@ -9,22 +10,19 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
 <div class="flex gap-1 w-full h-full">
-  <main class="flex flex-col w-full h-full justify-center px-12">
-    <div class="w-full flex flex-col gap-">
-      <a
-        id="volverALeccion"
-        href={`/lecciones/${head.lection.slug}`}
-        class="hover:underline underline-offset-2">Volver a ver la leccion</a
-      >
-
-      <h1 class="text-5xl font-bold">
+  
+  <img src="http://localhost:4321/fondoej3.png" class="absoulute w-full h-[37em]">
+  <main class="flex flex-col w-full h-full justify-center px-12 absolute">
+    <div class="w-full flex flex-col mb-[16em]">
+      <h1 class="text-5xl font-bold font-[lexand] text-[60px]">
         {head.title}
       </h1>
-      <span class="max-w-xl mt-2 ml-2 text-gray-200">
+      <span class="max-w-xl mt-2 ml-2 text-gray-200 font-[urbanistic] font-normal">
         {body.description}
       </span>
     </div>
-    <ul id="dragable" class="mt-12 flex gap-2">
+    <img src="https://klocalhost:4321/bellota.png" class="absolute w-[20em] h-[20em] ml-20">
+    <ul id="dragable" class="mb-[6em] flex gap-2">
       {
         body.bloques.map((bloque) => {
           return <ExerciseTypeThreeCodeLine bloque={bloque} />;
@@ -32,31 +30,55 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
       }
     </ul>
   </main>
-  <aside class="h-full w-2/5 bg-gray-800">
-    <ul id="dropZones" class="w-full p-4 flex flex-col">
+  <aside class="h-[30em] w-[25em] bg-gray-800 mr-10 mt-10 absolute flex ml-[50em]">
+    <ul id="dropZones" class="w-full p-4 flex flex-col items-center -mt-4">
+        <div class="w-[25em] bg-gray-600 p-2 px-6 relative h-10">
+          <div class="window">
+            <div class="header">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>  
       {
         body.bloques.map(() => {
           return <ExerciceTypeThreeHole />;
         })
       }
     </ul>
-    <button
-      id="checkExercice"
-      class="hidden w-32 h-11 bg-green-800 rounded-xl text-xl absolute bottom-12 right-[20em] place-content-center hover:scale-105 duration-200"
-      >Enviar</button
-    >
-    
-    <NextExercise
-    indexOfLesson={indexOfLesson}
-    actualIndexOfEx={actualIndexOfEx}
-    exercicesInThisLesson={exercicesInThisLesson}
-  />
   </aside>
+  <button
+  id="checkExercice"
+  class="hidden w-[10em] h-11 bg-[#5E5E11] rounded-bl-none text-xl absolute bottom-12 right-[3em] place-content-center hover:scale-105 duration-200 rounded-l-2xl font-[lexand] font-bold"
+  >Siguiente</button
+  >
+  
+  <NextExercise
+  indexOfLesson={indexOfLesson}
+  actualIndexOfEx={actualIndexOfEx}
+  exercicesInThisLesson={exercicesInThisLesson}
+  />
 </div>
 
 <style>
   button.active {
     display: grid !important;
+  }
+  .dot {
+    
+    height: 15px;
+    width: 15px;
+    background: #ed594a;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 7px;
+  }
+
+  .dot:nth-child(2) {
+    background: #fdd800;
+  }
+
+  .dot:nth-child(3) {
+    background: #5ac05a;
   }
 </style>
 
