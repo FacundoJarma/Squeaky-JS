@@ -42,6 +42,7 @@ import { Icon } from "astro-icon/components";
 </style>
 
 <script>
+  import Toastify from "toastify-js";
   document.addEventListener("click", (event) => {
     const $button = event.target.closest("#dropdownMenuButton");
     if (!$button) return;
@@ -69,6 +70,7 @@ import { Icon } from "astro-icon/components";
 
   $logOut.addEventListener("click", () => {
     localStorage.removeItem("user");
+    window.location.href = "/login";
   })
 
 </script>

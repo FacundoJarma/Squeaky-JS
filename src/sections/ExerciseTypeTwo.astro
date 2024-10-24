@@ -6,21 +6,30 @@ const { body, head, exercicesInThisLesson, id, indexOfLesson } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
-<main class="px-12  h-full w-full">
-  <img src="/fondoej1.png" class="absolute -z-10 flex left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 max-h-[100vh]">
+<main class="px-12 h-full w-full">
+  <img
+    src="/fondoej1.png"
+    class="absolute -z-10 flex left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 max-h-[100vh]"
+  />
   <NextExercise
     indexOfLesson={indexOfLesson}
     actualIndexOfEx={actualIndexOfEx}
     exercicesInThisLesson={exercicesInThisLesson}
   />
 
-  <header class="flex gap-[8em] justify-center mt-[1em] flex-row-reverse items-center mr-[11em] ">
-    <div class="flex items-center flex-row-reverse gap-[7em] ml-[10em] mt-24 ">
-      <img src="http://localhost:4321/mascota.png" class="w-[11em] h-[10em]">
-      <div class="bg-[#33353B] flex items-center text-center p-6 max-w-full max-h-full rounded-l-xl border-solid border-2 border-[#B4B4B4]">
-        <h1 class="text-3xl font-normal flex text-center font-[lexend] -mt-1 ml-1 px-2 py-1">
+  <header
+    class="flex gap-[8em] justify-center mt-[1em] flex-row-reverse items-center mr-[11em]"
+  >
+    <div class="flex items-center flex-row-reverse gap-[7em] ml-[10em] mt-24">
+      <img src="http://localhost:4321/mascota.png" class="w-[11em] h-[10em]" />
+      <div
+        class="bg-[#33353B] flex items-center text-center p-6 max-w-full max-h-full rounded-l-xl border-solid border-2 border-[#B4B4B4]"
+      >
+        <h1
+          class="text-3xl font-normal flex text-center font-[lexend] -mt-1 ml-1 px-2 py-1"
+        >
           {body.question}
-        </h1> 
+        </h1>
       </div>
     </div>
   </header>
@@ -36,6 +45,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 </main>
 <script>
   import { ExerciceOption } from "../lib/clases";
+  import Toastify from "toastify-js";
 
   const $buttons = document.querySelectorAll(
     ".buttonOptionMultiple"
@@ -68,9 +78,8 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 
   $buttons.forEach(($button) => {
     añadirTextoComoHTML($button);
-  })
+  });
   buttons.forEach((button) => {
-
     button.getElement().addEventListener("click", () => {
       if (button.isAValidOption()) {
         cantidadDeCorrectas--;
@@ -82,6 +91,11 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
             spread: 100,
             origin: { y: 0.6 },
           });
+          Toastify({
+            text: "Ejercico resuelto!",
+            duration: 2000, // Duración de 2 segundos
+            stopOnFocus: true,
+          }).showToast();
           activeGoNext();
           disabledButtons();
         }

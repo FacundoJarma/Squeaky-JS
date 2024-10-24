@@ -82,5 +82,15 @@
     "id": "b5398398-cfbc-4f16-a1ac-8ddec8a04165",
     "password": "santi9041",
     "email": "49379041@est.ort.edu.ar"
+  },
+  {
+    "username": "patriurda",
+    "id": "eb6debdb-1ab4-4c02-814b-0d867de87413",
+    "password": "123456",
+    "email": "patriurda@gmail.com",
+    "favoritos": [
+      "variables-const-let-var",
+      "tipos-de-datos"
+    ]
   }
 ]
