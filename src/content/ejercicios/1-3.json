@@ -1,0 +1,24 @@
+{
+  "head": {
+    "title": "¿Para qué sirve JavaScript?",
+    "lection": "fundamentos-de-js",
+    "type": "Unica Opcion"
+  },
+  "body": {
+    "question": "¿Para qué se utiliza principalmente JavaScript en la web?",
+    "options": [
+      {
+        "text": "Para hacer que las páginas web sean interactivas.",
+        "correct": true
+      },
+      {
+        "text": "Para diseñar el estilo visual de una página web.",
+        "correct": false
+      },
+      {
+        "text": "Para almacenar datos de usuario en la nube.",
+        "correct": false
+      }
+    ]
+  }
+}

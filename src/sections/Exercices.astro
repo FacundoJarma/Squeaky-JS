@@ -29,7 +29,7 @@ const filters = ["Unica Opcion", "Multiple Opcion", "Arrastra"];
           lesson={lessons.find((l) => l.slug === lessonSlug)?.data.title}
           lessonUrl={lessonSlug}
           exercices={exercises}
-          classList={`col-span-${cols}`}
+          cols={cols}
         />
       );
     })
@@ -38,7 +38,7 @@ const filters = ["Unica Opcion", "Multiple Opcion", "Arrastra"];
 
 <style>
   main {
-    grid-template-rows: repeat(3, 217px);
+    grid-template-rows: repeat(4, 217px);
   }
 </style>
 

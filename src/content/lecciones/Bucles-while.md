@@ -3,6 +3,8 @@
     difficult: Medio
     classList: col-span-2 row-span-2
     index: 7
+    exerciceCols: 4
+    exercises: ["7-1", "7-2"]
 ---
 
 ## ¿Qué son los bucles?
