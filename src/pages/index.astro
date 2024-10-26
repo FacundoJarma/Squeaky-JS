@@ -4,7 +4,6 @@ import LayoutOnlyMain from "../layout/layoutOnlyMain.astro";
 import { getEntry } from "astro:content";
 import InicioExerciceSnippet from "../sections/InicioExerciceSnippet.astro";
 
-
 const lection = await getEntry(
   "lecciones",
   "bucles-diferenciar-cuando-usarlos"
@@ -17,12 +16,12 @@ import { Icon } from "astro-icon/components";
   <main>
     <header class="max-w-6xl mx-auto flex justify-center">
       <section class="flex flex-col items-center max-w-3xl mt-16 mb-36">
-        <img src="fondoinicio.png" class="fondo">
+        <img src="fondoinicio.png" class="fondo" />
         <h1 class="text-6xl font-bold my-6 text-center font-[inter]">
           Te presentamos <span class="text-amber-500">SqueakyJS. </span>
           Aprende a programar JavaScript
         </h1>
-    </section>
+      </section>
     </header>
     <section class="max-w-6xl mx-auto flex justify-around pb-12">
       <ul class="flex flex-col gap-4" id="listOfButtons">
@@ -32,8 +31,8 @@ import { Icon } from "astro-icon/components";
           data-selected="true"
         >
           <h3 class="text-xl font-bold text-white">Aprende.</h3>
-          <p class="text-xs text-gray-100 font-[inter]">
-            SqueakyJS es tu lugar seguro para aprender mas acerca de JavaScript.
+          <p class="text-xs text-[#A6A6A6] font-[inter]">
+            SqueakyJS es tu lugar seguro para aprender más acerca de JavaScript.
             Empieza desde cero y aprende todo lo necesario
           </p>
         </li>
@@ -43,20 +42,20 @@ import { Icon } from "astro-icon/components";
           data-selected="false"
         >
           <h3 class="text-xl font-bold text-white font-[inter]">Ejercita.</h3>
-          <p class="text-xs text-gray-100 font-[inter]">
-            Podras practicar sobre cada una de las lecciones que leiste ya que
-            ceuntan con muchos ejercicos autocorrectivos.En SqueakyJS
-            equeivocarse no es un problema
+          <p class="text-xs text-[#A6A6A6] font-[inter]">
+            Podrás practicar sobre cada una de las lecciones que leiste, ya que,
+            cuentan con muchos ejercicios autocorrectivos. En SqueakyJS
+            equivocarse no es un problema.
           </p>
         </li>
         <li
           class="w-72 h-36 bg-gray-700 p-4 rounded-lg hover:scale-105 hover:rotate-1 duration-200"
         >
           <h3 class="text-xl font-bold text-white font-[inter]">Codea.</h3>
-          <p class="text-xs text-gray-100 font-[inter]">
-            A programar se aprende programando, SqueakyJS brinda la opcion de
-            que resuelvas unos problemas interactivos, donde simulamos un DOM
-            que tendras que manipular!
+          <p class="text-xs text-[#A6A6A6] font-[inter]">
+            A programar se aprende en la práctica, por eso, SqueakyJS brinda la
+            opción de que resulevas unos problemas interactivos, donde simulamos
+            un DOM que tendrás que manipular.
           </p>
         </li>
       </ul>
@@ -66,7 +65,7 @@ import { Icon } from "astro-icon/components";
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
-          </div>  
+          </div>
           <div id="content">
             <div id="lectionSnippet" class="snippet">
               <h6 class="font-bold font-[inter]">
@@ -85,16 +84,15 @@ import { Icon } from "astro-icon/components";
   </main>
 </LayoutOnlyMain>
 
-
 <style>
-  *{
-    font-family: 'Inter', sans-serif;
+  * {
+    font-family: "Inter", sans-serif;
   }
-.fondo {
-  position: absolute;
-  margin-top: -5em;
-  z-index: -1;
-}
+  .fondo {
+    position: absolute;
+    margin-top: -5em;
+    z-index: -1;
+  }
 </style>
 <script>
   const $buttons = document.querySelectorAll(
@@ -127,6 +125,10 @@ import { Icon } from "astro-icon/components";
     background-color: #a16207 !important;
   }
 
+  li[data-selected="true"] > p {
+    color: white !important;
+  }
+
   .header {
     width: 100%;
     padding: 15px;
@@ -146,7 +148,6 @@ import { Icon } from "astro-icon/components";
   }
 
   .dot {
-    
     height: 15px;
     width: 15px;
     background: #ed594a;
