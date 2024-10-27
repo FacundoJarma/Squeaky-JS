@@ -2,12 +2,16 @@
 import BackgroundImage from "../components/BackgroundImage.astro";
 import LayoutLoginRegister from "../layout/LayoutLoginRegister.astro";
 import LoginForm from "../sections/LoginForm.astro";
+import MascotaInteractiva from "../components/MascotaInteractiva.astro";
 ---
 
 <LayoutLoginRegister title="Squeaky JS | Inicio">
   <main class="relative h-screen w-screen flex justify-center items-end">
     <BackgroundImage />
     <LoginForm />
+    <MascotaInteractiva
+      classList="h-64 w-64 absolute bottom-6 right-12"
+      consejo="No podras entrar sin una cuenta!"
+    />
   </main>
-
 </LayoutLoginRegister>
