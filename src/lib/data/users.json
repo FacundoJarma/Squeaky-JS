@@ -10,7 +10,8 @@
       "fundamentos-de-js",
       "if-elseif-como-ternarias"
     ],
-    "racha": 0
+    "racha": 0,
+    "leccionesHechas": []
   },
   {
     "username": "Rafa",
@@ -18,7 +19,8 @@
     "password": "rafa",
     "email": "rafa@gmail.com",
     "favoritos": [],
-    "racha": 0
+    "racha": 0,
+    "leccionesHechas": []
   },
   {
     "username": "dad",
@@ -26,77 +28,10 @@
     "password": "adad",
     "email": "adad",
     "favoritos": [],
-    "racha": 0
-  },
-  {
-    "username": "facundo jarma",
-    "id": "fadd446a-12ca-4b58-8475-d2b8a09f9953",
-    "password": "facu1212",
-    "email": "facundojarma@gmail.com",
-    "favoritos": [
-      "tipos-de-datos",
-      "variables-const-let-var",
-      "operadores-logicos"
-    ],
-    "racha": 0
-  },
-  {
-    "username": "Facundo Jarma",
-    "id": "473e06c5-949b-4f20-a070-2388f66eed96",
-    "password": "facu4200",
-    "email": "facundojarma@gmail.com",
-    "favoritos": [
-      "tipos-de-datos",
-      "fundamentos-de-js",
-      "estructuras-de-control-condicionales",
-      null
-    ]
-  },
-  {
-    "username": "nicoata",
-    "id": "a1ebacb4-1a15-4043-a390-33a8bf7cf501",
-    "password": "facuselacome",
-    "email": "xdxd@lolbeans.com"
-  },
-  {
-    "username": "facundo jarma",
-    "id": "ef38661a-37e5-49e9-8774-e87ac3af5a9d",
-    "password": {},
-    "email": "facundojarma@gmail.co"
-  },
-  {
-    "username": "facundo jarma",
-    "id": "d0d1a679-46a8-4ac1-bd22-cd78b0f82083",
-    "password": "facu4200",
-    "email": "facundojarma@gmail.co"
-  },
-  {
-    "username": "nicolas atalah",
-    "id": "09bf24b8-a2cc-4ae1-840f-4fe9fa650b8a",
-    "password": "nicooo",
-    "email": "nicoatalah@gmail.com"
-  },
-  {
-    "username": "santi901",
-    "id": "ffed6bdc-feec-4736-b9b1-adf3a03e6b7a",
-    "password": "santi9041",
-    "email": "49379041@est.ort.edu.ar",
-    "favoritos": "tipos-de-datos"
-  },
-  {
-    "username": "santi901",
-    "id": "b5398398-cfbc-4f16-a1ac-8ddec8a04165",
-    "password": "santi9041",
-    "email": "49379041@est.ort.edu.ar"
-  },
-  {
-    "username": "patriurda",
-    "id": "eb6debdb-1ab4-4c02-814b-0d867de87413",
-    "password": "123456",
-    "email": "patriurda@gmail.com",
-    "favoritos": [
-      "variables-const-let-var",
-      "tipos-de-datos"
+    "racha": 0,
+    "leccionesHechas": [
+      "dofanmoe",
+      "jdnfoa"
     ]
   }
 ]
