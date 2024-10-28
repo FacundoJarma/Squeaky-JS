@@ -10,7 +10,8 @@
       "fundamentos-de-js",
       "if-elseif-como-ternarias"
     ],
-    "racha": 0
+    "racha": 0,
+    "leccionesHechas": []
   },
   {
     "username": "Rafa",
@@ -18,7 +19,8 @@
     "password": "rafa",
     "email": "rafa@gmail.com",
     "favoritos": [],
-    "racha": 0
+    "racha": 0,
+    "leccionesHechas": []
   },
   {
     "username": "dad",
@@ -26,7 +28,11 @@
     "password": "adad",
     "email": "adad",
     "favoritos": [],
-    "racha": 0
+    "racha": 0,
+    "leccionesHechas": [
+      "dofanmoe",
+      "jdnfoa"
+    ]
   },
   {
     "username": "facundo jarma",
@@ -37,6 +43,7 @@
       "tipos-de-datos",
       "variables-const-let-var"
     ],
-    "racha": 0
+    "racha": 0,
+    "leccionesHechas": []
   }
 ]

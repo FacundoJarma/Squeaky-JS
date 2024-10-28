@@ -1,43 +1,39 @@
-import { onEvent, sendEvent, startServer } from "soquetic";
-import { writeFile, readFileSync, readFile, fstat, fdatasync, writeFileSync, ftruncateSync, read } from "fs";
-import { join } from "path";
+import { promises as fs } from 'fs';
+import { join } from 'path';
 
-const pathJSON = join("./src/lib/data/users.json");
+const pathJSON = join("data/users.json");
 
+export async function leccionesHecha(data) {
+    try {
+        const leido = await fs.readFile(pathJSON, 'utf-8');
+        let jsonData = JSON.parse(leido);
 
-export function guardarLeccion(data) {
-    readFile(pathJSON, 'utf-8', (err, leido) => {
-        if (err) {
-            console.log(err);
+        const usuario = jsonData.find(usuario => usuario.username === data.username);
+        if (!usuario) {
+            console.error('Usuario no encontrado');
             return;
         }
 
-        let jsonData = [];
-        try {
-            jsonData = JSON.parse(leido);
-        } catch (e) {
-            console.log('Error al parsear, ' + e);
+        const nuevaHecha = Array.isArray(data.leccionesHechas) ? data.leccionesHechas : [data.leccionesHechas];
+
+        if (Array.isArray(usuario.leccionesHechas)) {
+            usuario.leccionesHechas = [...new Set([...usuario.leccionesHechas, ...nuevaHecha])];
+        } else {
+            usuario.leccionesHechas = nuevaHecha;
         }
 
-        let search = jsonData.filter(usuario => usuario.username.includes(data.username));
-        search[0]["leccionesHechas"] = data.leccionesHechas;
-        //Agregar el nuevo valor a JsonData
-
-        if (search.length > 0) {
-            if (Array.isArray(search[0]["leccionesHechas"])) {
-                search[0]["leccionesHechas"] = [...new Set([...search[0]["leccionesHechas"], ...data.leccionesHechas])];
-            } else {
-                search[0]["leccionesHechas"] = data.leccionesHechas;
-            }
-
-
         const jsonString = JSON.stringify(jsonData, null, 2);
+        await fs.writeFile(pathJSON, jsonString, 'utf-8');
 
-        writeFile(pathJSON, jsonString, (err) => {
-            if (err) {
-                console.error('Error al escribir en el archivo leccionesHechas', err);
-            } else {console.log('Favorito añadido correctamente')};
-        })
+        console.log('Leccion hecha añadida correctamente');
+        return jsonData;
+    } catch (err) {
+        console.error('Error:', err);
     }
-    })
 }
+
+/*leccionesHecha({
+    username: "dad",
+    leccionesHechas: ["dofanmoe", "jdnfoa"]
+});
+*/

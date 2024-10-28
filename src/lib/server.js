@@ -1,8 +1,7 @@
 import { registrar } from "./registerSoquetic.js";
 import { login } from "./loginSoquetic.js";
-import { guardarLeccion } from "./leccionesHechas.js";
+import { guardarLeccion, leccionesHecha } from "./leccionesHechas.js";
 import { añadirFavorito, eliminarFavorito } from "./favoritos.js";
-import { nuevaRacha } from "./racha.js";
 import { buscarUsuario } from "./displayUser.js";
 import { actualizarRacha } from "./racha.js";
 
@@ -10,12 +9,6 @@ import { onEvent, sendEvent, startServer } from "soquetic";
 
 onEvent("registrarUsuario", (data) => {
   registrar(data);
-});
-
-sendEvent("")
-
-onEvent("pedirRacha", (data) => {
-  nuevaRacha(data);
 });
 
 onEvent("leccionHecha", (data) => {
@@ -44,6 +37,12 @@ onEvent('eliminarFavorito', async (data) => {
 onEvent('racha', async (data) => {
   const racha = await actualizarRacha(data);
   console.log(racha);
+})
+
+onEvent('leccionHecha', async (data) => {
+  const user = await leccionesHecha(data.username)
+  console.log(user)
+  return user;
 })
 
 /*
