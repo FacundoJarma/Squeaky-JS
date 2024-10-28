@@ -50,7 +50,7 @@ import { Icon } from "astro-icon/components";
     function actualizarPorcentajeEnPantalla(porcentaje){
       const $porcentaje = document.getElementById("progressCircle") as HTMLInputElement;
       $porcentaje.style = "--percent: " + porcentaje;
-      document.getElementById("progressCircleSpan").innerHTML = porcentaje.toFixed(0) + "%";
+      document.getElementById("progressCircleSpan").innerHTML = porcentaje.toFixed(1) + "%";
     }
 
     postData(
