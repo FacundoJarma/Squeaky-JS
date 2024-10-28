@@ -32,7 +32,6 @@ const { exercises, lectionSlug } = Astro.props;
           username: user.username
         }
         postData("leccionHecha",data,  () => {
-          console.log("Leccion hecha")
           location.href = `${$btn.dataset.url}`
         })
       })
