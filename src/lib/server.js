@@ -39,6 +39,7 @@ onEvent('eliminarFavorito', async (data) => {
 onEvent('racha', async (data) => {
   const racha = await actualizarRacha(data);
   console.log(racha);
+  return racha;
 })
 
 onEvent('leccionHecha', async (data) => {
