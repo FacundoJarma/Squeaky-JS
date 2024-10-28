@@ -5,6 +5,7 @@ import { añadirFavorito, eliminarFavorito } from "./favoritos.js";
 // import { nuevaRacha } from "./racha.js";
 import { buscarUsuario } from "./displayUser.js";
 import { actualizarRacha } from "./racha.js";
+import { userDisplay } from "./userInfo.js";
 
 import { onEvent, sendEvent, startServer } from "soquetic";
 
@@ -44,6 +45,13 @@ onEvent('leccionHecha', async (data) => {
   const user = await leccionesHecha(data)
   console.log(user) 
   return user;
+})
+
+onEvent('userInfo', async (data) => {
+  console.log(data);
+  const user = await userDisplay(data);
+  console.log(user);
+  return user; 
 })
 
 /*
