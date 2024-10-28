@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar.astro";
 import LectionAside from "../sections/LectionAside.astro";
 import KeyboardManager from "../components/KeyboardManager.astro";
 import CheckUser from "../components/CheckUser.astro";
+import Footer from "../sections/Footer.astro";
 
 const { title, description } = Astro.props;
 ---
@@ -33,6 +34,8 @@ const { title, description } = Astro.props;
           ><Icon name="back" /> Volver a mis lecciones
         </a>
         <slot />
+        <Footer />
+
       </main>
     </div>
   </body>
