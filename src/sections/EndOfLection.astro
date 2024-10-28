@@ -1,8 +1,9 @@
 ---
-const { exercises } = Astro.props;
+const { exercises, lectionSlug } = Astro.props;
 ---
 
 <button
+  data-lection={lectionSlug}
   data-url={exercises ? "/ejercicios/" + exercises[0].id : "http://localhost:4321/lecciones"}
   id="goToExercise"
   class="fixed bottom-6 right-8 w-36 h-14 bg-[#33353B]/80 p-2 rounded-lg text-xl font-bold duration-200"
@@ -17,11 +18,23 @@ const { exercises } = Astro.props;
 </style>
 
 <script>
+  import { postData } from "../lib/socket.js";
+
+  const $btn = document.getElementById("goToExercise") as HTMLButtonElement;
   window.onscroll = function () {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      document.getElementById("goToExercise").classList.add("active");
-      document.getElementById("goToExercise")?.addEventListener("click", () => {
-        location.href = `${document.getElementById("goToExercise").dataset.url}`
+      $btn.classList.add("active");
+      $btn?.addEventListener("click", () => {
+        const slug = $btn.dataset.lection;
+        const user = JSON.parse(localStorage.getItem("user"));
+        const data = {
+          leccionesHechas: slug,
+          username: user.username
+        }
+        postData("leccionHecha",data,  () => {
+          console.log("Leccion hecha")
+          location.href = `${$btn.dataset.url}`
+        })
       })
     }
   };
