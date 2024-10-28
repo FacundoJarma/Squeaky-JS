@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 
-const pathJSON = join("data/users.json");
+const pathJSON = join("./src/lib/data/users.json");
 
 export async function leccionesHecha(data) {
     try {

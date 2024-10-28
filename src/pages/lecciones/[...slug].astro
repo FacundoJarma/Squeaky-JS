@@ -20,7 +20,7 @@ const { Content } = await l.render();
   <div id="content">
     <h1 transition:name={`lectionTitle-${l.data.index}`}>{l.data.title}</h1>
     <Content />
-    <EndOfLection exercises={l.data.exercises} />
+    <EndOfLection exercises={l.data.exercises} lectionSlug={l.slug}/>
   </div>
 </LectionsLayout>
 

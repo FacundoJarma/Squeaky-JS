@@ -33,5 +33,15 @@
       "dofanmoe",
       "jdnfoa"
     ]
+  },
+  {
+    "username": "Facundo Jarma",
+    "id": "1513ee85-092b-47e9-91d4-d1af4986b93f",
+    "password": "123456",
+    "email": "facundojarma@gmail.com",
+    "leccionesHechas": [
+      null,
+      null
+    ]
   }
 ]
