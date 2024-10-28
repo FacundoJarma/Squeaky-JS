@@ -26,7 +26,7 @@ export async function leccionesHecha(data) {
         await fs.writeFile(pathJSON, jsonString, 'utf-8');
 
         console.log('Leccion hecha añadida correctamente');
-        return jsonData;
+        return usuario;
     } catch (err) {
         console.error('Error:', err);
     }

@@ -43,7 +43,8 @@
     "email": "facundojarma@gmail.com",
     "leccionesHechas": [
       null,
-      null
+      "fundamentos-de-js",
+      "variables-const-let-var"
     ]
   }
 ]

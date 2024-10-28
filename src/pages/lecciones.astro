@@ -17,7 +17,9 @@ import { Icon } from "astro-icon/components";
               width={40}
               class={"text-slate-300"}
             />
-            <h1 class="text-6xl font-semibold mb-4 font-[inter]">Tus Lecciones</h1>
+            <h1 class="text-6xl font-semibold mb-4 font-[inter]">
+              Tus Lecciones
+            </h1>
           </div>
 
           <p class="max-w-md text-gray-300 ml-2 font-[urbanist]">
@@ -29,14 +31,44 @@ import { Icon } from "astro-icon/components";
         <ProgresCircle color={"#fff"} />
       </div>
       <div class="flex gap-10">
-      <span class="bg-[#FFB800] text-black font-semibold px-4 py-0.5 rounded-full h-8 font-[lexend]"
-        >JavaScript</span
-      >
-      <span class="bg-[#0066FF] text-white font-normal px-4 py-0.5 rounded-full h-8 font-[lexend]"
-        >Lecciones</span
-      >
+        <span
+          class="bg-[#FFB800] text-black font-semibold px-4 py-0.5 rounded-full h-8 font-[lexend]"
+          >JavaScript</span
+        >
+        <span
+          class="bg-[#0066FF] text-white font-normal px-4 py-0.5 rounded-full h-8 font-[lexend]"
+          >Lecciones</span
+        >
       </div>
     </div>
   </section>
   <Lections />
+  <script>
+    import { postData } from "../lib/socket.js";
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    function actualizarPorcentajeEnPantalla(porcentaje){
+      const $porcentaje = document.getElementById("progressCircle") as HTMLInputElement;
+      $porcentaje.style = "--percent: " + porcentaje;
+      document.getElementById("progressCircleSpan").innerHTML = porcentaje.toFixed(0) + "%";
+    }
+
+    postData(
+      "leccionHecha",
+      {
+        leccionesHechas: null,
+        username: user.username
+      },
+      (user) => {
+        let cantidadLeccionesHechas = 0;
+        user.leccionesHechas.forEach((leccion) => {
+          if(leccion != null) {
+            cantidadLeccionesHechas++;
+          }
+        })
+        const porcentaje = (cantidadLeccionesHechas / 17) * 100;
+        actualizarPorcentajeEnPantalla(porcentaje);
+      }
+    );
+  </script>
 </Layout>

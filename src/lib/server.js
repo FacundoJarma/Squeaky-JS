@@ -41,9 +41,8 @@ onEvent('racha', async (data) => {
 })
 
 onEvent('leccionHecha', async (data) => {
-  console.log(data)
   const user = await leccionesHecha(data)
-  console.log(user)
+  console.log(user) 
   return user;
 })
 

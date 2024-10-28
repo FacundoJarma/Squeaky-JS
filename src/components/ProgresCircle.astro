@@ -1,14 +1,11 @@
----
-const { percentage = 61 } = Astro.props;
----
 
   <div class="percent">
     <svg>
       <circle cx="105" cy="105" r="90"></circle>
-      <circle cx="105" cy="105" r="90" style={`--percent: ${percentage}`}></circle>
+      <circle cx="105" cy="105" r="90" style={`--percent: 0`} id="progressCircle"></circle>
     </svg>
     <div class="number">
-      <h3 class="font-[inter] font-bold text-5xl">{percentage} %</h3>
+      <h3 class="font-[inter] font-bold text-5xl" id="progressCircleSpan">-- %</h3>
     </div>
   </div>
 
