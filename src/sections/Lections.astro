@@ -38,6 +38,7 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
   const user = JSON.parse(localStorage.getItem("user"));
 
   postData("favorito", user, (data) => {
+    console.log(data);
     data["favoritos"].forEach((favorito) => {
       const $addFav = document.getElementById(
         `lection-${favorito}`

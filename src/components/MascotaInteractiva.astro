@@ -1,13 +1,14 @@
 ---
-const { classList, consejo, estado = "tranquilo" } = Astro.props;
+const { classList, consejo, estado = "tranquilo", image = "normal" } = Astro.props;
 ---
 
-<div class={classList}>
+<div class={`${classList} + ${image == "study" ? "-top-20" : ""}`}>
   <img
     style=`--duration: ${ estado === "tranquilo" ? 2 : estado === "apurado" ? 1 : estado === "molesto" ? 0.5 : 0 }s`
-    src="http://localhost:4321/mascota.png"
+    src={image == "normal" ? "http://localhost:4321/mascota.png" : image == "study" ? "http://localhost:4321/Study Squeaky.gif" : ""}
     id="mascota"
     alt="La mascota de Squeaky"
+
   />
 
   <p
