@@ -1,6 +1,6 @@
 import { registrar } from "./registerSoquetic.js";
 import { login } from "./loginSoquetic.js";
-import { guardarLeccion, leccionesHecha } from "./leccionesHechas.js";
+import { leccionesHecha } from "./leccionesHechas.js";
 import { añadirFavorito, eliminarFavorito } from "./favoritos.js";
 // import { nuevaRacha } from "./racha.js";
 import { buscarUsuario } from "./displayUser.js";

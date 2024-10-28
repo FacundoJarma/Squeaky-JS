@@ -19,7 +19,9 @@ const formato = {
   email: undefined,
   password: undefined,
   favoritos: [],
-  racha: 0
+  racha: 0,
+  leccionesHechas: [],
+  fechaDeNacimiento: undefined
 };
 
 function enUso() {
@@ -34,6 +36,8 @@ export function registrar(data) {
   nuevoUsuario.password = data.password;
   nuevoUsuario.email = data.email;
   nuevoUsuario.racha = data.racha;
+  nuevoUsuario.fechaDeNacimiento = data.fechaDeNacimiento;
+  nuevoUsuario.leccionesHechas = data.leccionesHechas;
  /*
   nuevoUsuario.leccionActual = data.leccionActual;
   nuevoUsuario.ejerciciosHechos = data.ejerciciosHechos;
