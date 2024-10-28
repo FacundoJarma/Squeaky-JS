@@ -34,7 +34,7 @@ export async function leccionesHecha(data) {
 
 /*
 leccionesHecha({
-    username: "dad",
+    username: "facujarma",
     leccionesHechas: ["dofanmoe", "jdnfoa"]
 });
 */
