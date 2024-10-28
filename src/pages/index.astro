@@ -3,7 +3,7 @@ import AnimatedText from "../components/AnimatedText.astro";
 import LayoutOnlyMain from "../layout/layoutOnlyMain.astro";
 import { getEntry } from "astro:content";
 import InicioExerciceSnippet from "../sections/InicioExerciceSnippet.astro";
-
+import Footer from "../sections/Footer.astro"
 const lection = await getEntry(
   "lecciones",
   "bucles-diferenciar-cuando-usarlos"
@@ -81,6 +81,7 @@ import { Icon } from "astro-icon/components";
       </div>
     </section>
     <AnimatedText />
+    <Footer />
   </main>
 </LayoutOnlyMain>
 
