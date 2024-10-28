@@ -1,8 +1,8 @@
 ---
-const { classList, consejo, estado = "tranquilo", image = "normal" } = Astro.props;
+const { classList, consejo, estado = "tranquilo", image = "normal",validTries = 3 } = Astro.props;
 ---
 
-<div class={`${classList} + ${image == "study" ? "-top-20" : ""}`}>
+<div class={`${classList} + ${image == "study" ? "-top-20" : ""}`} data-validTries={validTries} id="mascotaInteractivaContainer">
   <img
     style=`--duration: ${ estado === "tranquilo" ? 2 : estado === "apurado" ? 1 : estado === "molesto" ? 0.5 : 0 }s`
     src={image == "normal" ? "http://localhost:4321/mascota.png" : image == "study" ? "http://localhost:4321/Study Squeaky.gif" : ""}
@@ -79,14 +79,14 @@ const { classList, consejo, estado = "tranquilo", image = "normal" } = Astro.pro
 
 <script>
   const $mascota = document.getElementById("mascota") as HTMLImageElement;
-
+  const $mascotaInteractivaContainer = document.getElementById("mascotaInteractivaContainer") as HTMLElement;
   var totalClicks = 0;
 
   $mascota.addEventListener("click", () => {
     const $consejo = document.getElementById(
       "mascotaConsejo"
     ) as HTMLParagraphElement;
-    if (totalClicks > 3) {
+    if (totalClicks > mascotaInteractivaContainer.dataset.validTries) {
       $consejo.innerHTML = "!Me harte de ti, deja de molestar!";
       $mascota.classList.add("agresiveShake");
     }else{
@@ -100,7 +100,7 @@ const { classList, consejo, estado = "tranquilo", image = "normal" } = Astro.pro
     setTimeout(() => {
       $consejo.classList.remove("mostrar");
       $mascota.classList.remove("shake");
-      if (totalClicks > 3) $mascota.classList.remove("agresiveShake");
+      if (totalClicks > mascotaInteractivaContainer.dataset.validTries) $mascota.classList.remove("agresiveShake");
     }, 2000);
   });
 </script>

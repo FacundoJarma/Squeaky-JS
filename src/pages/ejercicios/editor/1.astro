@@ -1,4 +1,5 @@
 ---
+import MascotaInteractiva from "../../../components/MascotaInteractiva.astro";
 import MonacoEditor from "../../../components/MonacoEditor.astro";
 import EditorExercicesLayout from "../../../layout/EditorExercicesLayout.astro";
 import CodeEditorForEditorExercices from "../../../sections/CodeEditorForEditorExercices.astro";
@@ -17,5 +18,10 @@ import CodeEditorForEditorExercices from "../../../sections/CodeEditorForEditorE
     />
 
     <iframe class="w-screen h-[90.5vh] bg-white" id="editorPage"></iframe>
+    <MascotaInteractiva 
+      classList="h-64 w-64 absolute bottom-6 left-[30em]"
+      consejo="No creo que pueda ayudarte..."
+      validTries={100}
+    />
   </div>
 </EditorExercicesLayout>
