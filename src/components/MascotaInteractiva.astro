@@ -1,0 +1,105 @@
+---
+const { classList, consejo, estado = "tranquilo" } = Astro.props;
+---
+
+<div class={classList}>
+  <img
+    style=`--duration: ${ estado === "tranquilo" ? 2 : estado === "apurado" ? 1 : estado === "molesto" ? 0.5 : 0 }s`
+    src="http://localhost:4321/mascota.png"
+    id="mascota"
+    alt="La mascota de Squeaky"
+  />
+
+  <p
+    id="mascotaConsejo"
+    class="z-50 flex opacity-0 text-sm text-black text-center absolute -top-12 -left-6 w-full bg-gray-100 border border-gray-300 p-2 rounded-md min-h-10 justify-center items-center"
+  >
+    {consejo}
+  </p>
+</div>
+
+<style>
+  @keyframes mostrar {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translate(0px, 0px) rotate(0deg);
+    }
+    10% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+      transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+      transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+      transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+      transform: translate(0px, 0px) rotate(0deg);
+    }
+  }
+
+  .mostrar {
+    animation: mostrar 0.3s ease-in-out forwards;
+  }
+  .shake {
+    animation: shake var(--duration) ease-in-out infinite;
+  }
+
+  .agresiveShake {
+    animation: shake 0.5s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  const $mascota = document.getElementById("mascota") as HTMLImageElement;
+
+  var totalClicks = 0;
+
+  $mascota.addEventListener("click", () => {
+    const $consejo = document.getElementById(
+      "mascotaConsejo"
+    ) as HTMLParagraphElement;
+    if (totalClicks > 3) {
+      $consejo.innerHTML = "!Me harte de ti, deja de molestar!";
+      $mascota.classList.add("agresiveShake");
+    }else{
+      $mascota.classList.add("shake");
+      totalClicks++;
+    }
+    $consejo.classList.add("mostrar");
+
+
+
+    setTimeout(() => {
+      $consejo.classList.remove("mostrar");
+      $mascota.classList.remove("shake");
+      if (totalClicks > 3) $mascota.classList.remove("agresiveShake");
+    }, 2000);
+  });
+</script>

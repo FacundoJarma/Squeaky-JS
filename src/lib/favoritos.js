@@ -27,7 +27,7 @@ export async function añadirFavorito(data) {
         await fs.writeFile(pathJSON, jsonString, 'utf-8');
 
         console.log('Favorito añadido correctamente');
-        return jsonData;
+        return usuario;
     } catch (err) {
         console.error('Error:', err);
     }
@@ -50,7 +50,8 @@ export async function eliminarFavorito(data) {
         if (Array.isArray(usuario.favoritos)) {
             const favoritoAEliminar = data.favorito.trim().toLowerCase();
             usuario.favoritos = usuario.favoritos.filter(favorito =>
-                favorito.trim().toLowerCase() !== favoritoAEliminar
+
+                favorito && favorito.trim().toLowerCase() !== favoritoAEliminar
             );
 
             console.log('Favoritos después de eliminar:', usuario.favoritos);

@@ -4,6 +4,7 @@ const { classList, difficult, name, description, index, url } = Astro.props;
 ---
 
 <div
+  id=`lection-${url}`
   class={`lection relative flex flex-col bg-[#23262f] border-2 border-[#353841] rounded-xl w-full p-4 ${classList}`}
 >
   <!-- <div
@@ -14,22 +15,20 @@ const { classList, difficult, name, description, index, url } = Astro.props;
   <main class="flex-1">
     <a href={"/lecciones/" + url}>
       <h2
-        class="text-2xl text-white mb-2"
+        class="text-2xl text-white mb-2 font-[inter] font-semibold"
         transition:name={`lectionTitle-${index}`}
       >
         {name}
       </h2>
     </a>
-
-    <p class="text-gray-300 text-sm">{description}</p>
   </main>
 
   <footer class="flex items-center justify-between h-8">
     <button
       data-url={url}
-      class="addFav flex items-center justify-center hover:bg-neutral-700 p-1 rounded-full duration-100 cursor-pointer"
+      class="addFav flex text-none items-center justify-center bg-none hover:bg-neutral-700 p-1 rounded-full duration-100 cursor-pointer"
     >
-      <Icon name="star" height={20} width={20} class={"text-gray-300"} />
+      <Icon name="star" height={20} width={20}/>
     </button>
     <span
       class:list={[
@@ -55,18 +54,51 @@ const { classList, difficult, name, description, index, url } = Astro.props;
   .lection:hover {
     scale: 1.03;
   }
+  .isFav button{
+    background-color: #ffea00 !important;
+    color: #4C4C4C !important;
+  }
 </style>
 
 <script>
 
   import { postData } from "../lib/socket.js";
+  import Toastify from "toastify-js";
   const añadirFav = (data) => {
     const user = JSON.parse(localStorage.getItem("user"));
     data.username = user.username;
-    postData("favorito", data, () => {
-      alert("Favorito Agregado!");
+
+    postData("favorito", data, (returnedData) => {
+      Toastify({
+        text: "Lección añadida a favoritos!",
+        duration: 1000, // Duración de 2 segundos
+        stopOnFocus: true,
+      }).showToast();
+
+      returnedData["favoritos"].forEach((favorito) => {
+      const $addFav = document.getElementById(
+        `lection-${favorito}`
+      ) as HTMLButtonElement;
+      console.log(`lection-${favorito}`, $addFav);
+      if(!$addFav) return;
+      $addFav.classList.add("isFav");
+    });
     });
   };
+
+  const quitarFav = ($addFavBtn : HTMLButtonElement, data : any) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    data.username = user.username;
+    postData("eliminarFavorito", data, () => {
+      Toastify({
+        text: "Lección removida de favoritos!",
+        duration: 1000, // Duración de 2 segundos
+        stopOnFocus: true,
+      }).showToast();
+    });
+ 
+    $addFavBtn.closest(".lection").classList.remove("isFav"); 
+  }
   const $addFavs = document.querySelectorAll(
     ".addFav"
   ) as NodeListOf<HTMLButtonElement>;
@@ -74,9 +106,16 @@ const { classList, difficult, name, description, index, url } = Astro.props;
   $addFavs.forEach(($addFav) => {
     $addFav.addEventListener("click", () => {
       const url = $addFav.dataset.url;
-      añadirFav({
-        favoritos: url,
-      });
+      if($addFav.closest("#lection-" + url + "")?.classList.contains("isFav")) {
+        quitarFav($addFav, {
+          favorito: url,
+        });
+      }
+      else{
+        añadirFav({
+          favoritos: [url],
+        });
+      }
     });
   });
 </script>

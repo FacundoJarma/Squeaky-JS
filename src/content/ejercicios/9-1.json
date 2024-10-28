@@ -1,0 +1,29 @@
+{
+    "head": {
+      "title": "Comprendiendo el bucle `for`",
+      "lection": "bucles-for",
+      "type": "Multiple Opcion"
+    },
+    "body": {
+      "question": "¿Qué elementos son necesarios en la declaración de un bucle `for` en JavaScript?",
+      "options": [
+        {
+          "text": "Una variable inicial, una condición y un incremento o decremento.",
+          "correct": true
+        },
+        {
+          "text": "Solo una condición que determine el número de iteraciones.",
+          "correct": false
+        },
+        {
+          "text": "Un valor final que determine cuándo debe terminar el bucle.",
+          "correct": true
+        },
+        {
+          "text": "Un número aleatorio para cada iteración.",
+          "correct": false
+        }
+      ]
+    }
+  }
+  

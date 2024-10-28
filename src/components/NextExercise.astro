@@ -5,13 +5,15 @@ const existsNextLesson = actualIndexOfEx < exercicesInThisLesson.length - 1;
 const href = existsNextLesson
   ? `/ejercicios/${exercicesInThisLesson[actualIndexOfEx + 1].id}`
   : "/lecciones";
+
 ---
 
 <button
+  data-href={href}
   id="goNextExercice"
-  class="hidden w-56 h-16 bg-violet-800 rounded-xl text-xl absolute bottom-12 right-12 place-content-center hover:scale-105 duration-200"
+  class="hidden z-10 w-48 h-14 bg-[#5E5E11] rounded-tl-3xl text-xl absolute bottom-12 right-12 place-content-center hover:scale-105 duration-200 font-[lexend]"
 >
-  {existsNextLesson ? "Siguiente Ejercicio" : "Finalizar Lección"}
+  {existsNextLesson ? "Siguiente" : "Finalizar"}
 </button>
 
 <style>
@@ -20,13 +22,15 @@ const href = existsNextLesson
   }
 </style>
 
-<script data-href={href} id="buttonScript">
-  var href = document.getElementById("buttonScript").dataset.href;
+<script>
 
   const btn = document.getElementById("goNextExercice");
   btn?.addEventListener("click", () => {
     //TODO Backend: Guardar que esta leccion se termino.
-    console.log(href);
-    window.location.href = href;
+    const url = btn.dataset.href;
+    if (url) {
+      location.href = url;
+    }
+    
   });
 </script>

@@ -1,35 +1,46 @@
 ---
 import { getCollection } from "astro:content";
 import LectionsAsideButtons from "../components/LectionsAsideButtons.astro";
+import MascotaInteractiva from "../components/MascotaInteractiva.astro";
 
 let lecciones = await getCollection("lecciones");
 lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 ---
 
-<aside class="sticky top-0 h-screen bg-[#23262f] p-4">
-  <h2 class="text-lg text-white font-bold" id="openLections">
+<aside class="sticky top-0 h-screen bg-[#23262f] p-4 w-72">
+  <h2
+    class="text-lg text-white font-bold flex justify-center"
+    id="openLections"
+  >
     Todas las Lecciones
   </h2>
   <div class="h-[80vh]">
-    <ul class="flex flex-col gap-2 ml-3" id="lectionsAside" data-open="false">
-      {
-        lecciones.map(({ data: leccion, slug }, index) => (
-          <li>
-            <a
-              href={"/lecciones/" + slug}
-              class="text-gray-300 text-sm hover:text-white duration-300"
-            >
-              {leccion.title}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="h-3/4">
+      <ul
+        class="flex flex-col gap-2 ml-3 h-[90%] overflow-auto"
+        id="lectionsAside"
+        data-open="false"
+      >
+        {
+          lecciones.map(({ data: leccion, slug }, index) => (
+            <li>
+              <a
+                href={"/lecciones/" + slug}
+                class="text-gray-300 text-sm hover:text-white duration-300"
+              >
+                {leccion.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <MascotaInteractiva
+      classList="h-auto w-full mb-10 relative"
+      consejo="Presta atencion a la leccion!"
+    />
   </div>
-
-  <LectionsAsideButtons />
 </aside>
-
 <style>
   #lectionsAside {
     overflow-y: hidden;

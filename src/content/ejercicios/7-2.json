@@ -1,0 +1,29 @@
+{
+    "head": {
+      "title": "Características del bucle `while`",
+      "lection": "bucles-while",
+      "type": "Multiple Opcion"
+    },
+    "body": {
+      "question": "¿Qué debe cumplir la condición de un bucle `while` para que las instrucciones dentro del bucle se ejecuten?",
+      "options": [
+        {
+          "text": "La condición debe evaluarse como verdadera.",
+          "correct": true
+        },
+        {
+          "text": "La condición debe ser siempre falsa.",
+          "correct": false
+        },
+        {
+          "text": "La condición debe ser un número mayor a 10.",
+          "correct": false
+        },
+        {
+          "text": "La condición puede cambiar en cada iteración.",
+          "correct": true
+        }
+      ]
+    }
+  }
+  

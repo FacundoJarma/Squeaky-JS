@@ -1,18 +1,17 @@
 ---
 const { isCorrect, text } = Astro.props;
 ---
-
-<button
-  class="buttonOption max-w-72 px-6 py-2 font-semibold text-gray-300 rounded-full bg-gray-600 border-4 border-gray-800 duration-300 hover:scale-105"
-  data-iscorrect={`${isCorrect}`}
->
-  {text}
-</button>
+  <button
+    class="buttonOption max-w-[50em] w-[40em] px-4 py-2 font-semibold text-[#33353B] bg-[#D9D9D9] duration-300 hover:scale-105"
+    data-iscorrect={`${isCorrect}`}
+  >
+    {text}
+  </button>
 
 <style>
   @keyframes showCorrect {
     50% {
-      background-color: #4b5563;
+      background-color: white;
     }
     100% {
       background-color: #007900;

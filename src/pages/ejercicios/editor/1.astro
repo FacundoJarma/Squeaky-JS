@@ -5,16 +5,17 @@ import CodeEditorForEditorExercices from "../../../sections/CodeEditorForEditorE
 ---
 
 <EditorExercicesLayout title="Ejercicio con Editor de codigo - 1 | Squeaky JS">
-  <div class="w-full flex">
+  <div class="w-full">
     <CodeEditorForEditorExercices
-      context=`En la pagina de tu derecha veras una puerta cerrada (representada por el
-    color 'rojo'), debes crear un codigo en el editor de la izquierda que lea
-    una variable llamada 'number' y verifique que el valor sea mayor o igual a
-    18, en caso de serlo, llama a la funcion 'abrirPuerta()', de no serlo, llama
-    a 'cerrarPuerta()'`
+
+      context=`Una empresa muy desagradable que tiene porundo odio
+       por los arboles usa una tecnica muy rara para saber si tienen que cortar un arbol. 
+       Elijen un numero aletorio y si este mismo es mayor a 5, entonces cortan el arbol. 
+       Si es menor a 5, lo dejan como esta. Tu vas a tener una varaible llamada 'number' y si este numero es mayor a '5'
+        deberas llamar a la funcion 'cortarArbol()' si es menor, 'cortarArbol()'`
       pageUrl="/emulatedPages/1.html"
     />
 
-    <iframe class="w-1/2 bg-white" id="editorPage"></iframe>
+    <iframe class="w-screen h-[90.5vh] bg-white" id="editorPage"></iframe>
   </div>
 </EditorExercicesLayout>

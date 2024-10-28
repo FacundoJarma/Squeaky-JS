@@ -6,27 +6,36 @@ import PopUpOfContext from "../components/PopUpOfContext.astro";
 <script
   type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>
-<section
-  class="relative h-[85vh] w-1/2 bg-gray-700"
-  data-url={pageUrl}
-  id="editorContext"
->
-<div class="wrapper w-full h-full">
-  <div class="editor h-full">
-    <div class="editor__code h-full">
-      <div id="editorCode" class="h-full w-full"></div>
+
+<section data-url={pageUrl} id="editorContext">
+  <section class="absolute z-50 left-12 top-1/2 -translate-y-1/2 h-[60vh] w-[25em]">
+    <div
+      class="bg-[#4B5563] h-12 w-full flex justify-between items-center px-4"
+    >
+      <ul class="flex gap-4 h-4">
+        <li class="w-4 h-4 bg-[#ED594A] rounded-full"></li>
+        <li class="w-4 h-4 bg-[#FDD800] rounded-full"></li>
+        <li class="w-4 h-4 bg-[#5AC05A] rounded-full"></li>
+      </ul>
       <PopUpOfContext body={context} />
+    </div>
+    <div class="wrapper w-full h-full">
+      <div class="editor h-full">
+        <div class="editor__code h-full">
+          <div id="editorCode" class="h-full w-full"></div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
   <button
-    id="submitCodeBtn"
-    class="px-12 py-2 bg-green-800 rounded-lg absolute bottom-5 right-5 hover:scale-105 duration-300"
-  >
-    Ejecutar Codigo
-  </button>
+  id="submitCodeBtn"
+  class="text-2xl font-bold fixed px-4 py-2 bg-[#33353B]/80 rounded-lg bottom-5 right-5 hover:scale-105 duration-300"
+>
+  Entregar
+</button>
 </section>
 <script>
+  
   // Elements
   const submitCodeBtn = document.getElementById(
     "submitCodeBtn"
@@ -95,7 +104,7 @@ import PopUpOfContext from "../components/PopUpOfContext.astro";
       .replace("exe;", "checkExercice()");
     iframe.srcdoc = finalHTML;
   }
-  
+
   document.addEventListener("DOMContentLoaded", async () => {
     const iframe = document.getElementById("editorPage") as HTMLIFrameElement;
     iframe.setAttribute("srcdoc", await getPreRenderedHTML());

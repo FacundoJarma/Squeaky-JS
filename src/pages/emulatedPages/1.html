@@ -3,16 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <style>
-      *{
+      * {
         font-family: "Calibri";
+        margin: 0px;
+        padding: 0px;
       }
-      #puerta {
-        width: 300px;
-        height: 500px;
-        background-color: red;
-        text-align: center;
-        border-radius: 10px;
+      #image {
+        width: 100vw;
+        height: 100vh;
+        object-fit: fill;
       }
       #puerta[data-open="true"] {
         background-color: green;
@@ -40,36 +45,40 @@
   <body>
     <div id="hoverInfo"></div>
 
-    <div id="puerta" data-open="false" class="hoverable"></div>
+    <img src="/ej1PRE.jpg" alt="" id="image" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         var usereCodeSays = undefined;
-        function abrirPuerta() {
+        function cortarArbol() {
           usereCodeSays = true;
         }
-        function cerrarPuerta() {
+        function dejarArbol() {
           usereCodeSays = false;
         }
         function checkExercice() {
           const tests = [
             {
-              input: 10,
+              input: 1,
               output: false,
             },
             {
-              input: 17,
+              input: 3,
               output: false,
             },
             {
-              input: 100,
+              input: 6,
               output: true,
             },
             {
-              input: 200,
+              input: 7,
               output: true,
             },
             {
-              input: 18,
+              input: 12,
               output: true,
             },
           ];
@@ -83,23 +92,46 @@
               /* El codigo del usuario va aqui: */
               code;
 
-              if ( usereCodeSays != output) {
+              if (usereCodeSays != output) {
                 final = false;
               }
             } catch (err) {
-              alert("Parece que tienes algun error de sintaxis.");
-              alert(err);
+              Toastify({
+                text: "Parece que tienes algun error de sintaxis!",
+                duration: 1000, // Duración de 2 segundos
+                stopOnFocus: true,
+                style: {
+                  background: "red",
+                },
+              }).showToast();
+
               final = false;
               return;
             }
           }
 
           if (final == true) {
-            alert("Ejercicio resuelto");
-            const puerta = document.getElementById("puerta");
-            puerta.dataset.open = "true";
+            Toastify({
+              text: "Ejercicio resuelto!",
+              duration: 1000, // Duración de 2 segundos
+              stopOnFocus: true,
+            }).showToast();
+            const image = document.getElementById("image");
+            image.setAttribute("src", "/ej1POST.jpg");
+            Toastify({
+              text: "Oh no! la mala empresa a decido cortar el arbol! Y TU LOS AYUDASTE!",
+              duration: 5000, // Duración de 2 segundos
+              stopOnFocus: true,
+            }).showToast();
           } else {
-            alert("Ejercicio no resuelto");
+            Toastify({
+              text: "Tu codigo no parece andar!",
+              duration: 1000, // Duración de 2 segundos
+              stopOnFocus: true,
+              style: {
+                background: "red",
+              },
+            }).showToast();
           }
         }
         /* La funcion que llama al chequeo va aqui: */
@@ -108,7 +140,6 @@
     </script>
     <script>
       const showData = (elem, event) => {
-        
         const data = {
           id: elem.id,
           class: elem.className,

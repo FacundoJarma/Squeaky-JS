@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 let lecciones = await getCollection("lecciones");
 
 lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
+
 ---
 
 <main class="max-w-6xl mx-auto grid grid-cols-5 my-24 gap-4">
@@ -33,6 +34,19 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 
 <script>
   import ScrollReveal from "scrollreveal";
+  import { postData } from "../lib/socket.js";
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  postData("favorito", user, (data) => {
+    data["favoritos"].forEach((favorito) => {
+      const $addFav = document.getElementById(
+        `lection-${favorito}`
+      ) as HTMLButtonElement;
+      console.log(`lection-${favorito}`, $addFav);
+      if(!$addFav) return;
+      $addFav.classList.add("isFav");
+    });
+  });
 
   var slideUp = {
 

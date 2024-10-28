@@ -1,0 +1,25 @@
+{
+    "head": {
+      "title": "Ejercicio sobre el bucle while",
+      "lection": "bucles-while",
+      "type": "Unica Opcion"
+    },
+    "body": {
+      "question": "¿Cuál es la característica principal del bucle `while` en JavaScript?",
+      "options": [
+        {
+          "text": "Ejecuta el bloque de código una vez, sin importar la condición.",
+          "correct": false
+        },
+        {
+          "text": "Repite el bloque de código mientras la condición sea verdadera.",
+          "correct": true
+        },
+        {
+          "text": "Solo se ejecuta una cantidad fija de veces, independientemente de la condición.",
+          "correct": false
+        }
+      ]
+    }
+  }
+  
