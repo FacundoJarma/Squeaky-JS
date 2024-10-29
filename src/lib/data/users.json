@@ -45,14 +45,21 @@
       null,
       "fundamentos-de-js",
       "variables-const-let-var",
-      "bucles-for"
+      "bucles-for",
+      "if-elseif-como-ternarias",
+      "mostrando-informacion-por-pantalla"
     ],
     "favoritos": [
       "fundamentos-de-js",
-      null,
       null
     ],
-    "racha": 1,
-    "ultimaFecha": "2024-10-28T18:04:20.183Z"
+    "racha": 2,
+    "ultimaFecha": "2024-10-29T13:11:49.911Z"
+  },
+  {
+    "username": "mimmugon",
+    "id": "138b83f0-3b95-49ea-a32d-70e8948707d2",
+    "password": "lasmiassongod",
+    "email": "gggg@gmail.com"
   }
 ]
