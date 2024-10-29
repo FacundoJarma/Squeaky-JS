@@ -1,53 +1,58 @@
-import { readFile, writeFile } from 'fs';
+import { readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 
 const pathJSON = join("./src/lib/data/users.json");
-
-export function actualizarRacha(data) {
-    readFile(pathJSON, 'utf-8', (err, leido) => {
-        if (err) {
-            console.error('Error al leer el archivo:', err);
-            return;
-        }
-
-        let jsonData = [];
-        try {
-            jsonData = JSON.parse(leido);
-        } catch (e) {
-            console.error('Error al parsear JSON:', e);
-            return;
-        }
+export async function actualizarRacha(data) {
+    try {
+        const leido = await readFile(pathJSON, 'utf-8');
+        const jsonData = JSON.parse(leido);
 
         const usuario = jsonData.find(usuario => usuario.username === data.username);
         if (!usuario) {
             console.error('Usuario no encontrado');
-            return;
+            return null;
         }
 
-        const hoy = new Date().setHours(0, 0, 0, 0); 
+        const hoy = new Date().setHours(0, 0, 0, 0);
         const ultimaFecha = new Date(usuario.ultimaFecha || 0).setHours(0, 0, 0, 0);
 
         if (hoy === ultimaFecha) {
             console.log('Ya se registró la sesión de hoy.');
-            return;
+            return usuario.racha;
         }
 
-        if (hoy - ultimaFecha === 86400000) { 
-            usuario.racha = (usuario.racha || 0) + 1; 
+        if (hoy - ultimaFecha === 86400000) {
+            usuario.racha = (usuario.racha || 0) + 1;
         } else {
-            usuario.racha += 1; 
+            usuario.racha = 1;
         }
 
-        usuario.ultimaFecha = new Date().toISOString(); 
+        usuario.ultimaFecha = new Date().toISOString();
 
         const jsonString = JSON.stringify(jsonData, null, 2);
-        writeFile(pathJSON, jsonString, 'utf-8', (err) => {
-            if (err) {
-                console.error('Error al escribir en el archivo:', err);
-            } else {
-                console.log(`Racha actualizada: ${usuario.racha} días consecutivos.`);
-                return usuario.racha;
-            }
-        });
-    });
+        await writeFile(pathJSON, jsonString, 'utf-8');
+
+        console.log(`Racha actualizada: ${usuario.racha} días consecutivos.`);
+        return usuario.racha;
+
+    } catch (err) {
+        console.error('Error al leer o escribir en el archivo:', err);
+        return null;
+    }
+}
+export async function getRacha(data) {
+    try {
+        const leido = await readFile(pathJSON, 'utf-8');
+        const jsonData = JSON.parse(leido);
+
+        const usuario = jsonData.find(usuario => usuario.username === data.username);
+        if (!usuario) {
+            console.error('Usuario no encontrado');
+            return null;
+        }
+        return usuario.racha;
+    } catch (err) {
+        console.error('Error al leer o parsear el archivo:', err);
+        return null;
+    }
 }
