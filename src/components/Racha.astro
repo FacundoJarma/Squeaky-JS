@@ -17,3 +17,13 @@
         background: linear-gradient(90deg, #FFB800 0%, #FFDC82 20%, #FFB800 40%, #FFDC82 60%, #FFB800 80%, #FFDC82 100%);
     }
 </style>
+
+<script>
+    import { postData } from "../lib/socket.js";
+    const user = JSON.parse(localStorage.getItem("user"));
+    postData("racha", {
+            username: user.username
+        }, (racha) => {
+            console.log("Tu racha es:" + racha);
+        })
+</script>
