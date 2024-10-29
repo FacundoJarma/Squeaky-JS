@@ -3,7 +3,8 @@ import AnimatedText from "../components/AnimatedText.astro";
 import LayoutOnlyMain from "../layout/layoutOnlyMain.astro";
 import { getEntry } from "astro:content";
 import InicioExerciceSnippet from "../sections/InicioExerciceSnippet.astro";
-import Footer from "../sections/Footer.astro"
+import MonacoEditor from "../components/MonacoEditor.astro";
+import Footer from "../sections/Footer.astro";
 const lection = await getEntry(
   "lecciones",
   "bucles-diferenciar-cuando-usarlos"
@@ -50,6 +51,9 @@ import { Icon } from "astro-icon/components";
         </li>
         <li
           class="w-72 h-36 bg-gray-700 p-4 rounded-lg hover:scale-105 hover:rotate-1 duration-200"
+          data-openSnippet="coderSnippet"
+          data-selected=""
+
         >
           <h3 class="text-xl font-bold text-white font-[inter]">Codea.</h3>
           <p class="text-xs text-[#A6A6A6] font-[inter]">
@@ -76,6 +80,22 @@ import { Icon } from "astro-icon/components";
             <div id="exeSnippet" class="snippet" style="display: none;">
               <InicioExerciceSnippet />
             </div>
+            <div id="coderSnippet" class="snippet" style="display: none;" class="h-full mt-2">
+              <script
+                type="text/javascript"
+                src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"
+              ></script>
+
+              <section id="editorContext" class="h-[31em]">
+                <div class="wrapper w-full h-full">
+                  <div class="editor h-full">
+                    <div class="editor__code h-full">
+                      <div id="editorCode" class="h-full w-full"></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
         </div>
       </div>
@@ -96,6 +116,43 @@ import { Icon } from "astro-icon/components";
   }
 </style>
 <script>
+  const editorCode = document.getElementById("editorCode");
+  require.config({
+    paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor/min/vs" },
+  });
+
+  window.MonacoEnvironment = {
+    getWorkerUrl: function (workerId, label) {
+      return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+        self.MonacoEnvironment = {
+          baseUrl: 'https://cdn.jsdelivr.net/npm/monaco-editor/min/'
+        };
+        importScripts('https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/base/worker/workerMain.js');`)}`;
+    },
+  };
+
+  // Monaco init
+  require(["vs/editor/editor.main"], function () {
+    createEditor(editorCode);
+  });
+  function createEditor(editorContainer) {
+    let editor = monaco.editor.create(editorContainer, {
+      value: "",
+      language: "javascript",
+      theme: "vs-dark",
+      minimap: { enabled: false },
+      contextmenu: false,
+      fontSize: 14,
+      automaticLayout: true,
+      scrollbar: {
+        useShadows: false,
+        vertical: "visible",
+        horizontal: "visible",
+        horizontalScrollbarSize: 12,
+        verticalScrollbarSize: 12,
+      },
+    });
+  }
   const $buttons = document.querySelectorAll(
     "#listOfButtons li"
   ) as NodeListOf<HTMLLIElement>;
