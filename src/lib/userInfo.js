@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 
-const pathJSON = join("data/users.json");
+const pathJSON = join("./src/lib/data/users.json");
 
 export async function userDisplay(data) {
     try {
@@ -14,6 +14,7 @@ export async function userDisplay(data) {
             return;
         } else {
             console.log(usuario.racha)
+            console.log('Usuario encontrado')
             let uData = {
                 racha: usuario.racha,
                 username: usuario.username,
@@ -26,6 +27,9 @@ export async function userDisplay(data) {
             return usuario.email;
             return usuario.fechaDeNacimiento;
             return usuario.password;
+
+            console.log(uData)
+            return uData;
         }
     } catch (err) {
         console.log(err);

@@ -7,13 +7,15 @@
     "favoritos": [
       "variables-const-let-var",
       "tipos-de-datos",
-      "fundamentos-de-js",
-      "if-elseif-como-ternarias"
+      "if-elseif-como-ternarias",
+      "fundamentos-de-js"
     ],
-    "racha": 0,
+    "racha": 1,
     "leccionesHechas": [
-      "variables-const-let-var"
-    ]
+      "variables-const-let-var",
+      null
+    ],
+    "ultimaFecha": "2024-10-29T17:59:18.701Z"
   },
   {
     "username": "Rafa",

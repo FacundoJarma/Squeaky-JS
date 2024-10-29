@@ -46,6 +46,7 @@ export function actualizarRacha(data) {
                 console.error('Error al escribir en el archivo:', err);
             } else {
                 console.log(`Racha actualizada: ${usuario.racha} días consecutivos.`);
+                return usuario.racha;
             }
         });
     });
