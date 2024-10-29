@@ -35,7 +35,7 @@ export function actualizarRacha(data) {
         if (hoy - ultimaFecha === 86400000) { 
             usuario.racha = (usuario.racha || 0) + 1; 
         } else {
-            usuario.racha = 1; 
+            usuario.racha += 1; 
         }
 
         usuario.ultimaFecha = new Date().toISOString(); 
