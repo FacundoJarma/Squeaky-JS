@@ -1,26 +1,30 @@
 ---
     title: Eventos en JS
-    difficult: Medio
+    difficult: Difícil
     classList: col-span-1 row-span-1
     index: 14
 ---
 
 ## ¿Que son los eventos?
+
 Los eventos en JavaScript son acciones que ocurren en el navegador, como hacer clic en un botón, mover el ratón, cargar una página, escribir en un campo de texto, entre otros. Estos eventos permiten a los desarrolladores interactuar con el usuario y responder a sus acciones, lo que hace que las páginas web sean más dinámicas e interactivas.
 
 ## Ejemplos comunes de Eventos
-``click``: Se activa cuando el usuario hace clic en un elemento.
 
-``mouseover``: Se activa cuando el usuario pasa el ratón sobre un elemento.
+`click`: Se activa cuando el usuario hace clic en un elemento.
 
-``keyup``: Se activa cuando se suelta una tecla después de haber sido presionada.
+`mouseover`: Se activa cuando el usuario pasa el ratón sobre un elemento.
 
-``load``: Se activa cuando la página o un recurso (imagen, video, etc.) se ha cargado completamente.
+`keyup`: Se activa cuando se suelta una tecla después de haber sido presionada.
 
-``submit``: Se activa cuando un formulario es enviado.
+`load`: Se activa cuando la página o un recurso (imagen, video, etc.) se ha cargado completamente.
+
+`submit`: Se activa cuando un formulario es enviado.
 
 ## Eventos en html Ejepmlo
+
 Una forma de asociar eventos a un elemento es directamente en el código HTML utilizando atributos como onclick, onmouseover, onchange, etc. Aunque esto es simple, no es la mejor práctica en proyectos complejos, ya que mezcla la lógica de JavaScript con la estructura HTML.
+
 ```js
 <button onclick="saludar()">Haz clic aquí</button>
 
@@ -34,14 +38,16 @@ Una forma de asociar eventos a un elemento es directamente en el código HTML ut
 ## usando addEventlistener
 
 ```js
-elemento.addEventListener('tipo_de_evento', funcion);
+elemento.addEventListener("tipo_de_evento", funcion);
 ```
+
 elemento: Es el elemento HTML al que quieres asociar el evento (como un botón o un campo de texto).
 
 tipo_de_evento: Es el tipo de evento que deseas manejar (por ejemplo, 'click', 'mouseover', 'keyup', etc.).
 
 funcion: Es la función que se ejecutará cuando ocurra el evento.
-## Ejemplo 
+
+## Ejemplo
 
 ```js
 <button id="miBoton">Haz clic aquí</button>
@@ -56,47 +62,48 @@ funcion: Es la función que se ejecutará cuando ocurra el evento.
   });
 </script>
 ```
+
 En este ejemplo, cuando el usuario hace clic en el botón, aparece una alerta con un mensaje.
 
-## Tipos de Eventos 
+## Tipos de Eventos
 
 ### Eventos de ratón (mouse):
 
-``click``: Cuando se hace clic en un elemento.
+`click`: Cuando se hace clic en un elemento.
 
-``dblclick``: Cuando se hace doble clic en un elemento.
+`dblclick`: Cuando se hace doble clic en un elemento.
 
-``mouseover``: Cuando el ratón pasa sobre un elemento.
+`mouseover`: Cuando el ratón pasa sobre un elemento.
 
-``mouseout``: Cuando el ratón sale de un elemento.
+`mouseout`: Cuando el ratón sale de un elemento.
 
 ### Eventos de teclado (keyboard):
 
-``keydown``: Cuando una tecla es presionada.
+`keydown`: Cuando una tecla es presionada.
 
-``keyup``: Cuando una tecla es liberada.
+`keyup`: Cuando una tecla es liberada.
 
-``keypress``: Similar a keydown, pero solo para teclas que producen un valor.
+`keypress`: Similar a keydown, pero solo para teclas que producen un valor.
 
 ### Eventos de formulario:
 
-``submit``: Cuando un formulario es enviado.
+`submit`: Cuando un formulario es enviado.
 
-``change``: Cuando el valor de un campo cambia (por ejemplo, un input o select).
+`change`: Cuando el valor de un campo cambia (por ejemplo, un input o select).
 
 ### Eventos de ventana (window):
 
-``load``: Cuando una página o recurso se ha cargado completamente.
+`load`: Cuando una página o recurso se ha cargado completamente.
 
-``resize``: Cuando se redimensiona la ventana del navegador.
+`resize`: Cuando se redimensiona la ventana del navegador.
 
-``scroll``: Cuando el usuario desplaza el contenido de la ventana.
+`scroll`: Cuando el usuario desplaza el contenido de la ventana.
 
-## Ejemplo practico 
+## Ejemplo practico
 
 #### Evento Click
 
-```js 
+```js
 <button id="botonSaludo">Saludar</button>
 
 <script>
@@ -120,7 +127,8 @@ En este ejemplo, cuando el usuario hace clic en el botón, aparece una alerta co
 </script>
 ```
 
-#### Evento mouseover 
+#### Evento mouseover
+
 ```js
 <img src="imagen.jpg" id="miImagen" alt="Imagen">
 
@@ -132,7 +140,8 @@ En este ejemplo, cuando el usuario hace clic en el botón, aparece una alerta co
 </script>
 ```
 
-## Prevencion de Comportamiento Predeterminado 
+## Prevencion de Comportamiento Predeterminado
+
 Algunos eventos, como el envío de formularios o el clic en enlaces, tienen comportamientos predeterminados que puedes querer evitar (por ejemplo, evitar que un formulario se envíe al servidor).
 
 #### Ejemplo de preventDefault
@@ -148,5 +157,7 @@ Algunos eventos, como el envío de formularios o el clic en enlaces, tienen comp
   });
 </script>
 ```
-## Conclucion 
+
+## Conclucion
+
 Los eventos en JavaScript son esenciales para hacer que las páginas web sean interactivas y dinámicas. Con addEventListener puedes manejar diversos eventos sin mezclar la lógica con el HTML, lo que hace tu código más limpio y fácil de mantener.

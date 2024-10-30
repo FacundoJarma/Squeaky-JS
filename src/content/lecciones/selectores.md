@@ -1,6 +1,6 @@
 ---
     title: Selectores JS
-    difficult: Fácil
+    difficult: Medio
     classList: col-span-1 row-span-1
     index: 16
 ---

@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 ---
-<footer class="h-[20em] mt-12 bg-black/10 w-screen px-16">
+<footer class="h-[26em] mt-12 bg-black/10 w-screen px-16">
     <div class="flex justify-between  py-14 border-b border-white"> 
         <div class="flex gap-1 items-center">
             <div class="h-8 rounded-full aspect-square bg-[#FFB800]"></div>
@@ -9,22 +9,25 @@ import { Icon } from "astro-icon/components";
         </div>
         <span class="text-white text-lg">© 2024 ⎯ 2026 SqueakyJS Inc.</span>
         <ul class="flex gap-3">
-            <!-- <li> <Icon name="youTube" /> </li> -->
-            <!-- <li><Icon name="instagram" height={24} width={24} /></li> -->
-            <!-- <li><Icon name="x" height={24} width={24} /></li> -->
+            <li> <Icon name="YouTube" height={32} width={32} /> </li>
+            <li><Icon name="Instagram" height={32} width={32} /></li>
+            <li><Icon name="X" height={32} width={32} /></li>
         </ul>
     </div>
-    <div class="mt-6 flex gap-48">
-        <ul class="flex flex-col gap-4">
-            <li> <a href="/" class="underline">Inicio</a> </li>
-            <li> <a href="/lecciones" class="underline">Lecciones</a> </li>
-            <li> <a href="/ejercicios" class="underline">Ejercicios</a> </li>
-        </ul>
-        <ul class="flex flex-col gap-4">
-            <li> <a href="/" class="underline">FAQ</a> </li>
-            <li> <a href="/lecciones" class="underline">UI</a> </li>
-            <li> <a href="/ejercicios" class="underline">UX</a> </li>
-        </ul>
+    <div class="mt-6 flex justify-between">
+        <div class="flex gap-48 items-center">
+            <ul class="flex flex-col gap-4">
+                <li> <a href="/" class="underline">Inicio</a> </li>
+                <li> <a href="/lecciones" class="underline">Lecciones</a> </li>
+                <li> <a href="/ejercicios" class="underline">Ejercicios</a> </li>
+            </ul>
+            <ul class="flex flex-col gap-4">
+                <li> <a href="/" class="underline">FAQ</a> </li>
+                <li> <a href="/lecciones" class="underline">UI</a> </li>
+                <li> <a href="/ejercicios" class="underline">UX</a> </li>
+            </ul>
+        </div>
+        <img src="http://localhost:4321/Sleepy Squeaky.gif" class="w-48 -mt-6"/>
     </div>
 </footer>
 

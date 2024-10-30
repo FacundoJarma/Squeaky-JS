@@ -49,14 +49,19 @@
       "variables-const-let-var",
       "bucles-for",
       "if-elseif-como-ternarias",
-      "mostrando-informacion-por-pantalla"
+      "mostrando-informacion-por-pantalla",
+      "estructuras-de-control-condicionales",
+      "operadores-logicos",
+      "bucles-while"
     ],
     "favoritos": [
       "fundamentos-de-js",
-      null
+      null,
+      "variables-const-let-var",
+      "estructuras-de-control-condicionales"
     ],
-    "racha": 2,
-    "ultimaFecha": "2024-10-29T13:11:49.911Z"
+    "racha": 3,
+    "ultimaFecha": "2024-10-30T11:16:35.176Z"
   },
   {
     "username": "mimmugon",
