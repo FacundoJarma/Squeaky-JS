@@ -5,11 +5,11 @@ const existsNextLesson = actualIndexOfEx < exercicesInThisLesson.length - 1;
 const href = existsNextLesson
   ? `/ejercicios/${exercicesInThisLesson[actualIndexOfEx + 1].id}`
   : "/lecciones";
-
 ---
 
 <button
   data-href={href}
+  data-exeid={exercicesInThisLesson[actualIndexOfEx].id}
   id="goNextExercice"
   class="hidden z-10 w-48 h-14 bg-[#5E5E11] rounded-tl-3xl text-xl absolute bottom-12 right-12 place-content-center hover:scale-105 duration-200 font-[lexend]"
 >
@@ -23,14 +23,23 @@ const href = existsNextLesson
 </style>
 
 <script>
-
+import { postData } from "../lib/socket.js";
   const btn = document.getElementById("goNextExercice");
   btn?.addEventListener("click", () => {
     //TODO Backend: Guardar que esta leccion se termino.
-    const url = btn.dataset.href;
-    if (url) {
-      location.href = url;
-    }
-    
+    const user = JSON.parse(localStorage.getItem("user"));
+    const exeID = btn.dataset.exeid;
+    console.log(exeID);
+    const data = {
+      ejerciciosHechos: exeID,
+      username: user.username,
+    };
+    postData("ejercicioHecho", data, () => {
+      const url = btn.dataset.href;
+      console.log(url);
+      if (url) {
+        location.href = url;
+      }
+    });
   });
 </script>
