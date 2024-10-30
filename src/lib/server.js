@@ -8,6 +8,7 @@ import { actualizarRacha, getRacha } from "./racha.js";
 import { userDisplay } from "./userInfo.js";
 
 import { onEvent, sendEvent, startServer } from "soquetic";
+import { ejercicioHecho } from "./ejerciciosHechos.js";
 
 onEvent("registrarUsuario", (data) => {
   registrar(data);
@@ -45,6 +46,12 @@ onEvent('racha', async (data) => {
 onEvent('leccionHecha', async (data) => {
   const user = await leccionesHecha(data)
   console.log(user) 
+  return user;
+})
+
+onEvent('ejercicioHecho', async (data) => {
+  const user = await ejercicioHecho(data);
+  console.log(user);
   return user;
 })
 
