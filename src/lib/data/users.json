@@ -58,13 +58,13 @@
       "bucles-while"
     ],
     "favoritos": [
+      "estructuras-de-control-condicionales",
       "fundamentos-de-js",
-      null,
       "variables-const-let-var",
-      "estructuras-de-control-condicionales"
+      "tipos-de-datos"
     ],
-    "racha": 4,
-    "ultimaFecha": "2024-10-31T11:10:40.954Z",
+    "racha": 1,
+    "ultimaFecha": "2024-11-03T14:18:35.029Z",
     "ejerciciosHechos": [
       null,
       "1-1",
