@@ -163,6 +163,18 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
       });
     });
 
+    const squeakyReaction = () => {
+      const $mascota = document.getElementById("mascota") as HTMLImageElement;
+
+      const $consejo = document.getElementById(
+        "mascotaConsejo"
+      ) as HTMLParagraphElement;
+
+      $mascota.src = "http://localhost:4321/Sad Squeaky.gif";
+      $consejo.innerText = "¡Que mala suerte! La proxima sera.";
+      $consejo.classList.add("mostrar");
+    };
+
     const checkExercice = () => {
       let passed = true;
       const $dropZones = document.getElementById("dropZones");

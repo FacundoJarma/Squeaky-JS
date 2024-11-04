@@ -22,7 +22,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   >
     <MascotaInteractiva
       image="normal"
-      classList="h-48"
+      classList="aspect-square h-48"
       textPosition="abajo"
       consejo="¡Revisa la leccion si necesitas ayuda!"
       position="relative"
@@ -85,6 +85,18 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     correctOption.getElement().classList.add("parcialCorrect");
   };
 
+  const squeakyReaction = () => {
+    const $mascota = document.getElementById("mascota") as HTMLImageElement;
+
+    const $consejo = document.getElementById(
+      "mascotaConsejo"
+    ) as HTMLParagraphElement;
+
+    $mascota.src = "http://localhost:4321/Sad Squeaky.gif";
+    $consejo.innerText = "¡Que mala suerte! La proxima sera."
+    $consejo.classList.add("mostrar");
+  };
+
   buttons.forEach((button) => {
     button.getElement().addEventListener("click", () => {
       button.addStylesOfOptionType();
@@ -104,6 +116,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
           stopOnFocus: true,
         }).showToast();
       } else {
+        squeakyReaction();
         showCorrectAnswer();
       }
     });
