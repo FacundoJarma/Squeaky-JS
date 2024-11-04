@@ -76,5 +76,25 @@
     "id": "138b83f0-3b95-49ea-a32d-70e8948707d2",
     "password": "lasmiassongod",
     "email": "gggg@gmail.com"
+  },
+  {
+    "username": "Presentacion de Tic",
+    "id": "37220908-9cf1-4181-8261-9bf81434bfa5",
+    "password": "123456",
+    "email": "tic@ort.edu.ar",
+    "racha": 1,
+    "ultimaFecha": "2024-11-04T11:31:20.614Z",
+    "ejerciciosHechos": [
+      null,
+      "2-1",
+      "2-2",
+      null
+    ],
+    "leccionesHechas": [
+      null
+    ],
+    "favoritos": [
+      null
+    ]
   }
 ]

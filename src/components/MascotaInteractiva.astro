@@ -1,19 +1,46 @@
 ---
-const { classList, consejo, estado = "tranquilo", image = "normal",validTries = 3 } = Astro.props;
+const {
+  classList,
+  consejo,
+  estado = "tranquilo",
+  image = "normal",
+  validTries = 3,
+  textPosition = "arriba",
+  position = "",
+  rotate = "0",
+} = Astro.props;
 ---
 
-<div class={`${classList} + ${image == "study" ? "-top-20" : ""}`} data-validTries={validTries} id="mascotaInteractivaContainer">
+<div
+  class={`${classList} + ${image == "study" ? "-top-20" : ""} ${position}`}
+  data-validTries={validTries}
+  id="mascotaInteractivaContainer"
+>
   <img
     style=`--duration: ${ estado === "tranquilo" ? 2 : estado === "apurado" ? 1 : estado === "molesto" ? 0.5 : 0 }s`
-    src={image == "normal" ? "http://localhost:4321/mascota.png" : image == "study" ? "http://localhost:4321/Study Squeaky.gif" : ""}
+    src={image == "normal"
+      ? "http://localhost:4321/Normal Squeaky.gif"
+      : image == "study"
+        ? "http://localhost:4321/Study Squeaky.gif"
+        : ""}
     id="mascota"
     alt="La mascota de Squeaky"
-
+    class={`h-full w-full`}
   />
 
   <p
     id="mascotaConsejo"
-    class="z-50 flex opacity-0 text-sm text-black text-center absolute -top-12 -left-6 w-full bg-gray-100 border border-gray-300 p-2 rounded-md min-h-10 justify-center items-center"
+    class={`z-50 flex opacity-0 text-sm text-black text-center absolute 
+    ${textPosition == "arriba" ? "-top-12" : textPosition == "abajo" ? "-bottom-12" : ""} -left-6
+    w-full
+    bg-gray-100
+    border
+    border-gray-300
+    p-2
+    rounded-md
+    min-h-10
+    justify-center
+    items-center`}
   >
     {consejo}
   </p>
@@ -31,37 +58,37 @@ const { classList, consejo, estado = "tranquilo", image = "normal",validTries = 
 
   @keyframes shake {
     0% {
-      transform: translate(0px, 0px) rotate(0deg);
+      transform: translate(0px, 0px) rotateX(0deg);
     }
     10% {
-      transform: translate(-1px, -2px) rotate(-1deg);
+      transform: translate(-1px, -2px) rotateX(-1deg);
     }
     20% {
-      transform: translate(-3px, 0px) rotate(1deg);
+      transform: translate(-3px, 0px) rotateX(1deg);
     }
     30% {
-      transform: translate(3px, 2px) rotate(0deg);
+      transform: translate(3px, 2px) rotateX(0deg);
     }
     40% {
-      transform: translate(1px, -1px) rotate(1deg);
+      transform: translate(1px, -1px) rotateX(1deg);
     }
     50% {
-      transform: translate(-1px, 2px) rotate(-1deg);
+      transform: translate(-1px, 2px) rotateX(-1deg);
     }
     60% {
-      transform: translate(-3px, 1px) rotate(0deg);
+      transform: translate(-3px, 1px) rotateX(0deg);
     }
     70% {
-      transform: translate(3px, 1px) rotate(-1deg);
+      transform: translate(3px, 1px) rotateX(-1deg);
     }
     80% {
-      transform: translate(-1px, -1px) rotate(1deg);
+      transform: translate(-1px, -1px) rotateX(1deg);
     }
     90% {
-      transform: translate(1px, 2px) rotate(0deg);
+      transform: translate(1px, 2px) rotateX(0deg);
     }
     100% {
-      transform: translate(0px, 0px) rotate(0deg);
+      transform: translate(0px, 0px) rotateX(0deg);
     }
   }
 
@@ -79,28 +106,32 @@ const { classList, consejo, estado = "tranquilo", image = "normal",validTries = 
 
 <script>
   const $mascota = document.getElementById("mascota") as HTMLImageElement;
-  const $mascotaInteractivaContainer = document.getElementById("mascotaInteractivaContainer") as HTMLElement;
+  const $mascotaInteractivaContainer = document.getElementById(
+    "mascotaInteractivaContainer"
+  ) as HTMLElement;
   var totalClicks = 0;
 
   $mascota.addEventListener("click", () => {
     const $consejo = document.getElementById(
       "mascotaConsejo"
     ) as HTMLParagraphElement;
-    if (totalClicks > mascotaInteractivaContainer.dataset.validTries) {
-      $consejo.innerHTML = "!Me harte de ti, deja de molestar!";
+    console.log($mascotaInteractivaContainer.dataset.validtries, totalClicks);
+    if (totalClicks > $mascotaInteractivaContainer.dataset.validtries) {
+      $consejo.innerHTML =
+        Math.random() > 0.5 ? "Estoy cansado, jefe" : "&*!#$@**";
       $mascota.classList.add("agresiveShake");
-    }else{
+      $mascota.src = "http://localhost:4321/Angry Squeaky.gif";
+    } else {
       $mascota.classList.add("shake");
       totalClicks++;
     }
     $consejo.classList.add("mostrar");
 
-
-
     setTimeout(() => {
       $consejo.classList.remove("mostrar");
       $mascota.classList.remove("shake");
-      if (totalClicks > mascotaInteractivaContainer.dataset.validTries) $mascota.classList.remove("agresiveShake");
+      if (totalClicks > $mascotaInteractivaContainer.dataset.validtries)
+        $mascota.classList.remove("agresiveShake");
     }, 2000);
   });
 </script>
