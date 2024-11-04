@@ -187,7 +187,9 @@ import { Icon } from "astro-icon/components";
       "contraseña"
     ) as HTMLInputElement;
     $contraseña.value = userInfo?.password ? userInfo?.password : "";
-
+    const $dateInput = document.getElementById("dateInput") as HTMLInputElement;
+    
+    $dateInput.value = userInfo?.date ? userInfo?.date : "";
 
   </script>
 </Layout>

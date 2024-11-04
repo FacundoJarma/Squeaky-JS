@@ -102,5 +102,23 @@
     "id": "45e1ab2d-ebd7-4ccf-92d5-1b5b1cbcfaf7",
     "password": "123456",
     "email": "facundojarma@gmail.com"
+  },
+  {
+    "username": "Facu",
+    "id": "8df4a7be-aa44-45f3-99e9-2e3522f92657",
+    "password": "123456",
+    "email": "facundojarma@gmail.co",
+    "date": "12-12-12",
+    "racha": 1,
+    "ultimaFecha": "2024-11-04T13:36:47.228Z"
+  },
+  {
+    "username": "dasd",
+    "id": "e75b9cb6-8e79-4643-9583-1d12375f76ea",
+    "password": "123456",
+    "email": "dasd@gmail.com",
+    "date": "2008-12-12",
+    "racha": 1,
+    "ultimaFecha": "2024-11-04T13:39:39.173Z"
   }
 ]
