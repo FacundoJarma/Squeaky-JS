@@ -58,18 +58,43 @@
       "bucles-while"
     ],
     "favoritos": [
+      "estructuras-de-control-condicionales",
       "fundamentos-de-js",
-      null,
       "variables-const-let-var",
-      "estructuras-de-control-condicionales"
+      "tipos-de-datos"
     ],
-    "racha": 3,
-    "ultimaFecha": "2024-10-30T11:16:35.176Z"
+    "racha": 1,
+    "ultimaFecha": "2024-11-03T14:18:35.029Z",
+    "ejerciciosHechos": [
+      null,
+      "1-1",
+      null
+    ]
   },
   {
     "username": "mimmugon",
     "id": "138b83f0-3b95-49ea-a32d-70e8948707d2",
     "password": "lasmiassongod",
     "email": "gggg@gmail.com"
+  },
+  {
+    "username": "Presentacion de Tic",
+    "id": "37220908-9cf1-4181-8261-9bf81434bfa5",
+    "password": "123456",
+    "email": "tic@ort.edu.ar",
+    "racha": 1,
+    "ultimaFecha": "2024-11-04T11:31:20.614Z",
+    "ejerciciosHechos": [
+      null,
+      "2-1",
+      "2-2",
+      null
+    ],
+    "leccionesHechas": [
+      null
+    ],
+    "favoritos": [
+      null
+    ]
   }
 ]
