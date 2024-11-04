@@ -96,5 +96,11 @@
     "favoritos": [
       null
     ]
+  },
+  {
+    "username": "A",
+    "id": "45e1ab2d-ebd7-4ccf-92d5-1b5b1cbcfaf7",
+    "password": "123456",
+    "email": "facundojarma@gmail.com"
   }
 ]
