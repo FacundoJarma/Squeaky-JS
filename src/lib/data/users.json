@@ -63,5 +63,27 @@
     "id": "138b83f0-3b95-49ea-a32d-70e8948707d2",
     "password": "lasmiassongod",
     "email": "gggg@gmail.com"
+  },
+  {
+    "username": "Santiago Rehmann",
+    "id": "e27ed3f8-0752-46c7-9278-943e0a64c310",
+    "password": "santi9041",
+    "email": "49379041@est.ort.edu.ar",
+    "racha": 2,
+    "ultimaFecha": "2024-10-30T10:56:38.708Z",
+    "leccionesHechas": [
+      null,
+      "fundamentos-de-js"
+    ],
+    "favoritos": [
+      null,
+      null
+    ]
+  },
+  {
+    "username": "Santiago Rehmann",
+    "id": "07f4c1fa-8e13-4f23-b08b-c2342a831c8d",
+    "password": "santi9041",
+    "email": "49379041@est.ort.edu.ar"
   }
 ]
