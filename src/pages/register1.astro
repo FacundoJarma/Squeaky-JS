@@ -10,8 +10,9 @@ import MascotaInteractiva from "../components/MascotaInteractiva.astro";
     <BackgroundImage />
     <RegisterFormOne />
     <MascotaInteractiva
-      classList="h-64 w-64 absolute bottom-6 right-12"
-      consejo="Te recominedo que te crees una cuenta. Sino, no me veras mas!"
+      validTries={100}
+      classList="h-64 w-auto absolute bottom-6 right-12"
+      consejo="¡Si queres usar Squeaky JS, debes crear una cuenta!"
     />
   </main>
 </LayoutLoginRegister>

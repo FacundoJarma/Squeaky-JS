@@ -18,10 +18,12 @@ const formato = {
   username: undefined,
   email: undefined,
   password: undefined,
+  date: undefined,
   favoritos: [],
   racha: 0,
   leccionesHechas: [],
-  fechaDeNacimiento: undefined
+  fechaDeNacimiento: undefined,
+  ejerciciosHechos: []
 };
 
 function enUso() {
@@ -36,8 +38,11 @@ export function registrar(data) {
   nuevoUsuario.password = data.password;
   nuevoUsuario.email = data.email;
   nuevoUsuario.racha = data.racha;
+  nuevoUsuario.date = data.date
   nuevoUsuario.fechaDeNacimiento = data.fechaDeNacimiento;
   nuevoUsuario.leccionesHechas = data.leccionesHechas;
+  nuevoUsuario.ejerciciosHechos = data.ejerciciosHechos;
+  
  /*
   nuevoUsuario.leccionActual = data.leccionActual;
   nuevoUsuario.ejerciciosHechos = data.ejerciciosHechos;

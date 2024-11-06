@@ -1,7 +1,7 @@
 ---
 import ButtonTwoOptions from "../components/ButtonTwoOptions.astro";
 import NextExercise from "../components/NextExercise.astro";
-
+import MascotaInteractiva from "../components/MascotaInteractiva.astro";
 const { body, head, exercicesInThisLesson, id, indexOfLesson } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
@@ -21,7 +21,14 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     class="flex gap-[8em] justify-center mt-[1em] flex-row-reverse items-center mr-[11em]"
   >
     <div class="flex items-center flex-row-reverse gap-[7em] ml-[10em] mt-24">
-      <img src="http://localhost:4321/mascota.png" class="w-[11em] h-[10em]" />
+      <MascotaInteractiva
+        image="normal"
+        classList="aspect-square h-48"
+
+        textPosition="abajo"
+        consejo="¡Revisa la leccion si necesitas ayuda!"
+        position="relative"
+      />
       <div
         class="bg-[#33353B] flex items-center text-center p-6 max-w-full max-h-full rounded-l-xl border-solid border-2 border-[#B4B4B4]"
       >

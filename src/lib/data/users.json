@@ -15,7 +15,10 @@
       "variables-const-let-var",
       null
     ],
-    "ultimaFecha": "2024-10-29T17:59:18.701Z"
+    "ultimaFecha": "2024-10-29T17:59:18.701Z",
+    "ejerciciosHechos": [
+      null
+    ]
   },
   {
     "username": "Rafa",
@@ -49,14 +52,24 @@
       "variables-const-let-var",
       "bucles-for",
       "if-elseif-como-ternarias",
-      "mostrando-informacion-por-pantalla"
+      "mostrando-informacion-por-pantalla",
+      "estructuras-de-control-condicionales",
+      "operadores-logicos",
+      "bucles-while"
     ],
     "favoritos": [
+      "estructuras-de-control-condicionales",
       "fundamentos-de-js",
-      null
+      "variables-const-let-var",
+      "tipos-de-datos"
     ],
-    "racha": 2,
-    "ultimaFecha": "2024-10-29T13:11:49.911Z"
+    "racha": 1,
+    "ultimaFecha": "2024-11-03T14:18:35.029Z",
+    "ejerciciosHechos": [
+      null,
+      "1-1",
+      null
+    ]
   },
   {
     "username": "mimmugon",
