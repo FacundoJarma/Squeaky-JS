@@ -98,5 +98,14 @@
     "id": "07f4c1fa-8e13-4f23-b08b-c2342a831c8d",
     "password": "santi9041",
     "email": "49379041@est.ort.edu.ar"
+  },
+  {
+    "username": "Facundo",
+    "id": "4ba77bdc-b504-4e05-8150-9486a33a3c43",
+    "password": "123456",
+    "email": "fav@gmail.com",
+    "date": "2008-12-6",
+    "racha": 1,
+    "ultimaFecha": "2024-11-08T14:16:28.954Z"
   }
 ]

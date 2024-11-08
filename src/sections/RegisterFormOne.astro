@@ -89,6 +89,7 @@ import { Icon } from "astro-icon/components";
         }).showToast();
         return;
     }
+    const checkDate = date.split("-");
     window.location.href = "/register2?username=" + $username.value + "&email=" + $email.value + "&date=" + date;
   });
 
