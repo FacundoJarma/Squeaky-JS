@@ -1,26 +1,27 @@
 {
     "head": {
-      "title": "Que tipos de datos existen",
+      "title": "Analizando variables",
       "lection": "tipos-de-datos",
-      "type": "Multiple Opcion"
+      "type": "Unica Opcion"
     },
     "body": {
-      "question": "¿Cuál de las siguientes afirmaciones sobre la palabra clave 'var' es verdadera?",
+      "question": "Que tipo de dato almacena esta variable?",
+      "context": "var variable = 'Hola!' ",
       "options": [
         {
-          "text": "Las variables declaradas con 'var' tienen alcance de bloque.",
+          "text": "Una cadena de texto (string).",
+          "correct": true
+        },
+        {
+          "text": "Una lista (array).",
           "correct": false
         },
         {
-          "text": "Las variables declaradas con 'var' se pueden redeclarar en el mismo ámbito.",
-          "correct": true
+          "text": "Un entero. (int)",
+          "correct": false
         },
         {
-          "text": "Las variables declaradas con 'var' tienen un alcance global dentro de una función.",
-          "correct": true
-        },
-        {
-          "text": "Las variables declaradas con 'var' solo pueden ser inicializadas una vez.",
+          "text": "Un caracter (char).",
           "correct": false
         }
       ]

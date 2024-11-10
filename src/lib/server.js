@@ -1,7 +1,7 @@
 import { registrar } from "./registerSoquetic.js";
 import { login } from "./loginSoquetic.js";
 import { leccionesHecha } from "./leccionesHechas.js";
-import { añadirFavorito, eliminarFavorito } from "./favoritos.js";
+import { añadirFavorito, eliminarFavorito, getFavoritos } from "./favoritos.js";
 // import { nuevaRacha } from "./racha.js";
 import { buscarUsuario } from "./displayUser.js";
 import { actualizarRacha, getRacha } from "./racha.js";
@@ -19,10 +19,10 @@ onEvent("leccionHecha", (data) => {
 });
 
 onEvent("favorito", async (data) => {
-    const favs = await añadirFavorito(data)
-    console.log(favs);
-    return favs;
-  
+  const favs = await añadirFavorito(data)
+  console.log(favs);
+  return favs;
+
 });
 
 onEvent('login', async (data) => {
@@ -45,7 +45,7 @@ onEvent('racha', async (data) => {
 
 onEvent('leccionHecha', async (data) => {
   const user = await leccionesHecha(data)
-  console.log(user) 
+  console.log(user)
   return user;
 })
 
@@ -59,13 +59,20 @@ onEvent('userInfo', async (data) => {
   console.log(data);
   const user = await userDisplay(data);
   console.log(user);
-  return user; 
+  return user;
 })
 
 onEvent("getRacha", async (data) => {
   const racha = await getRacha(data);
   console.log(racha);
   return racha;
+})
+
+onEvent("getFavoritos", async (data) => {
+  
+  const favs = await getFavoritos(data);
+  console.log(favs);
+  return favs;
 })
 
 /*

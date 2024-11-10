@@ -37,9 +37,9 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
   import { postData } from "../lib/socket.js";
   const user = JSON.parse(localStorage.getItem("user"));
 
-  postData("favorito", user, (data) => {
-    console.log(data);
-    data["favoritos"].forEach((favorito) => {
+  postData("getFavoritos", user.username, (favs) => {
+    console.log(favs);
+    favs.forEach((favorito) => {
       const $addFav = document.getElementById(
         `lection-${favorito}`
       ) as HTMLButtonElement;
