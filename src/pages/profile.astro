@@ -144,8 +144,8 @@ import { Icon } from "astro-icon/components";
     }
     .foto {
       background-color: #4b5563;
-      width: 15em;
       height: 15em;
+      aspect-ratio: 1/1;
       border-radius: 50em;
       text-align: center;
       align-items: center;
@@ -172,7 +172,6 @@ import { Icon } from "astro-icon/components";
       "usernameLabel"
     ) as HTMLHeadingElement;
 
-
     $usernameLabel.innerHTML = "@" + userInfo?.username;
 
     const $nombreApellidoInput = document.getElementById(
@@ -188,8 +187,7 @@ import { Icon } from "astro-icon/components";
     ) as HTMLInputElement;
     $contraseña.value = userInfo?.password ? userInfo?.password : "";
     const $dateInput = document.getElementById("dateInput") as HTMLInputElement;
-    
-    $dateInput.value = userInfo?.date ? userInfo?.date : "";
 
+    $dateInput.value = userInfo?.date ? userInfo?.date : "";
   </script>
 </Layout>
