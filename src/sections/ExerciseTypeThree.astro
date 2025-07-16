@@ -13,7 +13,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     src="/fondoej3.png"
     class="absoulute w-full h-full max-h-screen"
   />
-  <main class="flex flex-col w-full h-full justify-center px-12 absolute">
+  <main class="flex flex-col w-full h-full justify-center px-4 lg:px-12 absolute">
     <div class="w-full flex flex-col mb-[24em]">
       <h1 class="text-5xl font-bold font-[lexend] text-[60px] max-w-2xl">
         {head.title}
@@ -29,11 +29,11 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 
     <img
       src="/bellota.png"
-      class="absolute w-[30em] h-[30em] -ml-6 mb-1 mt-48"
+      class="absolute w-[20em] lg:w-[30em] h-[20em] lg:h-[30em] -ml-6 mb-1 mt-48"
     />
     <ul
       id="dragable"
-      class="mb-[2em] flex gap-2 flex-col ml-16 absolute mt-[15em]"
+      class="mb-[2em] flex gap-2 flex-col lg:ml-16 absolute mt-[15em]"
     >
       {
         body.bloques.map((bloque) => {
@@ -43,7 +43,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     </ul>
   </main>
   <aside
-    class="h-[30em] w-[25em] bg-gray-800 mr-10 mt-10 absolute flex ml-[50em]"
+    class="h-[30em] w-[96.5%] lg:w-[25em] bg-gray-800 mr-10 mt-[50em] lg:mt-10 absolute flex  lg:ml-[50em]"
   >
     <div>
       <div class="w-[25em] bg-gray-600 p-2 px-6 relative h-10">

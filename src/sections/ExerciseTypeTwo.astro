@@ -6,7 +6,7 @@ const { body, head, exercicesInThisLesson, id, indexOfLesson } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
-<main class="px-12 h-full w-full">
+<main class="px-4 max-w-full lg:px-12 h-full w-full">
   <img
     src="/fondoej1.png"
     class="absolute -z-10 flex left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 max-h-[100vh]"
@@ -18,9 +18,9 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
   />
 
   <header
-    class="flex gap-[8em] justify-center mt-[1em] flex-row-reverse items-center mr-[11em]"
+    class="flex gap-[8em] justify-center mt-[1em] flex-row-reverse items-center lg:mr-[11em]"
   >
-    <div class="flex items-center flex-row-reverse gap-[7em] ml-[10em] mt-24">
+    <div class="flex items-center flex-col lg:flex-row-reverse gap-[7em] lg:ml-[10em] mt-24">
       <MascotaInteractiva
         image="normal"
         classList="aspect-square h-48"
@@ -30,8 +30,8 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
         position="relative"
       />
       <div
-        class="bg-[#33353B] flex items-center text-center p-6 max-w-full max-h-full rounded-l-xl border-solid border-2 border-[#B4B4B4]"
-      >
+      class="flex flex-col gap-2 bg-[#33353B] p-6 max-w-full max-h-full rounded-l-xl border-solid border-2 border-[#B4B4B4]"
+    >
         <h1
           class="text-3xl font-normal flex text-center font-[lexend] -mt-1 ml-1 px-2 py-1"
         >
@@ -40,8 +40,8 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
       </div>
     </div>
   </header>
-  <div class="mt-12 w-full px-12">
-    <ul class="mx-auto flex gap-6 w-fit items-center">
+  <div class="w-full lg:px-12 flex justify-center mt-[6em]">
+    <ul class="grid gap-3 items-center justify-center">
       {
         body.options.map((opt) => (
           <ButtonTwoOptions isCorrect={opt.correct} text={opt.text} />
