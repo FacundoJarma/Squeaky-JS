@@ -25,21 +25,23 @@ const href = existsNextLesson
 <script>
   import { exerciceCompleted } from "../lib/exercices";
 
-  const btn = document.getElementById("goNextExercice");
-  btn?.addEventListener("click", () => {
-    const exeID = (btn.dataset.exeid);
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("goNextExercice");
+    btn?.addEventListener("click", () => {
+      const exeID = btn.dataset.exeid;
 
-    console.log(exeID);
+      console.log(exeID);
 
-    try {
-      exerciceCompleted(exeID).then(async () => {
-        const url = btn.dataset.href;
-        if (url) {
-          location.href = url;
-        }
-      });
-    } catch (e) {
-      console.error(e);
-    }
+      try {
+        exerciceCompleted(exeID).then(async () => {
+          const url = btn.dataset.href;
+          if (url) {
+            location.href = url;
+          }
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    });
   });
 </script>
