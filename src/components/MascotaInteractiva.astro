@@ -21,9 +21,9 @@ const {
   <img
     style=`--duration: ${ estado === "tranquilo" ? 2 : estado === "apurado" ? 1 : estado === "molesto" ? 0.5 : 0 }s`
     src={image == "normal"
-      ? "http://localhost:4321/Normal Squeaky.gif"
+      ? "/Normal Squeaky.gif"
       : image == "study"
-        ? "http://localhost:4321/Study Squeaky.gif"
+        ? "/Study Squeaky.gif"
         : ""}
     id="mascota"
     alt="La mascota de Squeaky"
@@ -122,7 +122,7 @@ const {
       $consejo.innerHTML =
         Math.random() > 0.5 ? "Estoy cansado, jefe" : "&*!#$@**";
       $mascota.classList.add("agresiveShake");
-      $mascota.src = "http://localhost:4321/Angry Squeaky.gif";
+      $mascota.src = "/Angry Squeaky.gif";
     } else {
       $mascota.classList.add("shake");
       totalClicks++;
