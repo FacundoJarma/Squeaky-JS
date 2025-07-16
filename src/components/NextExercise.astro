@@ -23,23 +23,23 @@ const href = existsNextLesson
 </style>
 
 <script>
-import { postData } from "../lib/socket.js";
+  import { exerciceCompleted } from "../lib/exercices";
+
   const btn = document.getElementById("goNextExercice");
   btn?.addEventListener("click", () => {
-    //TODO Backend: Guardar que esta leccion se termino.
-    const user = JSON.parse(localStorage.getItem("user"));
-    const exeID = btn.dataset.exeid;
+    const exeID = (btn.dataset.exeid);
+
     console.log(exeID);
-    const data = {
-      ejerciciosHechos: exeID,
-      username: user.username,
-    };
-    postData("ejercicioHecho", data, () => {
-      const url = btn.dataset.href;
-      console.log(url);
-      if (url) {
-        location.href = url;
-      }
-    });
+
+    try {
+      exerciceCompleted(exeID).then(async () => {
+        const url = btn.dataset.href;
+        if (url) {
+          location.href = url;
+        }
+      });
+    } catch (e) {
+      console.error(e);
+    }
   });
 </script>

@@ -48,8 +48,7 @@ import { Icon } from "astro-icon/components";
   <EmulatedExercises />
 
   <script>
-    import { postData } from "../lib/socket.js";
-    const user = JSON.parse(localStorage.getItem("user"));
+    import { getExercices } from "../lib/exercices";
 
     function actualizarPorcentajeEnPantalla(porcentaje) {
       const $porcentaje = document.getElementById(
@@ -60,22 +59,12 @@ import { Icon } from "astro-icon/components";
         porcentaje.toFixed(1) + "%";
     }
 
-    postData(
-      "ejercicioHecho",
-      {
-        leccionesHechas: null,
-        username: user.username,
-      },
-      (user) => {
-        let cantidadLeccionesHechas = 0;
-        user.ejerciciosHechos.forEach((exe) => {
-          if (exe != null) {
-            cantidadLeccionesHechas++;
-          }
-        });
-        const porcentaje = (cantidadLeccionesHechas / 18) * 100;
-        actualizarPorcentajeEnPantalla(porcentaje);
-      }
-    );
+    try {
+      const exericesCompleted = await getExercices();
+      const porcentaje = (exericesCompleted.length / 18) * 100;
+      actualizarPorcentajeEnPantalla(porcentaje);
+    } catch (e) {
+      console.log(e);
+    }
   </script>
 </Layout>
