@@ -35,6 +35,7 @@ export async function login(email: string, password: string) {
     password,
   });
 
+
   if (error) throw error;
 
   await actualizarRachaUsuario(data.user.id);

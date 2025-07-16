@@ -1,7 +1,7 @@
 ---
     title: Eventos en JS
     difficult: Difícil
-    classList: col-span-1 row-span-1
+    classList: lg:col-span-1 row-span-1
     index: 14
 ---
 

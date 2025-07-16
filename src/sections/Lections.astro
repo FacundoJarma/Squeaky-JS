@@ -8,7 +8,7 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 
 ---
 
-<main class="max-w-6xl mx-auto grid grid-cols-5 my-24 gap-4">
+<main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 my-24 gap-4 lg:px-0 px-6 auto-rows-[217px]">
 
   {
     lecciones.map(({ data: leccion, slug }, index) => (
@@ -26,11 +26,6 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 
 </main>
 
-<style>
-  main {
-    grid-template-rows: repeat(7, 217px);
-  }
-</style>
 
 <script>
   import ScrollReveal from "scrollreveal";

@@ -8,20 +8,6 @@ import CheckUser from "../components/CheckUser.astro";
 import Footer from "../sections/Footer.astro";
 
 const { title, description } = Astro.props;
-
-import { supabase } from "../lib/supabase/client";
-import { actualizarRachaUsuario } from "../lib/supabaseAuth";
-
-const session = await supabase.auth.getSession();
-const user = session?.data?.session?.user;
-
-if (!user) {
-  return Astro.redirect("/login");
-}
-
-await actualizarRachaUsuario(user.id);
-
----
 ---
 
 <html lang="en">
@@ -40,6 +26,7 @@ await actualizarRachaUsuario(user.id);
   </head>
 
   <body class="bg-[#17181c]">
+    <CheckUser >
       <KeyboardManager title="Comandos de Teclado" site="leccion" />
       <!-- <ViewTransitions /> -->
       <div class="grid grid-cols-6">
@@ -54,6 +41,7 @@ await actualizarRachaUsuario(user.id);
           <slot />
         </main>
       </div>
+    </CheckUser>
   </body>
 
   <style is:global>

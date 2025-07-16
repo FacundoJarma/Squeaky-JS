@@ -1,5 +1,5 @@
 ---
-    classList: row-span-2 col-span-1
+    classList: row-span-2 lg:col-span-1
     difficult: Fácil
     title: Como podemos mostrar información por la pantalla.
     index: 4

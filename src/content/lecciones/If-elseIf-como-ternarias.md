@@ -1,7 +1,7 @@
 ---
     title: If y Else IF expresados como ternarias
     difficult: Medio
-    classList: col-span-2 row-span-1
+    classList: lg:col-span-2 row-span-1
     index: 6
     exerciceCols: 3
     exercises: ["6-1"]

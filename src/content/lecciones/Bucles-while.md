@@ -1,7 +1,7 @@
 ---
     title: Bucles, que son y aprendiendo sobre el while, el bucle por excelencia.
     difficult: Medio
-    classList: col-span-2 row-span-2
+    classList: lg:col-span-2 row-span-2
     index: 7
     exerciceCols: 4
     exercises: ["7-1", "7-2"]

@@ -1,7 +1,7 @@
 ---
     title: Las diferencias entre while y do while.
     difficult: Medio
-    classList: col-span-1 row-span-1
+    classList: lg:col-span-1 row-span-1
     index: 8
 ---
 

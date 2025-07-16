@@ -1,7 +1,7 @@
 ---
     title: Operadores Logicos
     difficult: Fácil
-    classList: col-span-1 row-span-2
+    classList: lg:col-span-1 row-span-2
     index: 12
 ---
 ## ¿Que son los operadores logicos?

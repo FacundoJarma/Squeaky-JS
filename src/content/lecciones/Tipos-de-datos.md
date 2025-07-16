@@ -1,7 +1,7 @@
 ---
     title: Tipos de datos
     difficult: Fácil
-    classList: row-span-1 col-span-2
+    classList: row-span-1 lg:col-span-2
     index: 3
     exerciceCols: 3
     exercises: ["3-1", "3-2"]

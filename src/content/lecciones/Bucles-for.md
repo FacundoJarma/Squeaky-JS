@@ -1,7 +1,7 @@
 ---
     title: El bucle For ¡inicio, fin e iteracion en una sola linea!
     difficult: Medio
-    classList: col-span-1 row-span-1
+    classList: lg:col-span-1 row-span-1
     exerciceCols: 1
     exercises: ["9-1"]
     index: 9

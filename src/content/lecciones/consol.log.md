@@ -1,7 +1,7 @@
 ---
     title: Aprendiendo el console.log
     difficult: Fácil
-    classList: col-span-1 row-span-2
+    classList: lg:col-span-1 row-span-2
     index: 13
 ---
 ## ¿Que es el consol log?
