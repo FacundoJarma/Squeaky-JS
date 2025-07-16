@@ -1,25 +1,25 @@
 ---
 import { Icon } from "astro-icon/components";
 ---
+
 <div class="relative">
   <button
-    
     transition:persist
     id="dropdownMenuButton"
-    class="flex items-center justify-center w-8 h-8  rounded-full  focus:outline-none"
-  
-    >
-    <Icon name="OpenMenu" height={48} width={48} class="text-white"/>
+    class="flex items-center justify-center w-8 h-8 rounded-full focus:outline-none"
+  >
+    <Icon name="OpenMenu" height={48} width={48} class="text-white" />
   </button>
   <div
     id="dropdownMenu"
     class="z-50 absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
   >
-  <a href="/ejercicios"
-  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
->
-  Ejercicios 
-</a>
+    <a
+      href="/ejercicios"
+      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+    >
+      Ejercicios
+    </a>
     <a
       href="/lecciones"
       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -43,6 +43,8 @@ import { Icon } from "astro-icon/components";
 
 <script>
   import Toastify from "toastify-js";
+  import { logout } from "../lib/supabaseAuth";
+
   document.addEventListener("click", (event) => {
     const $button = event.target.closest("#dropdownMenuButton");
     if (!$button) return;
@@ -69,8 +71,9 @@ import { Icon } from "astro-icon/components";
   const $logOut = document.getElementById("logOut") as HTMLButtonElement;
 
   $logOut.addEventListener("click", () => {
-    localStorage.removeItem("user");
-    window.location.href = "/login";
-  })
-
+    logout().then(() => {
+      localStorage.removeItem("user");
+      window.location.href = "/login";
+    });
+  });
 </script>

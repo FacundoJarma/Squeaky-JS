@@ -1,15 +1,21 @@
-<script>
-    import { postData } from "../lib/socket.js";
-    function getUser(){
-        let user = localStorage.getItem("user");
-        user = JSON.parse(user);
-        if(!user) window.location.href = "/login";
-        postData("racha", {
-            username: user.username
-        }, () => {
-            console.log("Tu sesion se guardo correctamente.");
-        })
-        return user
-    }
-    getUser();
-</script>
+---
+import { actualizarRachaUsuario } from "../lib/supabaseAuth";
+import { supabase } from "../lib/supabase/client";
+
+const session = await supabase.auth.getSession();
+const user = session?.data?.session?.user;
+
+if (!user) {
+  // Redireccionar si no hay sesión
+  return Astro.redirect("/login");
+}
+
+// Actualizar racha
+try {
+  await actualizarRachaUsuario(user.id);
+} catch (e) {
+  console.error("Error actualizando racha:", e);
+}
+---
+
+<slot />

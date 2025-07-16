@@ -172,15 +172,15 @@ import { Icon } from "astro-icon/components";
       "usernameLabel"
     ) as HTMLHeadingElement;
 
-    $usernameLabel.innerHTML = "@" + userInfo?.username;
+    $usernameLabel.innerHTML = "@" + userInfo?.profile.username;
 
     const $nombreApellidoInput = document.getElementById(
       "nombreApellidoInput"
     ) as HTMLInputElement;
-    $nombreApellidoInput.value = userInfo?.username ? userInfo?.username : "";
+    $nombreApellidoInput.value = userInfo?.profile.username ? userInfo?.profile.username : "";
 
     const $gmail = document.getElementById("gmail") as HTMLInputElement;
-    $gmail.value = userInfo?.email ? userInfo?.email : "";
+    $gmail.value = userInfo?.auth.email ? userInfo?.auth.email : "";
 
     const $contraseña = document.getElementById(
       "contraseña"
@@ -188,6 +188,6 @@ import { Icon } from "astro-icon/components";
     $contraseña.value = userInfo?.password ? userInfo?.password : "";
     const $dateInput = document.getElementById("dateInput") as HTMLInputElement;
 
-    $dateInput.value = userInfo?.date ? userInfo?.date : "";
+    $dateInput.value = userInfo?.profile.date ? userInfo?.profile.date : "";
   </script>
 </Layout>

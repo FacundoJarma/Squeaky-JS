@@ -85,13 +85,6 @@ import { Icon } from "astro-icon/components";
       try {
         
         const loginData = await login($email.value, $password.value)
-        const perfil = await getProfile(loginData.user.id)
-
-        // Guardar el perfil y el auth user
-        localStorage.setItem("user", JSON.stringify({
-          auth: loginData.user,
-          profile: perfil,
-        }))
 
         Toastify({
           text: "Has iniciado sesión correctamente!",

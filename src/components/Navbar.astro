@@ -45,15 +45,16 @@ import { Icon } from "astro-icon/components";
       cadena[i] = cadena[i].charAt(0).toUpperCase() + cadena[i].substring(1);
     }
     nombre = cadena.join(" ");
-    return nombre
+    return nombre;
   }
 
-  function getUser() {
+  function getProfile() {
     let user = localStorage.getItem("user");
-    user = JSON.parse(user);
-    return user;
+    const { profile } = JSON.parse(user);
+    return profile;
   }
-  const user = getUser();
-  document.getElementById("profileInfo").innerText = convertir(user.username);
-    
+  const profile = getProfile();
+  document.getElementById("profileInfo").innerText = convertir(
+    profile.username
+  );
 </script>

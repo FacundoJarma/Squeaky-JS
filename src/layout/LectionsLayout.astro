@@ -8,6 +8,20 @@ import CheckUser from "../components/CheckUser.astro";
 import Footer from "../sections/Footer.astro";
 
 const { title, description } = Astro.props;
+
+import { supabase } from "../lib/supabase/client";
+import { actualizarRachaUsuario } from "../lib/supabaseAuth";
+
+const session = await supabase.auth.getSession();
+const user = session?.data?.session?.user;
+
+if (!user) {
+  return Astro.redirect("/login");
+}
+
+await actualizarRachaUsuario(user.id);
+
+---
 ---
 
 <html lang="en">
@@ -16,36 +30,37 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
 
     <title>{title}</title>
   </head>
 
   <body class="bg-[#17181c]">
-    <KeyboardManager title="Comandos de Teclado" site="leccion" />
-    <!-- <ViewTransitions /> -->
-    <div class="grid grid-cols-6">
-      <Navbar />
-      <LectionAside />
-      <main class="mt-12 w-full px-32 mx-auto col-span-5 h-fit">
-        <a
-          href="/lecciones"
-          class="flex gap-1 items-center hover:underline underline-offset-2"
-          ><Icon name="back" /> Volver a mis lecciones
-        </a>
-        <slot />
-
-      </main>
-    </div>
+      <KeyboardManager title="Comandos de Teclado" site="leccion" />
+      <!-- <ViewTransitions /> -->
+      <div class="grid grid-cols-6">
+        <Navbar />
+        <LectionAside />
+        <main class="mt-12 w-full px-32 mx-auto col-span-5 h-fit">
+          <a
+            href="/lecciones"
+            class="flex gap-1 items-center hover:underline underline-offset-2"
+            ><Icon name="back" /> Volver a mis lecciones
+          </a>
+          <slot />
+        </main>
+      </div>
   </body>
 
-  <!-- <CheckUser /> -->
   <style is:global>
-    @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
- </style>
+    @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+  </style>
 
   <style is:global>
     html {
