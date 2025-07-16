@@ -17,7 +17,9 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     exercicesInThisLesson={exercicesInThisLesson}
   />
 
-  <header class="flex gap-8 lg:gap-[8em] justify-center mt-14 flex-col lg:flex-row-reverse items-center">
+  <header
+    class="flex gap-8 lg:gap-[8em] justify-center mt-14 flex-col lg:flex-row-reverse items-center"
+  >
     <MascotaInteractiva
       image="normal"
       classList="h-48 w-48"
@@ -50,74 +52,71 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     </ul>
   </div>
 </main>
-
-<script >
+<script>
   import { ExerciceOption } from "../lib/clases";
   import Toastify from "toastify-js";
 
-  const $context = document.getElementById("context") as HTMLParagraphElement;
-  if ($context) {
-    $context.innerHTML = $context.dataset.text;
-  }
+  window.addEventListener("DOMContentLoaded", async () => {
+const confetti = (await import("canvas-confetti")).default;
 
-  const $buttons = document.querySelectorAll(
-    ".buttonOption"
-  ) as NodeListOf<HTMLButtonElement>;
+    const $context = document.getElementById("context");
+    if ($context) {
+      $context.innerHTML = $context.dataset.text;
+    }
 
-  const buttons = [] as any;
+    const $buttons = document.querySelectorAll(".buttonOption");
+    const buttons = [];
 
-  $buttons.forEach(($button) => {
-    const correct = $button.dataset.iscorrect == "true";
-    const option = new ExerciceOption(correct, $button.innerText, $button);
-    buttons.push(option);
-  });
+    $buttons.forEach(($button) => {
+      const correct = $button.dataset.iscorrect == "true";
+      const option = new ExerciceOption(correct, $button.innerText, $button);
+      buttons.push(option);
+    });
 
-  const activeGoNext = () => {
-    document.getElementById("goNextExercice")?.classList.add("active");
-  };
+    const activeGoNext = () => {
+      document.getElementById("goNextExercice")?.classList.add("active");
+    };
 
-  const disabledButtons = () =>
-    buttons.forEach((button) => button.setDisabled());
+    const disabledButtons = () =>
+      buttons.forEach((button) => button.setDisabled());
 
-  const showCorrectAnswer = () => {
-    const correctOption = buttons.find((button) => button.isAValidOption());
-    correctOption.getElement().classList.add("parcialCorrect");
-  };
+    const showCorrectAnswer = () => {
+      const correctOption = buttons.find((button) => button.isAValidOption());
+      correctOption.getElement().classList.add("parcialCorrect");
+    };
 
-  const squeakyReaction = () => {
-    const $mascota = document.getElementById("mascota") as HTMLImageElement;
+    const squeakyReaction = () => {
+      const $mascota = document.getElementById("mascota");
+      const $consejo = document.getElementById("mascotaConsejo");
 
-    const $consejo = document.getElementById(
-      "mascotaConsejo"
-    ) as HTMLParagraphElement;
+      $mascota.src = "/Sad Squeaky.gif";
+      $consejo.innerText = "¡Qué mala suerte! La próxima será.";
+      $consejo.classList.add("mostrar");
+    };
 
-    $mascota.src = "/Sad Squeaky.gif";
-    $consejo.innerText = "¡Que mala suerte! La proxima sera."
-    $consejo.classList.add("mostrar");
-  };
+    buttons.forEach((button) => {
+      button.getElement().addEventListener("click", () => {
+        button.addStylesOfOptionType();
+        activeGoNext();
+        disabledButtons();
 
-  buttons.forEach((button) => {
-    button.getElement().addEventListener("click", () => {
-      button.addStylesOfOptionType();
-      activeGoNext();
-      disabledButtons();
+        if (button.isAValidOption()) {
+          confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: 0.6 },
+          });
 
-      if (button.isAValidOption() == true) {
-        confetti({
-          particleCount: 200,
-          spread: 100,
-          origin: { y: 0.6 },
-        });
-
-        Toastify({
-          text: "Ejercico resuelto!",
-          duration: 2000, // Duración de 2 segundos
-          stopOnFocus: true,
-        }).showToast();
-      } else {
-        squeakyReaction();
-        showCorrectAnswer();
-      }
+          Toastify({
+            text: "¡Ejercicio resuelto!",
+            duration: 2000,
+            stopOnFocus: true,
+          }).showToast();
+        } else {
+          squeakyReaction();
+          showCorrectAnswer();
+        }
+      });
     });
   });
 </script>

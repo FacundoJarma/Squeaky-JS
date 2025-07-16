@@ -49,7 +49,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
       }
     </ul>
   </div>
-</main><script is:inline>
+</main><script >
   import { ExerciceOption } from "../lib/clases";
   import Toastify from "toastify-js";
 
@@ -59,7 +59,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
       ".buttonOptionMultiple"
     );
 
-    const { confetti } = await import("tsparticles-confetti");
+const confetti = (await import("canvas-confetti")).default;
 
     const buttons = [];
 
