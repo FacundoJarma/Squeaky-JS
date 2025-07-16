@@ -49,66 +49,71 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
       }
     </ul>
   </div>
-</main>
-<script is:inline>
+</main><script is:inline>
   import { ExerciceOption } from "../lib/clases";
   import Toastify from "toastify-js";
 
-  const $buttons = document.querySelectorAll(
-    ".buttonOptionMultiple"
-  ) as NodeListOf<HTMLButtonElement>;
+  // Esperamos a que el DOM esté listo
+  window.addEventListener("DOMContentLoaded", async () => {
+    const $buttons = document.querySelectorAll(
+      ".buttonOptionMultiple"
+    );
 
-  const buttons = [] as ExerciceOption[];
+    const { confetti } = await import("tsparticles-confetti");
 
-  let cantidadDeCorrectas = 0;
+    const buttons = [];
 
-  $buttons.forEach(($button) => {
-    const correct = $button.dataset.iscorrect == "true";
-    const option = new ExerciceOption(correct, $button.innerText, $button);
-    buttons.push(option);
+    let cantidadDeCorrectas = 0;
 
-    if (correct) {
-      cantidadDeCorrectas++;
-    }
-  });
+    $buttons.forEach(($button) => {
+      const correct = $button.dataset.iscorrect == "true";
+      const option = new ExerciceOption(correct, $button.innerText, $button);
+      buttons.push(option);
 
-  const activeGoNext = () => {
-    document.getElementById("goNextExercice")?.classList.add("active");
-  };
-
-  const disabledButtons = () =>
-    buttons.forEach((button) => button.setDisabled());
-
-  const añadirTextoComoHTML = ($button) => {
-    $button.innerHTML = $button.dataset.text;
-  };
-
-  $buttons.forEach(($button) => {
-    añadirTextoComoHTML($button);
-  });
-  buttons.forEach((button) => {
-    button.getElement().addEventListener("click", () => {
-      if (button.isAValidOption()) {
-        cantidadDeCorrectas--;
-        button.addStylesOfOptionType();
-
-        if (cantidadDeCorrectas === 0) {
-          confetti({
-            particleCount: 200,
-            spread: 100,
-            origin: { y: 0.6 },
-          });
-          Toastify({
-            text: "Ejercico resuelto!",
-            duration: 2000, // Duración de 2 segundos
-            stopOnFocus: true,
-          }).showToast();
-          activeGoNext();
-          disabledButtons();
-        }
-      } else {
-        button.addStylesOfOptionType();
+      if (correct) {
+        cantidadDeCorrectas++;
       }
+    });
+
+    const activeGoNext = () => {
+      document.getElementById("goNextExercice")?.classList.add("active");
+    };
+
+    const disabledButtons = () =>
+      buttons.forEach((button) => button.setDisabled());
+
+    const añadirTextoComoHTML = ($button) => {
+      $button.innerHTML = $button.dataset.text;
+    };
+
+    $buttons.forEach(($button) => {
+      añadirTextoComoHTML($button);
+    });
+
+    buttons.forEach((button) => {
+      button.getElement().addEventListener("click", () => {
+        if (button.isAValidOption()) {
+          cantidadDeCorrectas--;
+          button.addStylesOfOptionType();
+
+          if (cantidadDeCorrectas === 0) {
+            confetti({
+              particleCount: 200,
+              spread: 100,
+              origin: { y: 0.6 },
+            });
+            Toastify({
+              text: "Ejercicio resuelto!",
+              duration: 2000,
+              stopOnFocus: true,
+            }).showToast();
+            activeGoNext();
+            disabledButtons();
+          }
+        } else {
+          button.addStylesOfOptionType();
+        }
+      });
     });
   });
 </script>
