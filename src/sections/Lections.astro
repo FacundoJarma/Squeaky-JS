@@ -34,16 +34,15 @@ lecciones = lecciones.sort((a, b) => a.data.index - b.data.index);
 
 <script>
   import ScrollReveal from "scrollreveal";
-  import { postData } from "../lib/socket.js";
-  const user = JSON.parse(localStorage.getItem("user"));
+import { getFavorites } from "../lib/lessons";
 
-  postData("getFavoritos", user.username, (favs) => {
-    console.log(favs);
+  getFavorites().then(favs => {
+
     favs.forEach((favorito) => {
       const $addFav = document.getElementById(
-        `lection-${favorito}`
+        `lection-${favorito.lesson_slug}`
       ) as HTMLButtonElement;
-      console.log(`lection-${favorito}`, $addFav);
+      console.log(`lection-${favorito.lesson_slug}`, $addFav);
       if(!$addFav) return;
       $addFav.classList.add("isFav");
     });

@@ -44,31 +44,22 @@ import { Icon } from "astro-icon/components";
   </section>
   <Lections />
   <script>
-    import { postData } from "../lib/socket.js";
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    function actualizarPorcentajeEnPantalla(porcentaje){
-      const $porcentaje = document.getElementById("progressCircle") as HTMLInputElement;
+    import { getCompletedLessons } from "../lib/lessons";
+    function actualizarPorcentajeEnPantalla(porcentaje) {
+      const $porcentaje = document.getElementById(
+        "progressCircle"
+      ) as HTMLInputElement;
       $porcentaje.style = "--percent: " + porcentaje;
-      document.getElementById("progressCircleSpan").innerHTML = porcentaje.toFixed(1) + "%";
+      document.getElementById("progressCircleSpan").innerHTML =
+        porcentaje.toFixed(1) + "%";
     }
 
-    postData(
-      "leccionHecha",
-      {
-        leccionesHechas: null,
-        username: user.username
-      },
-      (user) => {
-        let cantidadLeccionesHechas = 0;
-        user.leccionesHechas.forEach((leccion) => {
-          if(leccion != null) {
-            cantidadLeccionesHechas++;
-          }
-        })
-        const porcentaje = (cantidadLeccionesHechas / 17) * 100;
-        actualizarPorcentajeEnPantalla(porcentaje);
-      }
-    );
+    try {
+      const lessonsCompleted = (await getCompletedLessons()) as Array<number>;
+      const porcentaje = (lessonsCompleted.length / 18) * 100;
+      actualizarPorcentajeEnPantalla(porcentaje);
+    } catch (e) {
+      console.log(e);
+    }
   </script>
 </Layout>
