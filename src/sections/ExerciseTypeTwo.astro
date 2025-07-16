@@ -6,7 +6,7 @@ const { body, head, exercicesInThisLesson, id, indexOfLesson } = Astro.props;
 const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
 ---
 
-<main class="px-4 max-w-full lg:px-12 h-full w-full pointer-events-none">
+<main class="px-4 max-w-full lg:px-12 h-full w-full">
   <img
     src="/fondoej1.png"
     class="absolute -z-10 flex left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 max-h-[100vh]"
@@ -50,7 +50,7 @@ const actualIndexOfEx = exercicesInThisLesson.findIndex((ex) => ex.id === id);
     </ul>
   </div>
 </main>
-<script>
+<script is:inline>
   import { ExerciceOption } from "../lib/clases";
   import Toastify from "toastify-js";
 
