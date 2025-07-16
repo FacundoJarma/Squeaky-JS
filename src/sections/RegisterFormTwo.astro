@@ -3,7 +3,6 @@ import { Icon } from "astro-icon/components";
 ---
 
 <form
-  action=""
   id="registerForm"
   class="z-10 w-[35em] bg-black/70 h-[90vh] rounded-t-2xl px-16 py-16"
 >
@@ -59,82 +58,64 @@ import { Icon } from "astro-icon/components";
     position: relative;
   }
 </style>
-
 <script>
-  import { postData } from "../lib/socket.js";
-  import Toastify from "toastify-js";
+  import Toastify from "toastify-js"
+  import { registrarUsuario, agregarPerfilExtra } from "../lib/supabaseAuth"
 
-  const sendData = (user) => {
-    postData("registrarUsuario", user, () => {
-      Toastify({
-        text: "Usuario creado exitosamente!",
-        duration: 1000,
-        stopOnFocus: true,
-      }).showToast();
-    });
-  };
+  document.addEventListener("DOMContentLoaded", () => {
+    const $registerForm = document.getElementById("registerForm")
 
-  const $registerForm = document.getElementById("registerForm") as HTMLFormElement;
+    if (!$registerForm) return
 
-  $registerForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+    $registerForm.addEventListener("submit", async (event) => {
+      event.preventDefault()
 
-    const $password = document.getElementById("password") as HTMLInputElement;
-    const $passwordAgain = document.getElementById("passwordAgain") as HTMLInputElement;
-    const params = new URLSearchParams(window.location.search);
-    const username = params.get('username');
-    const email = params.get('email');
-    const date = params.get('date');
+      const $password = document.getElementById("password")
+      const $passwordAgain = document.getElementById("passwordAgain")
+      const params = new URLSearchParams(window.location.search)
+      const username = params.get("username")
+      const email = params.get("email")
+      const date = params.get("date")
 
-    console.log(username, email, date);
-    if ($password.value !== $passwordAgain.value) {
-      Toastify({
-        text: "Las contrasenias no coinciden!",
-        duration: 1000, // Duración de 2 segundos
-        stopOnFocus: true,
-        style: {
-          background: "red",
-        },
-      }).showToast();
-      return;
-    }
+      if ($password.value !== $passwordAgain.value) {
+        Toastify({
+          text: "Las contraseñas no coinciden!",
+          duration: 1000,
+          style: { background: "red" },
+        }).showToast()
+        return
+      }
 
-    if (!username || !email || !date || !$password.value) {
-      Toastify({
-        text: "No puedes enviar datos vacios!",
-        duration: 1000, // Duración de 2 segundos
-        stopOnFocus: true,
-        style: {
-          background: "red",
-        },
-      }).showToast();
-      return;
-    }
+      if (!username || !email || !date || !$password.value) {
+        Toastify({
+          text: "No puedes enviar datos vacíos!",
+          duration: 1000,
+          style: { background: "red" },
+        }).showToast()
+        return
+      }
 
-    const user = {
-      username: username,
-      email: email,
-      password: $password.value,
-      date: date,
-      favortios: {},
-    };
-    sendData(user);
-  });
+      try {
+        const { user } = await registrarUsuario(email, $password.value)
 
-  const passwordInput = document.getElementById("password");
-  const togglePassword = document.getElementById("togglePassword");
+        if (!user) throw new Error("Registro fallido.")
 
-  togglePassword.addEventListener("click", () => {
-    if (passwordInput.value === "") {
-      return;
-    }
-    const type =
-      passwordInput.getAttribute("type") === "password" ? "text" : "password";
-    passwordInput.setAttribute("type", type);
+        await agregarPerfilExtra(user.id, username, date)
 
-    togglePassword.innerHTML =
-      type !== "password"
-        ? '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>'
-        : '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>';
-  });
+        Toastify({
+          text: "Usuario creado exitosamente!",
+          duration: 1500,
+        }).showToast()
+
+        window.location.href = "/login"
+      } catch (error) {
+        console.error(error)
+        Toastify({
+          text: error.message || "Error inesperado",
+          duration: 2000,
+          style: { background: "red" },
+        }).showToast()
+      }
+    })
+  })
 </script>

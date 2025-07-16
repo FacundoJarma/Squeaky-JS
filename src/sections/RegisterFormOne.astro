@@ -57,14 +57,9 @@ import { Icon } from "astro-icon/components";
 </style>
 
 <script>
-  import { postData } from "../lib/socket.js";
+ 
   import Toastify from "toastify-js";
 
-  const sendData = (user) => {
-    postData("registrarUsuario", user, () => {
-      alert("Usuario registrado!");
-    });
-  };
 
   const $registerForm = document.getElementById(
     "registerForm"

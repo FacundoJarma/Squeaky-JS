@@ -12,9 +12,9 @@ import { Icon } from "astro-icon/components";
     </h1>
     <div class="flex flex-col gap-5">
       <input
-        type="text"
-        id="username"
-        placeholder="Nombre de usuario"
+        type="email"
+        id="email"
+        placeholder="Email"
         class="text-xl w-full h-16 rounded-lg border border-[#858585] px-4 bg-[#181818]/80 text-[#A6A6A6] font-[inter]"
       />
       <div class="password-container">
@@ -58,71 +58,68 @@ import { Icon } from "astro-icon/components";
       position: relative;
     }
   </style>
+<script>
+  import Toastify from "toastify-js"
+  import { login, getProfile } from "../lib/supabaseAuth"
 
-  <script>
-    import { postData } from "../lib/socket.js";
-    import Toastify from "toastify-js";
+  document.addEventListener("DOMContentLoaded", () => {
+    const $loginForm = document.getElementById("loginForm") as HTMLFormElement
+    const $email = document.getElementById("email") as HTMLInputElement
+    const $password = document.getElementById("password") as HTMLInputElement
+    const togglePassword = document.getElementById("togglePassword")
 
-    const $loginForm = document.getElementById("loginForm") as HTMLFormElement;
-    $loginForm.addEventListener("submit", (event) => {
-      event.preventDefault();
+    if (!($loginForm && $email && $password)) return
 
-      const $username = document.getElementById("username") as HTMLInputElement;
+    $loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault()
 
-      const $password = document.getElementById("password") as HTMLInputElement;
+      if (!$email.value || !$password.value) {
+        Toastify({
+          text: "No puedes enviar datos vacíos!",
+          duration: 1000,
+          style: { background: "red" },
+        }).showToast()
+        return
+      }
 
-      if(!$username.value || !$password.value) {
-      Toastify({
-          text: "No puedes enviar datos vacios!",
-          duration: 1000, // Duración de 2 segundos
-          stopOnFocus: true,
-          style: {
-            background: "red",}
-        }).showToast();
-        return;
-    }
+      try {
+        
+        const loginData = await login($email.value, $password.value)
+        const perfil = await getProfile(loginData.user.id)
 
-      const data = {
-        username: $username.value,
-        password: $password.value,
-      };
-
-      postData("login", data, (user) => {
-        if (!user) return;
-
-        localStorage.setItem("user", JSON.stringify(user));
+        // Guardar el perfil y el auth user
+        localStorage.setItem("user", JSON.stringify({
+          auth: loginData.user,
+          profile: perfil,
+        }))
 
         Toastify({
           text: "Has iniciado sesión correctamente!",
-          duration: 1000, // Duración de 2 segundos
-          stopOnFocus: true,
-        }).showToast();
+          duration: 1000,
+        }).showToast()
 
         setTimeout(() => {
-          window.location.href = "/";
-        }, 1000);
-      });
-    });
-
-    const passwordInput = document.getElementById(
-      "password"
-    ) as HTMLInputElement;
-    const togglePassword = document.getElementById(
-      "togglePassword"
-    ) as HTMLDivElement;
+          window.location.href = "/"
+        }, 1000)
+      } catch (error) {
+        console.error(error)
+        Toastify({
+          text: error.message || "Error al iniciar sesión.",
+          duration: 2000,
+          style: { background: "red" },
+        }).showToast()
+      }
+    })
 
     togglePassword.addEventListener("click", () => {
-      if (passwordInput.value === "") {
-        return;
-      }
-      const type =
-        passwordInput.getAttribute("type") === "password" ? "text" : "password";
-      passwordInput.setAttribute("type", type);
+      if ($password.value === "") return
+      const type = $password.getAttribute("type") === "password" ? "text" : "password"
+      $password.setAttribute("type", type)
 
       togglePassword.innerHTML =
         type !== "password"
-          ? '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>'
-          : '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>';
-    });
-  </script>
-</form>
+          ? '<svg>…icon-eye…</svg>'
+          : '<svg>…icon-eye-off…</svg>'
+    })
+  })
+</script>
