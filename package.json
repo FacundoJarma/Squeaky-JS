@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
+    "@supabase/supabase-js": "^2.51.0",
     "ascii-table": "^0.0.9",
     "astro": "^4.12.3",
     "astro-icon": "^1.1.0",
