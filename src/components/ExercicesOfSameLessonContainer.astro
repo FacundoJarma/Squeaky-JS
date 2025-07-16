@@ -1,14 +1,30 @@
 ---
 import ExerciseCard from "./ExerciseCard.astro";
-
 const { lesson, lessonUrl, exercices, cols } = Astro.props;
 ---
 
-<div class={"min-w-[217px] relative"} style={`grid-column:  span ${cols} / span ${cols};`}>
-  <div class="absolute rounded-2xl box-content h-full min-w-[220px] w-full p-3 border-dashed border-white/50 border-4 translate-x-[-50%] translate-y-[-50%] left-1/2 top-1/2">
-
-  </div>
+<div
+  class={
+    [
+      // siempre full width en móvil y posición relativa:
+      "w-full relative",
+      // min-width solo en pantallas grandes:
+      "lg:min-w-[217px]",
+      // span dinámico en lg:
+      `lg:col-span-${cols}`,
+    ].join(" ")
+  }
+>
+  <div
+    class="
+      absolute rounded-2xl box-content h-full w-full
+      p-3 border-dashed border-white/50 border-4
+      -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2
+    "
+  ></div>
   <ul class="flex gap-4 h-full overflow-x-auto overflow-y-hidden">
-    {exercices.map((ex) => <ExerciseCard head={ex.data.head} id={ex.id} />)}
+    {exercices.map((ex) => (
+      <ExerciseCard head={ex.data.head} id={ex.id} />
+    ))}
   </ul>
 </div>
