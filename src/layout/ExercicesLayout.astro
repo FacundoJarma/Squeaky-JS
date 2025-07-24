@@ -3,8 +3,34 @@ import KeyboardManager from "../components/KeyboardManager.astro";
 import Navbar from "../components/Navbar.astro";
 import CheckUser from "../components/CheckUser.astro";
 import Footer from "../sections/Footer.astro";
+import { supabase } from "../lib/supabase/client";
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/login");
+}
 ---
 
 <html lang="en">
@@ -13,21 +39,21 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
 
     <title>{title}</title>
   </head>
-  <body class=" bg-[#17181c]">
-    <CheckUser>
-     <KeyboardManager title="Comandos de Teclado" site="exercices"/>
+  <body class="bg-[#17181c]">
+    <KeyboardManager title="Comandos de Teclado" site="exercices" />
     <div class="flex flex-col min-h-screen">
       <Navbar />
       <slot />
     </div>
-
-    </CheckUser>
   </body>
-
 </html>
 
 <style is:global>
@@ -36,8 +62,7 @@ const { title } = Astro.props;
   }
 </style>
 <style is:global>
-  @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
+  @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 </style>

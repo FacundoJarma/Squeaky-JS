@@ -35,7 +35,6 @@ export async function login(email: string, password: string) {
     password,
   });
 
-
   if (error) throw error;
 
   await actualizarRachaUsuario(data.user.id);
@@ -47,18 +46,14 @@ export async function login(email: string, password: string) {
     .eq("id", data.user.id)
     .single();
 
-  if (profileError) throw profileError;
+  if (profileError) {
+    console.error("Error al obtener perfil:", profileError);
+  }
 
-  // Guardar en localStorage
-  localStorage.setItem(
-    "user",
-    JSON.stringify({
-      auth: data.user,
-      profile: perfil,
-    })
-  );
-
-  return { auth: data.user, profile: perfil };
+  return {
+    auth: data,
+    profile: perfil,
+  };
 }
 
 export async function logout() {

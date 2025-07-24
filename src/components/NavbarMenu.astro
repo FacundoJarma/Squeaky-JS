@@ -71,7 +71,7 @@ import { Icon } from "astro-icon/components";
   const $logOut = document.getElementById("logOut") as HTMLButtonElement;
 
   $logOut.addEventListener("click", () => {
-    logout().then(() => {
+    fetch("/api/auth/signout").then(() => {
       localStorage.removeItem("user");
       window.location.href = "/login";
     });
