@@ -107,5 +107,22 @@
     "date": "2008-12-6",
     "racha": 1,
     "ultimaFecha": "2024-11-08T14:16:28.954Z"
+  },
+  {
+    "username": "facundo jarma",
+    "id": "506c1f77-5385-4059-ab03-06c3aaac8d96",
+    "password": "123456",
+    "email": "49127963@est.ort.edu.ar",
+    "date": "2008-12-12",
+    "racha": 1,
+    "ultimaFecha": "2025-08-22T14:11:26.901Z",
+    "ejerciciosHechos": [
+      null,
+      null
+    ],
+    "leccionesHechas": [
+      null
+    ],
+    "favoritos": []
   }
 ]
