@@ -17,7 +17,11 @@ import { Icon } from "astro-icon/components";
           Tus Datos
         </h2>
         <button class="edit" id="edit">
-          <Icon name="lapiz" width={20} height={20} />
+          <Icon name="Click" width={20} height={20} />
+        </button>
+
+        <button class="save hidden" id="save">
+          <Icon name="Click" width={20} height={20} />
         </button>
 
         <h2>Nombre completo</h2>
@@ -154,40 +158,95 @@ import { Icon } from "astro-icon/components";
     .nombre {
       background-color: #4c4c4c;
     }
+
+    .save {
+      background-color: #10b981; /* Verde */
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 43em;
+      margin-bottom: 4em;
+      position: absolute;
+      margin-top: 0.75em;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
   <script>
-    const $edit = document.getElementById("edit") as HTMLButtonElement;
-    $edit.addEventListener("click", () => {
-      const $inputs = document.querySelectorAll(
-        "input"
-      ) as NodeListOf<HTMLInputElement>;
+    import { postData } from "../lib/socket.js";
+
+    const $edit = document.getElementById("edit");
+    const $save = document.getElementById("save");
+
+    const $inputs = document.querySelectorAll("input");
+    const $textarea = document.querySelector(".desc");
+    const $usernameLabel = document.getElementById("usernameLabel");
+    const $nombreApellidoInput = document.getElementById("nombreApellidoInput");
+    const $gmail = document.getElementById("gmail");
+    const $contraseña = document.getElementById("contraseña");
+    const $dateInput = document.getElementById("dateInput");
+
+    let isEditing = false;
+
+    const toggleEdit = () => {
+      isEditing = !isEditing;
+
       $inputs.forEach(($input) => {
-        $input.disabled = !$input.disabled;
+        $input.disabled = !isEditing;
       });
-    });
 
-    const userInfo = JSON.parse(localStorage.getItem("user"));
+      // Habilitar o deshabilitar el textarea
+      $textarea.disabled = !isEditing;
 
-    const $usernameLabel = document.getElementById(
-      "usernameLabel"
-    ) as HTMLHeadingElement;
+      if (isEditing) {
+        $save.classList.remove("hidden");
+      } else {
+        $save.classList.add("hidden");
+      }
+    };
 
-    $usernameLabel.innerHTML = "@" + userInfo?.username;
+    $edit.addEventListener("click", toggleEdit);
 
-    const $nombreApellidoInput = document.getElementById(
-      "nombreApellidoInput"
-    ) as HTMLInputElement;
-    $nombreApellidoInput.value = userInfo?.username ? userInfo?.username : "";
+    const loadUserData = () => {
+      const userInfo = JSON.parse(localStorage.getItem("user"));
+      if (!userInfo) return;
 
-    const $gmail = document.getElementById("gmail") as HTMLInputElement;
-    $gmail.value = userInfo?.email ? userInfo?.email : "";
+      $usernameLabel.innerHTML = "@" + (userInfo?.username || "");
+      $nombreApellidoInput.value = userInfo?.username || "";
+      $gmail.value = userInfo?.email || "";
+      $contraseña.value = userInfo?.password || "";
+      $dateInput.value = userInfo?.date || "";
+      $textarea.value = userInfo?.descripcion || ""; // Cargar descripción
+    };
 
-    const $contraseña = document.getElementById(
-      "contraseña"
-    ) as HTMLInputElement;
-    $contraseña.value = userInfo?.password ? userInfo?.password : "";
-    const $dateInput = document.getElementById("dateInput") as HTMLInputElement;
+    const saveData = () => {
+      const storedUser = JSON.parse(localStorage.getItem("user")) || {};
 
-    $dateInput.value = userInfo?.date ? userInfo?.date : "";
+      const newUserData = {
+        id: storedUser.id || null,
+        username: $nombreApellidoInput.value,
+        email: $gmail.value,
+        password: $contraseña.value,
+        date: $dateInput.value,
+        descripcion: $textarea.value, // Guardar descripción
+      };
+
+      postData("guardarUsuario", newUserData, () => {
+        localStorage.setItem("user", JSON.stringify(newUserData));
+        loadUserData(); // Refresca la vista
+        toggleEdit(); // Desactiva edición y oculta botón
+      });
+    };
+
+    $save.addEventListener("click", saveData);
+
+    // Cargar al inicio
+    loadUserData();
   </script>
 </Layout>

@@ -9,6 +9,7 @@ import { userDisplay } from "./userInfo.js";
 
 import { onEvent, sendEvent, startServer } from "soquetic";
 import { ejercicioHecho } from "./ejerciciosHechos.js";
+import { guardarUsuario } from "./saveData.js";
 
 onEvent("registrarUsuario", (data) => {
   registrar(data);
@@ -30,6 +31,12 @@ onEvent('login', async (data) => {
   console.log(user)
   return user;
 })
+
+onEvent("guardarUsuario", async (data) => {
+  const resultado = guardarUsuario(data);
+  return resultado;
+});
+
 
 onEvent('eliminarFavorito', async (data) => {
   const favs = await eliminarFavorito(data);
